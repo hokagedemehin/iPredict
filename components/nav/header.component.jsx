@@ -18,13 +18,27 @@ import {
   GiCardPlay,
   GiCartwheel,
   GiNewspaper,
+  // GiFocusedLightning,
 } from "react-icons/gi";
 import { BsNewspaper, BsFileSpreadsheetFill } from "react-icons/bs";
 import { MdOutlineQuiz } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
+import { GoSignOut, GoSignIn } from "react-icons/go";
+import { signOut } from "firebase/auth";
+import { auth } from "../../utils/firebase/firebase";
+import { useUser } from "../../utils/auth/userContext";
 
 const NavHeader = () => {
   const router = useRouter();
+  const { user } = useUser();
+
+  const handleLogout = async () => {
+    // e.preventDefault();
+    await signOut(auth);
+    router.push("/");
+
+    // console.log("router: ", router.pathname);
+  };
 
   return (
     <>
@@ -82,6 +96,26 @@ const NavHeader = () => {
             >
               News Magazine
             </MenuItem>
+
+            {user ? (
+              <MenuItem
+                icon={<GoSignOut />}
+                // onClick={() => router.push("/magazine")}
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Sign Out
+              </MenuItem>
+            ) : (
+              <MenuItem
+                icon={<GoSignIn />}
+                // onClick={() => router.push("/magazine")}
+                onClick={() => router.push("/login")}
+              >
+                Sign In
+              </MenuItem>
+            )}
           </MenuList>
         </Menu>
         <Spacer />

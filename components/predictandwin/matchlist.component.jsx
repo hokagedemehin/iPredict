@@ -1,17 +1,37 @@
 import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 // import { CheckCircleIcon, SmallCloseIcon } from "react-icons/md";
-// import { BiCheck } from "react-icons/bi";
 // import { MdClose } from "react-icons/md";
 // import addMatchToFirestore from "../../utils/matches/addMatchToFIrestore";
 // import { NumberInput, NumberInputField } from "@chakra-ui/react";
 // import { TextField } from "@mui/material";
 
-const MatchListComponent = ({ matches }) => {
+const MatchListComponent = ({
+  matches,
+  setFormValue,
+  formValue,
+  // setMatchSelect,
+  // matchSelect,
+}) => {
   // console.log("🚀 ~ file: matchlist.component.jsx ~ line 8 ~ MatchListComponent ~ matches", matches)
   // Logo Home Team vs Away Team Logo
   // console.log(matches);
   const match = !matches ? {} : matches;
+
+  const handleChange = (e) => {
+    // const newArr = [];
+    // const id = matches.fixtureId;
+    const name = e.target.name;
+    const value = e.target.value;
+    const newValue = {
+      [name]: value,
+    };
+    setFormValue({ ...formValue, ...newValue });
+    // setFormValue({ ...formValue, [name]: value, id: "is" });
+    // newArr.push(matches.fixtureId);
+    // setFormValue([...formValue, matches.fixtureId]);
+  };
+
   // const [formValue, setFormValue] = useState(initialState)
   // const addSelection = async () => {
   //   // await addMatchToFirestore(match);
@@ -63,11 +83,13 @@ const MatchListComponent = ({ matches }) => {
             type="number"
             name={match.homeName}
             id="homePred"
-            defaultValue="5"
+            // defaultValue="0"
             min="0"
             max="99"
-            style={{ width: "20px", fontSize: "16px", fontWeight: "bold" }}
+            style={{ width: "25px", fontSize: "16px", fontWeight: "bold" }}
             required
+            className="border-2"
+            onChange={(e) => handleChange(e)}
           />
         </div>
         {/* <NumberInput
@@ -121,36 +143,17 @@ const MatchListComponent = ({ matches }) => {
             type="number"
             name={match.awayName}
             id="homePred"
-            defaultValue="0"
+            // defaultValue="0"
             min="0"
             max="99"
-            style={{ width: "20px", fontSize: "16px", fontWeight: "bold" }}
+            style={{ width: "25px", fontSize: "16px", fontWeight: "bold" }}
             required
+            onChange={(e) => handleChange(e)}
+            className="border-2"
           />
         </div>
       </div>
-      <div className="flex space-x-2">
-        {/* <IconButton
-          // variant="outline"
-          colorScheme="green"
-          aria-label="Select Match"
-          fontSize="20px"
-          isRound
-          size="xs"
-          icon={<BiCheck />}
-          // onClick={addSelection}
-        /> */}
-        {/* <IconButton
-          // variant="outline"
-          colorScheme="red"
-          aria-label="Select Match"
-          fontSize="20px"
-          isRound
-          size="xs"
-          icon={<MdClose />}
-          onClick={removeSelection}
-        /> */}
-      </div>
+      <div className="flex space-x-2"></div>
     </div>
   );
 };

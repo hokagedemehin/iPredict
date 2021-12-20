@@ -1,9 +1,19 @@
 import { Heading } from "@chakra-ui/react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import NavHeader from "../../components/nav/header.component";
+import { useUser } from "../../utils/auth/userContext";
 
 const ShowPredictionComponent = () => {
+  const router = useRouter();
+  const { user } = useUser();
+  // console.log(user);
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
   return (
     <Layout name="predictions" desc="See all Users Predictions">
       <NavHeader />

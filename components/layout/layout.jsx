@@ -1,6 +1,7 @@
 import React from "react";
 // import { BackToTop } from "material-ui-back-to-top";
 import Head from "next/head";
+
 // import NavHeader from "../home/header/navheader.components";
 // import FooterNav from "../home/footer/navfooter.component";
 

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
+import UserProvider from "../utils/auth/userContext";
 
 const progress = new ProgressBar({
   size: 4,
@@ -18,9 +19,11 @@ Router.events.on("routeChangeError", progress.finish);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <UserProvider>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </UserProvider>
   );
 }
 

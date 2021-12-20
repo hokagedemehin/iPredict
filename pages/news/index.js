@@ -1,9 +1,20 @@
 import { Heading } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/layout/layout";
 import NavHeader from "../../components/nav/header.component";
+import { useRouter } from "next/router";
+import { useUser } from "../../utils/auth/userContext";
 
 const NewsAndTransfersPage = () => {
+  const { user } = useUser();
+  const router = useRouter();
+  // console.log(allDocs);
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user]);
   return (
     <Layout name="news" desc="I-Predict news and transfers">
       <NavHeader />
