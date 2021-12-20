@@ -8,7 +8,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../../utils/firebase/firebase";
 import { Button } from "@chakra-ui/react";
 import { GiSoccerBall } from "react-icons/gi";
-import addPredictionToFirestore from "../../utils/prediction/addPredictionToFirestore";
+// import addPredictionToFirestore from "../../utils/prediction/addPredictionToFirestore";
 
 const PredictAndWinComponent = () => {
   const [matchSelect, setMatchSelect] = useState([]);
@@ -51,6 +51,7 @@ const PredictAndWinComponent = () => {
       console.log("new away: ", awayVal);
     }
     console.log("new Match Select: ", matchSelect);
+    setisLoading(false);
   };
   // value?.docs?.map((doc) => console.log(doc.data()));
   return (
