@@ -83,7 +83,7 @@ const PredictAndWinComponent = () => {
         {/* <MatchListComponent key={index} finalData={finalData} /> */}
       </div>
       <div>
-        {day == 6 ? (
+        {day == 6 || matchSelect.length == 0 ? (
           <div className="flex my-5 mx-2 shadow-sm">
             <Button
               leftIcon={<ImBlocked />}
