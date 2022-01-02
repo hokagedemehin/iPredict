@@ -4,8 +4,9 @@ import React from "react";
 import Layout from "../../components/layout/layout";
 import NavHeader from "../../components/nav/header.component";
 // import { useUser } from "../../utils/auth/userContext";
-import ShowPredictionComponent from "../../components/showpredictions/showpredictions.component";
-const ShowPrediction = () => {
+// import ShowPredictionComponent from "../../components/showpredictions/showpredictions.component";
+import EachPrediction from "../../components/showpredictions/eachprediction";
+const ShowMatchPrediction = () => {
   // const router = useRouter();
   // const { user } = useUser();
   // console.log(user);
@@ -19,13 +20,12 @@ const ShowPrediction = () => {
       <NavHeader />
       <div className="max-w-sm mx-auto">
         <div className="text text-center my-5">
-          <Heading>All Predictions</Heading>
+          <Heading>My Predictions</Heading>
         </div>
-        {/* <ContentComponent /> */}
-        <ShowPredictionComponent />
+        <EachPrediction />
       </div>
     </Layout>
   );
 };
 
-export default ShowPrediction;
+export default ShowMatchPrediction;

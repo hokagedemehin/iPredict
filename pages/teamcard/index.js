@@ -11,7 +11,7 @@ const TeamCardsPage = () => {
   const { user } = useUser();
   // console.log(user);
   useEffect(() => {
-    if (user) {
+    if (!user) {
       router.push("/");
     }
   }, [user]);

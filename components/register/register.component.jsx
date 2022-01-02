@@ -7,10 +7,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SetNewUser } from "../../utils/auth/setNewUser";
 import { SignUpGoogleUser } from "../../utils/auth/signUpGoogleUser";
+import { Button } from "@chakra-ui/react";
 // import { SignUpGoogleTailor } from "../../services/actions/signUpGoogleTailor";
 
 const RegisterComponent = () => {
   const [formValue, setFormValue] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   // console.log(formValue);
   const handleChange = (e) => {
     const name = e.target.name;
@@ -38,7 +41,7 @@ const RegisterComponent = () => {
       formValue?.email &&
       formValue?.password
     ) {
-      await SetNewUser(formValue);
+      await SetNewUser(formValue, setIsLoading);
     }
     // console.log(res);
 
@@ -132,12 +135,28 @@ const RegisterComponent = () => {
                   />
                 </div>
 
-                <button
+                {/* <button
                   onClick={(e) => registerUser(e)}
                   className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
                 >
                   Register
-                </button>
+                </button> */}
+                <div className="flex my-5">
+                  <Button
+                    // leftIcon={<BiMailSend />}
+                    colorScheme="blue"
+                    variant="solid"
+                    isFullWidth
+                    fontSize="xl"
+                    // onClick={handleSubmission}
+                    isLoading={isLoading}
+                    loadingText="Sending"
+                    spinnerPlacement="end"
+                    onClick={(e) => registerUser(e)}
+                  >
+                    Register
+                  </Button>
+                </div>
 
                 <div className="flex justify-center items-center relative">
                   <span className="h-px bg-gray-300 absolute inset-x-0"></span>

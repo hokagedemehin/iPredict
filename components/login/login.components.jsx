@@ -14,11 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 // import { useUser } from "../../utils/auth/userContext";
 import { auth } from "../../utils/firebase/firebase";
 import { SignInGoogleUser } from "../../utils/auth/signInGoogleUser";
+import { Button } from "@chakra-ui/react";
 // import { SetNewGithubTailor } from "../../services/actions/setGithubTailor";
 // import { SetResetPassword } from "../../services/actions/setResetPassword";
 
 const LoginComponent = () => {
   const [formValue, setFormValue] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   // const { user } = useUser();
   const router = useRouter();
 
@@ -39,13 +42,17 @@ const LoginComponent = () => {
   const loginUser = async (e) => {
     // console.log("button clicked", formValue);
     e.preventDefault();
-    const email = formValue.email;
-    const password = formValue.password;
     try {
+      setIsLoading(true);
+      const email = formValue.email;
+      const password = formValue.password;
+
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       toast.error("💥Incorrect Email or Password! 😪😥💥");
       // console.error(error.message, "error is caught");
+    } finally {
+      setIsLoading(false);
     }
     // console.log(res);
     // router.push("/clients");
@@ -109,12 +116,28 @@ const LoginComponent = () => {
                   />
                 </div>
 
-                <button
+                {/* <button
                   onClick={(e) => loginUser(e)}
                   className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
                 >
                   Log in
-                </button>
+                </button> */}
+                <div className="flex my-5">
+                  <Button
+                    // leftIcon={<BiMailSend />}
+                    colorScheme="blue"
+                    variant="solid"
+                    isFullWidth
+                    fontSize="xl"
+                    // onClick={handleSubmission}
+                    isLoading={isLoading}
+                    loadingText="Sending"
+                    spinnerPlacement="end"
+                    onClick={(e) => loginUser(e)}
+                  >
+                    Log in
+                  </Button>
+                </div>
 
                 {/* <div className="flex justify-center items-center relative">
                   <span className="h-px bg-gray-300 absolute inset-x-0"></span>

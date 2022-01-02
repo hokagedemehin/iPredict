@@ -30,47 +30,49 @@ const selectedMacthesForPrediction = async (setMatchSelect) => {
   // console.log(collectionID, collectionDate);
 
   // ? get the subcollection of the collection ID you just retrieved
-  const predictSubcollectionRef = collection(
-    db,
-    "MatchesSelected",
-    collectionID,
-    "Matches"
-  );
-  // const subcollectionAllDocs = await getDocs(predictSubcollectionRef);
-  const subcollectionQuery = query(
-    predictSubcollectionRef,
-    where("createdAt", "==", collectionDate)
-  );
-  onSnapshot(subcollectionQuery, (docSnapshot) => {
-    // console.log("match inside snap: ", matchSelect);
-    // const newArr = [];
-    docSnapshot.forEach((doc) => {
-      console.log(doc.data());
-      // setMatchSelect([...matchSelect, doc.data()]);
-      // setMatchSelect([
-      //   ...matchSelect,
-      //   {
-      //     fixtureId: doc.data()?.fixtureId,
-      //     homeGoal: doc.data()?.homeGoal,
-      //     awayGoal: doc.data()?.awayGoal,
-      //     leagueId: doc.data()?.leagueId,
-      //     country: doc.data()?.country,
-      //     leagueName: doc.data()?.leagueName,
-      //     homeName: doc.data()?.homeName,
-      //     homeLogo: doc.data()?.homeLogo,
-      //     awayLogo: doc.data()?.awayLogo,
-      //     awayName: doc.data()?.awayName,
-      //     homeWinner: doc.data()?.homeWinner,
-      //     awayWinner: doc.data()?.awayWinner,
-      //   },
-      // ]);
-      newArr.push(doc.data());
+  if (collectionID.length !== 0) {
+    const predictSubcollectionRef = collection(
+      db,
+      "MatchesSelected",
+      collectionID,
+      "Matches"
+    );
+    // const subcollectionAllDocs = await getDocs(predictSubcollectionRef);
+    const subcollectionQuery = query(
+      predictSubcollectionRef,
+      where("createdAt", "==", collectionDate)
+    );
+    onSnapshot(subcollectionQuery, (docSnapshot) => {
+      // console.log("match inside snap: ", matchSelect);
+      // const newArr = [];
+      docSnapshot.forEach((doc) => {
+        // console.log(doc.data());
+        // setMatchSelect([...matchSelect, doc.data()]);
+        // setMatchSelect([
+        //   ...matchSelect,
+        //   {
+        //     fixtureId: doc.data()?.fixtureId,
+        //     homeGoal: doc.data()?.homeGoal,
+        //     awayGoal: doc.data()?.awayGoal,
+        //     leagueId: doc.data()?.leagueId,
+        //     country: doc.data()?.country,
+        //     leagueName: doc.data()?.leagueName,
+        //     homeName: doc.data()?.homeName,
+        //     homeLogo: doc.data()?.homeLogo,
+        //     awayLogo: doc.data()?.awayLogo,
+        //     awayName: doc.data()?.awayName,
+        //     homeWinner: doc.data()?.homeWinner,
+        //     awayWinner: doc.data()?.awayWinner,
+        //   },
+        // ]);
+        newArr.push(doc.data());
+      });
+      // console.log("util matchSelect: ", newArr);
+      // if (newArr.length !== 0) {
+      setMatchSelect(newArr);
+      // }
     });
-    console.log("util matchSelect: ", newArr);
-    // if (newArr.length !== 0) {
-    setMatchSelect(newArr);
-    // }
-  });
+  }
   // const sebcollectionQuery = query(predictSubcollectionRef, where())
 };
 

@@ -31,6 +31,7 @@ export const SignUpGoogleUser = async () => {
         image:
           "https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100",
         createdTimestamp: serverTimestamp(),
+        role: "user",
       },
       { merge: true }
     );

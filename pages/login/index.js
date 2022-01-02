@@ -18,10 +18,7 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <Layout
-      name="Login"
-      desc="Every Tailor will Login in this page to access their clients database"
-    >
+    <Layout name="Login" desc="Users can Login with thier credentials">
       <LoginComponent />
     </Layout>
   );

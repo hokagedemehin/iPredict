@@ -12,7 +12,7 @@ const NoMatchListComponent = () => {
         fallbackSrc="https://via.placeholder.com/200"
       />
       <Text fontSize="lg" fontWeight="bold">
-        New matches are comig soon
+        New matches are coming soon
       </Text>
     </div>
   );

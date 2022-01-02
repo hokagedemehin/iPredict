@@ -30,11 +30,11 @@ export const SignInGoogleUser = async () => {
           firstName: names[0],
           lastName: names[1],
           email: email,
-          clients: [],
-          clientsCount: 0,
+
           image:
             "https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100",
           createdTimestamp: serverTimestamp(),
+          role: "user",
         },
         { merge: true }
       );

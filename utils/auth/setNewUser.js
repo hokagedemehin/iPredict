@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const SetNewUser = async (formValue) => {
+export const SetNewUser = async (formValue, setIsLoading) => {
   // const email1 = formValue.email;
   // const password = formValue.password;
 
@@ -14,6 +14,7 @@ export const SetNewUser = async (formValue) => {
   const lastName = formValue.lastName;
   // console.log(formValue);
   try {
+    setIsLoading(true);
     const response = await createUserWithEmailAndPassword(
       auth,
       formValue.email,
@@ -34,11 +35,14 @@ export const SetNewUser = async (formValue) => {
         image:
           "https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100",
         createdTimestamp: serverTimestamp(),
+        role: "user",
       },
       { merge: true }
     );
   } catch (error) {
     console.error(error);
     toast.error("💥Something is wrong 😪😥💥");
+  } finally {
+    setIsLoading(false);
   }
 };
