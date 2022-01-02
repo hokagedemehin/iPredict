@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/layout";
 
 import { useRouter } from "next/router";
@@ -16,13 +16,21 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../utils/firebase/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "../../utils/auth/userContext";
 
 const LoginPage = () => {
   const router = useRouter();
-  // const { user } = useUser();
+  const { user } = useUser();
 
   const [isLoading, setIsLoading] = useState(false);
   const [formValue, setFormValue] = useState({});
+
+  useEffect(() => {
+    if (user) {
+      // router.back();
+      router.push("/");
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const name = e.target.name;
