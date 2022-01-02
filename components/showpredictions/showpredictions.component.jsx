@@ -19,7 +19,7 @@ const ShowPredictionComponent = () => {
     }
     //
   }, [user]);
-  console.log("predicted Match: ", predictedMatch);
+  // console.log("predicted Match: ", predictedMatch);
   // console.log("predict Date: ", predictDate);
 
   return (

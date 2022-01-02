@@ -9,7 +9,7 @@ import { useUser } from "../../utils/auth/userContext";
 const PredictAndWinPage = () => {
   const { user } = useUser();
   const router = useRouter();
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     if (!user) {

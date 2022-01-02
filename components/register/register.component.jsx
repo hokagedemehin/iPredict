@@ -20,7 +20,7 @@ const RegisterComponent = () => {
     const value = e.target.value;
     setFormValue({ ...formValue, [name]: value });
   };
-  console.log(formValue);
+  // console.log(formValue);
   const router = useRouter();
 
   const registerUser = async (e) => {
