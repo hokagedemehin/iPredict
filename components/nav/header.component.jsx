@@ -64,7 +64,7 @@ const NavHeader = () => {
               icon={<BsFileSpreadsheetFill />}
               onClick={() => router.push("/showprediction")}
             >
-              Match Predictions
+              My Predictions
             </MenuItem>
             <MenuItem
               icon={<GiNewspaper />}
@@ -82,7 +82,7 @@ const NavHeader = () => {
               icon={<MdOutlineQuiz />}
               onClick={() => router.push("/trivisgame")}
             >
-              Trivis Game
+              Trivia Game
             </MenuItem>
             <MenuItem
               icon={<GiCartwheel />}
