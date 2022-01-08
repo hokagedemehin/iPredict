@@ -5,7 +5,7 @@ import Layout from "../../components/layout/layout";
 import NavHeader from "../../components/nav/header.component";
 import { useUser } from "../../utils/auth/userContext";
 
-const TrivisGamesPage = () => {
+const TriviaGamesPage = () => {
   const router = useRouter();
   const { user } = useUser();
   // console.log(user);
@@ -15,11 +15,11 @@ const TrivisGamesPage = () => {
     }
   }, [user]);
   return (
-    <Layout name="trivis" desc="I-Predict Trivis Game">
+    <Layout name="trivia" desc="I-Predict Trivia Game">
       <NavHeader />
       <div className="max-w-sm mx-auto">
         <div className="text text-center my-5">
-          <Heading>Trivis Game</Heading>
+          <Heading>Trivia Game</Heading>
         </div>
         {/* <ContentComponent /> */}
       </div>
@@ -27,4 +27,4 @@ const TrivisGamesPage = () => {
   );
 };
 
-export default TrivisGamesPage;
+export default TriviaGamesPage;

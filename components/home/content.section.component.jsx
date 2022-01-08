@@ -43,11 +43,11 @@ const ContentComponent = () => {
             <p className="text-sm font-bold text-center">Team Cards</p>
           </div>
           <div
-            onClick={() => router.push("/trivisgame")}
+            onClick={() => router.push("/triviagame")}
             className="flex flex-col items-center justify-center w-full py-4 shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in"
           >
             <Icon as={MdOutlineQuiz} w={10} h={10} />
-            <p className="text-sm font-bold text-center">Trivis Game</p>
+            <p className="text-sm font-bold text-center">Trivia Game</p>
           </div>
         </div>
         <div className="flex items-center justify-center space-x-4 mx-2">
