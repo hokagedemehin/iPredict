@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
 import UserProvider from "../utils/auth/userContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const progress = new ProgressBar({
   size: 4,
@@ -17,13 +18,17 @@ Router.events.on("routeChangeComplete", progress.finish);
 
 Router.events.on("routeChangeError", progress.finish);
 
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }) {
   return (
-    <UserProvider>
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </UserProvider>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </UserProvider>
+    </QueryClientProvider>
   );
 }
 

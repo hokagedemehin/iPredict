@@ -1,9 +1,9 @@
 import { Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import Layout from "../../components/layout/layout";
-import NavHeader from "../../components/nav/header.component";
 import { useUser } from "../../utils/auth/userContext";
+import NavHeader from "../../components/nav/header.component";
+import Layout from "../../components/layout/layout";
 
 const TriviaGamesPage = () => {
   const router = useRouter();

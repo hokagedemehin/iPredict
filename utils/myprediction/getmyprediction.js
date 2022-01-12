@@ -1,17 +1,17 @@
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
-const GetMyPrediction = async (user, setPredictedMatch) => {
+const GetMyPrediction = async (user) => {
   const matchRef = collection(db, user?.email);
   const q = query(matchRef, orderBy("matchID", "desc"));
   const querySnapshot = await getDocs(q);
   // const querySnapshot = await getDocs(collection(db, user?.email));
-
-  const newArr = [];
-  querySnapshot.forEach((doc) => newArr.push(doc.data()));
-  if (newArr.length !== 0) {
-    setPredictedMatch(newArr);
-  }
+  return querySnapshot;
+  // const newArr = [];
+  // querySnapshot.forEach((doc) => newArr.push(doc.data()));
+  // if (newArr.length !== 0) {
+  //   setPredictedMatch(newArr);
+  // }
   // console.log("user: ", user);
 
   // // setMatchSelect([]);

@@ -22,11 +22,12 @@ const MatchListComponent = ({
     // const newArr = [];
     // const id = matches.fixtureId;
     const name = e.target.name;
-    const value = e.target.value;
+    const value = Math.abs(e.target.value);
     const newValue = {
       [name]: value,
     };
     setFormValue({ ...formValue, ...newValue });
+    console.log(formValue);
     // setFormValue({ ...formValue, [name]: value, id: "is" });
     // newArr.push(matches.fixtureId);
     // setFormValue([...formValue, matches.fixtureId]);
@@ -84,7 +85,7 @@ const MatchListComponent = ({
             name={match.homeName}
             id="homePred"
             // defaultValue="0"
-            min="0"
+            min={0}
             max="99"
             style={{ width: "25px", fontSize: "16px", fontWeight: "bold" }}
             required
