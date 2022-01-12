@@ -1,26 +1,55 @@
 // import moment from "moment";
-import { Image, Text, Icon } from "@chakra-ui/react";
+import { Image, Text, Icon, Skeleton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 import { useUser } from "../../utils/auth/userContext";
 import GetEachMatch from "../../utils/myprediction/geteachmatch";
 import { BiCheck } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
+import { useQuery } from "react-query";
 const OneMatchPredictions = ({ oneDate, matchID }) => {
   // console.log(oneDate, matchID);
   const { user } = useUser();
 
   const [matches, setMatches] = useState([]);
+
+  const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
+    ["allselectedMatches", user, oneDate, matchID],
+    async () => await GetEachMatch(user, oneDate, matchID),
+    { enabled: !![user, oneDate, matchID] }
+  );
   useEffect(() => {
-    if (user) {
-      GetEachMatch(oneDate, matchID, setMatches, user);
+    if (isSuccess) {
+      const newArr = [];
+
+      data?.forEach((doc) => newArr.push(doc.data()));
+      // if (newArr.length !== 0) {
+      setMatches(newArr);
+      // }
     }
-  }, []);
+  }, [isSuccess, dataUpdatedAt]);
   // console.log("one match: ", matches);
 
   return (
     <div className="flex flex-col shadow-md rounded-md">
-      {matches &&
+      {isLoading &&
+        [0, 1].map((match, index) => (
+          <Skeleton
+            key={index}
+            className="flex space-x-3 w-fit p-1 justify-center items-center"
+          >
+            <div className="flex justify-center items-center space-x-1">
+              <Text>{match}</Text>
+            </div>
+            <Text fontSize="xs" fontWeight="bold">
+              VS
+            </Text>
+            <div className="flex justify-center items-center space-x-1">
+              <Text>{match}</Text>
+            </div>
+          </Skeleton>
+        ))}
+      {isSuccess &&
         matches.map((match, index) => (
           <div
             key={index}
