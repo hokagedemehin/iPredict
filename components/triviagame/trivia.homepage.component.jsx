@@ -1,18 +1,32 @@
 import { Heading, Icon, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React from "react";
 import { BsCoin } from "react-icons/bs";
 
 const TriviaHomePageComponent = () => {
+  const router = useRouter();
+  const handleClick = (e, href) => {
+    e.preventDefault();
+    router.push(href);
+  };
+
   return (
     <div>
-      <div className="flex flex-col space-y-4 mx-4">
+      <div className="flex flex-col space-y-4 m-4">
         <div className="text-center">
           <Heading size="lg">Convert your skill to cash</Heading>
         </div>
         {/* Card Container */}
-        <div className="flex flex-wrap justify-around items-center gap-4">
+        <div className="flex flex-wrap justify-center items-center gap-6">
           {/* Each card */}
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+
+          {/* EASYWAY */}
+          <div
+            className="flex flex-col shadow-md shadow-[#B25B90] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-5 py-3 text-sm text-center font-bold bg-[#B25B90] rounded-xl text-white">
               EASYWAY
             </div>
@@ -43,7 +57,13 @@ const TriviaHomePageComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+          {/* CONFAM */}
+          <div
+            className="flex flex-col shadow-md shadow-[#8A2D65] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-5 py-3 text-center font-bold bg-[#8A2D65] rounded-xl text-white text-sm">
               CONFAM
             </div>
@@ -74,7 +94,13 @@ const TriviaHomePageComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+          {/* ORIGINALITY */}
+          <div
+            className="flex flex-col shadow-md shadow-[#9F1616] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-4 py-3 text-white text-xs text-center font-bold bg-[#9F1616] rounded-xl">
               ORIGINALITY
             </div>
@@ -105,7 +131,13 @@ const TriviaHomePageComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+          {/* EXCELLENT */}
+          <div
+            className="flex flex-col shadow-md shadow-[#670333] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-4 py-3 text-white text-sm text-center font-bold bg-[#670333] rounded-xl">
               EXCELLENT
             </div>
@@ -136,7 +168,13 @@ const TriviaHomePageComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+          {/* CHAIRMAN */}
+          <div
+            className="flex flex-col shadow-md shadow-[#FF0000] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-4 py-3 text-white text-sm text-center font-bold bg-[#FF0000] rounded-xl">
               CHAIRMAN
             </div>
@@ -167,7 +205,13 @@ const TriviaHomePageComponent = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col shadow-md rounded-xl ring-1 p-1">
+          {/* PRESIDO */}
+          <div
+            className="flex flex-col shadow-md shadow-[#B90000] rounded-xl ring-1 p-1"
+            onClick={(e) => {
+              handleClick(e, `/triviagame/quiz`);
+            }}
+          >
             <div className="px-6 py-3 text-white text-sm text-center font-bold bg-[#B90000] rounded-xl">
               PRESIDO
             </div>

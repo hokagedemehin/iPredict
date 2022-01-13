@@ -5,7 +5,7 @@
 - [x] work out how the predictions will be compared with the actual scores
 - [x] work out how the data will be stored in the database
 - [ ] trivia: 10 questions for 20 seconds and all must be correct
-- [ ] once the day is saturday and the first match starts, the prediction button becomes disabled
+- [x] once the day is saturday and the first match starts, the prediction button becomes disabled
 - [ ] once a user gets three out of four predictions, they get a point
 - [ ] 
 
@@ -15,6 +15,9 @@
 - [ ] Can a user repeat a question when he makes another attempt
 
 #### checklists
+
+-[x] Work on the trivia home page and create each Options
+-[ ] Check out viewonequestion component in admin on how to guard against direct url page visit 
 - [ ] Each question will have four options, name of radio group will ne the question ID, selected response is saved with the ID
 - [ ] user will select the number of questions they want to answer
 - [ ] the number of question pagonates the number of objects that is returned from firebase
