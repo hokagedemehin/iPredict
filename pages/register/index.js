@@ -9,6 +9,11 @@ import Layout from "../../components/layout/layout";
 const RegisterPage = () => {
   const router = useRouter();
   const { user } = useUser();
+
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch("/");
+  }, []);
   // console.log(user);
   useEffect(() => {
     if (user) {
