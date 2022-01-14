@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Image, Text } from "@chakra-ui/react";
+import React from 'react';
+import { Box, Image, Text } from '@chakra-ui/react';
 // import { CheckCircleIcon, SmallCloseIcon } from "react-icons/md";
 // import { MdClose } from "react-icons/md";
 // import addMatchToFirestore from "../../utils/matches/addMatchToFIrestore";
@@ -27,7 +27,7 @@ const MatchListComponent = ({
       [name]: value,
     };
     setFormValue({ ...formValue, ...newValue });
-    console.log(formValue);
+    // console.log(formValue);
     // setFormValue({ ...formValue, [name]: value, id: "is" });
     // newArr.push(matches.fixtureId);
     // setFormValue([...formValue, matches.fixtureId]);
@@ -64,32 +64,32 @@ const MatchListComponent = ({
   // };
 
   return (
-    <div className="flex space-x-4 justify-between items-center mx-2 my-5">
-      <div className="flex justify-between items-center space-x-1 w-full ">
-        <div className="flex space-x-1 justify-center items-center">
+    <div className='flex space-x-4 justify-between items-center mx-2 my-5'>
+      <div className='flex justify-between items-center space-x-1 w-full '>
+        <div className='flex space-x-1 justify-center items-center'>
           <Image
-            boxSize="20px"
+            boxSize='20px'
             // src="/predictandwin/manu.png"
             src={match.homeLogo}
             alt={match.homeName}
-            borderRadius="full"
+            borderRadius='full'
           />
           <Box>
             {/* <Text fontSize="sm">Manchester United</Text> */}
-            <Text fontSize="xs">{match.homeName}</Text>
+            <Text fontSize='xs'>{match.homeName}</Text>
           </Box>
         </div>
-        <div className="">
+        <div className=''>
           <input
-            type="number"
+            type='number'
             name={match.homeName}
-            id="homePred"
+            id='homePred'
             // defaultValue="0"
             min={0}
-            max="99"
-            style={{ width: "25px", fontSize: "16px", fontWeight: "bold" }}
+            max='99'
+            style={{ width: '25px', fontSize: '16px', fontWeight: 'bold' }}
             required
-            className="border-2"
+            className='border-2'
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -111,22 +111,22 @@ const MatchListComponent = ({
         /> */}
       </div>
       <div>
-        <Text fontSize="lg" fontWeight="black">
+        <Text fontSize='lg' fontWeight='black'>
           VS
         </Text>
       </div>
-      <div className="flex justify-between items-center space-x-1 w-full ">
-        <div className="flex space-x-1 justify-center items-center">
+      <div className='flex justify-between items-center space-x-1 w-full '>
+        <div className='flex space-x-1 justify-center items-center'>
           <Image
-            boxSize="20px"
+            boxSize='20px'
             // src="/predictandwin/mancity.png"
             src={match.awayLogo}
             alt={match.awayName}
-            borderRadius="full"
+            borderRadius='full'
           />
           <Box>
             {/* <Text fontSize="sm">Manchester City</Text> */}
-            <Text fontSize="sm">{match.awayName}</Text>
+            <Text fontSize='sm'>{match.awayName}</Text>
           </Box>
         </div>
         {/* <NumberInput
@@ -139,22 +139,22 @@ const MatchListComponent = ({
         >
           <NumberInputField />
         </NumberInput> */}
-        <div className="">
+        <div className=''>
           <input
-            type="number"
+            type='number'
             name={match.awayName}
-            id="homePred"
+            id='homePred'
             // defaultValue="0"
-            min="0"
-            max="99"
-            style={{ width: "25px", fontSize: "16px", fontWeight: "bold" }}
+            min='0'
+            max='99'
+            style={{ width: '25px', fontSize: '16px', fontWeight: 'bold' }}
             required
             onChange={(e) => handleChange(e)}
-            className="border-2"
+            className='border-2'
           />
         </div>
       </div>
-      <div className="flex space-x-2"></div>
+      <div className='flex space-x-2'></div>
     </div>
   );
 };

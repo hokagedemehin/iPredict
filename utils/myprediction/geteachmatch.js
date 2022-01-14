@@ -1,9 +1,9 @@
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase/firebase';
 
 const GetEachMatch = async (user, oneDate, matchID) => {
-  const matchRef = collection(db, user?.email, matchID, oneDate);
-  const q = query(matchRef, orderBy("createdAt", "asc"));
+  const matchRef = collection(db, `${user?.email}-matches`, matchID, oneDate);
+  const q = query(matchRef, orderBy('createdAt', 'asc'));
   const querySnapshot = await getDocs(q);
   return querySnapshot;
   // const newArr = [];

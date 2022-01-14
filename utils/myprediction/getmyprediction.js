@@ -1,9 +1,9 @@
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { db } from '../firebase/firebase';
 
 const GetMyPrediction = async (user) => {
-  const matchRef = collection(db, user?.email);
-  const q = query(matchRef, orderBy("matchID", "desc"));
+  const matchRef = collection(db, `${user?.email}-matches`);
+  const q = query(matchRef, orderBy('matchID', 'desc'));
   const querySnapshot = await getDocs(q);
   // const querySnapshot = await getDocs(collection(db, user?.email));
   return querySnapshot;

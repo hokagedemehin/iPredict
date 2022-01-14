@@ -11,9 +11,9 @@ const TriviaGamesPage = () => {
   const { user } = useUser();
   // console.log(user);
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
+    // if (!user) {
+    //   router.push("/login");
+    // }
   }, [user]);
   return (
     <Layout name="trivia" desc="I-Predict Trivia Game">
