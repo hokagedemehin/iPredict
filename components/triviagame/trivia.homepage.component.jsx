@@ -22,7 +22,7 @@ const TriviaHomePageComponent = () => {
 
           {/* EASYWAY */}
           <div
-            className="flex flex-col shadow-md shadow-[#B25B90] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#B25B90] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}
@@ -59,7 +59,7 @@ const TriviaHomePageComponent = () => {
           </div>
           {/* CONFAM */}
           <div
-            className="flex flex-col shadow-md shadow-[#8A2D65] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#8A2D65] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}
@@ -96,7 +96,7 @@ const TriviaHomePageComponent = () => {
           </div>
           {/* ORIGINALITY */}
           <div
-            className="flex flex-col shadow-md shadow-[#9F1616] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#9F1616] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}
@@ -133,7 +133,7 @@ const TriviaHomePageComponent = () => {
           </div>
           {/* EXCELLENT */}
           <div
-            className="flex flex-col shadow-md shadow-[#670333] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#670333] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}
@@ -170,7 +170,7 @@ const TriviaHomePageComponent = () => {
           </div>
           {/* CHAIRMAN */}
           <div
-            className="flex flex-col shadow-md shadow-[#FF0000] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#FF0000] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}
@@ -207,7 +207,7 @@ const TriviaHomePageComponent = () => {
           </div>
           {/* PRESIDO */}
           <div
-            className="flex flex-col shadow-md shadow-[#B90000] rounded-xl ring-1 p-1"
+            className="flex flex-col shadow-md shadow-[#B90000] rounded-xl ring-1 p-1 cursor-pointer"
             onClick={(e) => {
               handleClick(e, `/triviagame/quiz`);
             }}

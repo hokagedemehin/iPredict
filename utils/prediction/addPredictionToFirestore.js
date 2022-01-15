@@ -1,4 +1,4 @@
-import { db } from "../firebase/firebase";
+import { db } from '../firebase/firebase';
 // import moment from "moment";
 
 import {
@@ -13,9 +13,9 @@ import {
   query,
   where,
   updateDoc,
-} from "firebase/firestore";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from 'firebase/firestore';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const addPredictionToFirestore = async (
   matchSelect,
@@ -31,12 +31,12 @@ const addPredictionToFirestore = async (
     const email = user?.email;
     const firstName = userDoc?.firstName;
     const lastName = userDoc?.lastName;
-    let collectionID = "";
-    let collectionDate = "";
-    const predictCollectionRef = collection(db, "MatchesSelected");
+    let collectionID = '';
+    let collectionDate = '';
+    const predictCollectionRef = collection(db, 'MatchesSelected');
     const collectionQuery = query(
       predictCollectionRef,
-      where("confirmed", "==", true)
+      where('confirmed', '==', true)
     );
     const collectionSnapshot = await getDocs(collectionQuery);
     collectionSnapshot.forEach((doc) => {
@@ -44,16 +44,21 @@ const addPredictionToFirestore = async (
       collectionDate = doc.data().createdAt;
     });
 
-    const collectionRef = doc(db, user?.email, collectionID);
+    const collectionRef = doc(db, `${user?.email}-matches`, collectionID);
 
-    const subCollectionRef = collection(db, user?.email, collectionID, docID);
+    const subCollectionRef = collection(
+      db,
+      `${user?.email}-matches`,
+      collectionID,
+      docID
+    );
 
-    const allRef = collection(db, user?.email);
-    const q = query(allRef, where("current", "==", true));
+    const allRef = collection(db, `${user?.email}-matches`);
+    const q = query(allRef, where('current', '==', true));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((oneDoc) =>
-      updateDoc(doc(db, user?.email, oneDoc.id), {
+      updateDoc(doc(db, `${user?.email}-matches`, oneDoc.id), {
         current: false,
       })
     );
@@ -94,7 +99,7 @@ const addPredictionToFirestore = async (
           firstName: firstName,
         })
     );
-    const MatchDocRef = doc(db, "PredictedMatches", collectionID);
+    const MatchDocRef = doc(db, 'PredictedMatches', collectionID);
     await setDoc(
       MatchDocRef,
       {
@@ -107,8 +112,8 @@ const addPredictionToFirestore = async (
       },
       { merge: true }
     );
-    toast.success("✅Saved successfully", {
-      position: "top-right",
+    toast.success('✅Saved successfully', {
+      position: 'top-right',
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -117,7 +122,7 @@ const addPredictionToFirestore = async (
       progress: undefined,
     });
   } catch (error) {
-    console.error("error - addMatchToFirestore", error);
+    console.error('error - addMatchToFirestore', error);
   } finally {
     setIsLoading(false);
   }

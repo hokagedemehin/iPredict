@@ -1,4 +1,4 @@
-### Todo Checklist to complete
+# Todo Checklist to complete
 
 - [x] Work on the button that will submit the predictions
 - [x] work out how the input will be collected
@@ -7,17 +7,17 @@
 - [ ] trivia: 10 questions for 20 seconds and all must be correct
 - [x] once the day is saturday and the first match starts, the prediction button becomes disabled
 - [ ] once a user gets three out of four predictions, they get a point
-- [ ] 
 
-### Trivia TODO
+## Trivia TODO
 
-#### questions
+### questions
+
 - [ ] Can a user repeat a question when he makes another attempt
 
 #### checklists
 
--[x] Work on the trivia home page and create each Options
--[ ] Check out viewonequestion component in admin on how to guard against direct url page visit 
+- [x] Work on the trivia home page and create each Options
+- [ ] Check out viewonequestion component in admin on how to guard against direct url page visit  
 - [ ] Each question will have four options, name of radio group will ne the question ID, selected response is saved with the ID
 - [ ] user will select the number of questions they want to answer
 - [ ] the number of question pagonates the number of objects that is returned from firebase
