@@ -14,7 +14,7 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddQuestionsToFirestore = async (newArr, email) => {
+const AddQuestionsToFirestore = async (newArr, email, figures) => {
   // setIsConfirmed(true);
   // console.log("match selcted: ", matchSelect);
   console.log('newArr firebase: ', newArr);
@@ -45,6 +45,9 @@ const AddQuestionsToFirestore = async (newArr, email) => {
           response: ques?.response,
           rightAnswer: ques?.rightAnswer,
           createdAt: nowDate,
+          noOfQuestions: figures.noOfQuestions,
+          correctAnswers: figures.correctAnswers,
+          wrongAnswers: figures.wrongAnswers,
         })
     );
 

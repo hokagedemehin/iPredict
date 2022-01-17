@@ -3,16 +3,21 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 // import { useUser } from '../../utils/auth/userContext';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import Layout from '../../components/layout/layout';
+import Layout from '../../../components/layout/layout';
 import { useQuery } from 'react-query';
-import GetUserQuestionsFromFirebase from '../../utils/trivia/getQuestions';
-import TriviaQuizComponent from '../../components/triviagame/triviaquestions.component';
+import GetUserQuestionsFromFirebase from '../../../utils/trivia/getQuestions';
+import TriviaQuizComponent from '../../../components/triviagame/triviaquestions.component';
 
 const TriviaGamesPageQuiz = () => {
   const [start, setStart] = useState([]);
   const [startQuiz, setStartQuiz] = useState(false);
   const router = useRouter();
+  // console.log('router: ', router);
   // const { user } = useUser();
+  let timer = 0;
+  if (router?.query?.quiz) {
+    timer = router?.query?.quiz[0] == 10 ? 15 : 20;
+  }
 
   const { data, isSuccess } = useQuery(
     'viewquestions',
@@ -27,11 +32,12 @@ const TriviaGamesPageQuiz = () => {
   useEffect(() => {
     if (isSuccess) {
       let newArr = [];
+      const ques = parseInt(router.query.quiz[0]);
 
       data.forEach((doc) => newArr.push(doc.data()));
       // if (newArr.length !== 0) {
 
-      newArr = shuffle(newArr).slice(0, 4);
+      newArr = shuffle(newArr).slice(0, ques);
 
       setStart(newArr);
       // }
@@ -96,7 +102,13 @@ const TriviaGamesPageQuiz = () => {
         </div>
       )}
       <div className='flex justify-center items-center w-full pt-10'>
-        {startQuiz && <TriviaQuizComponent data={start} />}
+        {startQuiz && (
+          <TriviaQuizComponent
+            data={start}
+            ques={parseInt(router?.query?.quiz[0])}
+            timer={timer}
+          />
+        )}
       </div>
     </Layout>
   );
