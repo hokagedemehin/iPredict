@@ -14,33 +14,51 @@ import AddQuestionsToFirestore from '../../utils/trivia/addQuestionsToFirestore'
 import { useUser } from '../../utils/auth/userContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResultComponent from './result/result.component';
 
-const TriviaQuizComponent = ({ data }) => {
+const TriviaQuizComponent = ({ data, ques, timer }) => {
   const router = useRouter();
   const { user } = useUser();
-
+  // const timer = timer
   const newArr = [];
-
-  console.log('data: ', data);
+  // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
+  // console.log('data: ', data);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [questionPerPage] = useState(1);
   const [res, setRes] = useState([]);
-
-  console.log('res: ', res);
+  const [result, setResult] = useState(false);
+  const [finalResult, setFinalResult] = useState([]);
+  const [calc, setCalc] = useState({});
+  // console.log('res: ', res);
+  console.log('finalResult: ', finalResult);
+  // console.log('result: ', result);
 
   const handleChange = (value) => {
     setCurrentPage(currentPage + value);
   };
 
   const handleSubmit = async () => {
+    const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
+    setResult(true);
     for (const [key, value] of Object.entries(res)) {
       const ans = data.filter((val) => val.ID === key);
-      ans.response = value;
+      ans[0].response = value;
+      // console.log('ans: ', ans);
+      if (
+        ans[0].rightAnswer.toLowerCase().trim() == value.toLowerCase().trim()
+      ) {
+        figures.correctAnswers = figures.correctAnswers + 1;
+      } else {
+        figures.wrongAnswers = figures.wrongAnswers + 1;
+      }
       newArr.push(...ans);
-      console.log('newArr: ', newArr);
     }
-    await AddQuestionsToFirestore(newArr, user?.email);
+    setCalc(figures);
+    setFinalResult(newArr);
+    // console.log('figures: ', figures);
+    // console.log('newArr: ', newArr);
+    await AddQuestionsToFirestore(newArr, user?.email, calc);
   };
 
   const indexOfLastQuestion = currentPage * questionPerPage;
@@ -54,11 +72,25 @@ const TriviaQuizComponent = ({ data }) => {
     // get the question that is being answered
     currentQuestions[0].response = value;
     const id = currentQuestions[0].ID;
-    const news = { [id]: value };
-    setRes({ ...res, ...news });
+    const values = { [id]: value };
+    setRes({ ...res, ...values });
   };
 
   const count = data.length;
+
+  // const renderTime = ({ remainingTime }) => {
+  //   if (remainingTime === 0) {
+  //     // handleSubmit();
+  //     setResult(true);
+  //     return;
+  //   }
+
+  //   return (
+  //     <div className=''>
+  //       <div className=''>{remainingTime}</div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className=''>
@@ -79,12 +111,12 @@ const TriviaQuizComponent = ({ data }) => {
               isPlaying
               strokeWidth={5}
               size={50}
-              duration={10}
+              duration={timer}
               colors={['#004777', '#F7B801', '#A30000']}
               colorsTime={[10, 5, 0]}
               onComplete={() => ({ shouldRepeat: true, delay: 1 })}
             >
-              {/* {RenderTime} */}
+              {/* {renderTime} */}
 
               {({ remainingTime }) => remainingTime}
             </CountdownCircleTimer>
@@ -108,11 +140,15 @@ const TriviaQuizComponent = ({ data }) => {
           onClick={() => handleSubmit()}
           colorScheme='teal'
           isFullWidth={true}
+          setResult={setResult}
         >
           Submit
         </Button>
       </div>
       <ToastContainer />
+      {result && (
+        <ResultComponent res={res} figures={calc} handleSubmit={handleSubmit} />
+      )}
     </div>
   );
 };
