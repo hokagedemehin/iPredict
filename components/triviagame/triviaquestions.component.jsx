@@ -31,7 +31,7 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
   const [finalResult, setFinalResult] = useState([]);
   const [calc, setCalc] = useState({});
   // console.log('res: ', res);
-  // console.log('finalResult: ', finalResult);
+  console.log('finalResult: ', finalResult);
   // console.log('result: ', result);
 
   const handleChange = (value) => {
@@ -39,7 +39,7 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
   };
 
   const handleSubmit = async () => {
-    const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: 10 };
+    const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
     setResult(true);
     for (const [key, value] of Object.entries(res)) {
       const ans = data.filter((val) => val.ID === key);
@@ -58,7 +58,7 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
     setFinalResult(newArr);
     // console.log('figures: ', figures);
     // console.log('newArr: ', newArr);
-    // await AddQuestionsToFirestore(newArr, user?.email, calc);
+    await AddQuestionsToFirestore(newArr, user?.email, calc);
   };
 
   const indexOfLastQuestion = currentPage * questionPerPage;

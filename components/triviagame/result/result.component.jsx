@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const ResultComponent = ({ figures, handleSubmit }) => {
   // console.log('results sent: ', res, figures);
@@ -7,7 +7,7 @@ const ResultComponent = ({ figures, handleSubmit }) => {
     handleSubmit();
   }, []);
 
-  const [comp, setComp] = useState(0);
+  // const [comp, setComp] = useState(0);
   // * all responses are correct
   if (figures.correctAnswers == 10) {
     console.log('response = 10: ', figures.correctAnswers);
