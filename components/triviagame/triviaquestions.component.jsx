@@ -8,15 +8,15 @@ import PaginationComp from './pagination.component';
 import OneQuestion from './onequestion.component';
 import { Button, Heading } from '@chakra-ui/react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import { ArrowBackIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
-import AddQuestionsToFirestore from '../../utils/trivia/addQuestionsToFirestore';
+import AddResponseToFirestore from '../../utils/trivia/addResponseToFirestore';
 import { useUser } from '../../utils/auth/userContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResultComponent from './result/result.component';
 
-const TriviaQuizComponent = ({ data, ques, timer }) => {
+const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   const router = useRouter();
   const { user } = useUser();
   // const timer = timer
@@ -39,7 +39,12 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
   };
 
   const handleSubmit = async () => {
-    const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
+    const figures = {
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      noOfQuestions: ques,
+      price: price,
+    };
     setResult(true);
     for (const [key, value] of Object.entries(res)) {
       const ans = data.filter((val) => val.ID === key);
@@ -58,7 +63,7 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
     setFinalResult(newArr);
     // console.log('figures: ', figures);
     // console.log('newArr: ', newArr);
-    await AddQuestionsToFirestore(newArr, user?.email, calc);
+    await AddResponseToFirestore(newArr, user?.email, calc);
   };
 
   const indexOfLastQuestion = currentPage * questionPerPage;
@@ -78,25 +83,25 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
 
   const count = data.length;
 
-  // const renderTime = ({ remainingTime }) => {
-  //   if (remainingTime === 0) {
-  //     // handleSubmit();
-  //     setResult(true);
-  //     return;
-  //   }
+  const renderTime = ({ remainingTime }) => {
+    if (remainingTime === 0) {
+      // handleSubmit();
+      setResult(true);
+      return;
+    }
 
-  //   return (
-  //     <div className=''>
-  //       <div className=''>{remainingTime}</div>
-  //     </div>
-  //   );
-  // };
+    return (
+      <div className=''>
+        <div className=''>{remainingTime}</div>
+      </div>
+    );
+  };
 
   return (
     <div className=''>
       <div className='flex'>
         <div className='flex flex-col w-72'>
-          <div>
+          <div className='flex justify-between'>
             <Button
               variant='link'
               leftIcon={<ArrowBackIcon />}
@@ -104,51 +109,66 @@ const TriviaQuizComponent = ({ data, ques, timer }) => {
             >
               Back
             </Button>
+            {!result && (
+              <div className='flex'>
+                <Button
+                  onClick={() => handleSubmit()}
+                  colorScheme='teal'
+                  variant='link'
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Submit
+                </Button>
+              </div>
+            )}
           </div>
-          <div className='flex justify-between items-center'>
-            <Heading className='my-5'>Question {currentPage}</Heading>
-            <CountdownCircleTimer
-              isPlaying
-              strokeWidth={5}
-              size={50}
-              duration={timer}
-              colors={['#004777', '#F7B801', '#A30000']}
-              colorsTime={[10, 5, 0]}
-              onComplete={() => ({ shouldRepeat: true, delay: 1 })}
-            >
-              {/* {renderTime} */}
+          {!result && (
+            <div className='flex flex-col'>
+              <div className='flex justify-between items-center'>
+                <Heading className='my-5'>Question {currentPage}</Heading>
+                <CountdownCircleTimer
+                  isPlaying
+                  strokeWidth={5}
+                  size={50}
+                  duration={timer}
+                  colors={['#004777', '#F7B801', '#A30000']}
+                  colorsTime={[10, 5, 0]}
+                  onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                >
+                  {renderTime}
 
-              {({ remainingTime }) => remainingTime}
-            </CountdownCircleTimer>
-          </div>
-          <div className='flex w-full'>
-            <OneQuestion
-              currentQuestions={currentQuestions[0]}
-              updateQuestion={updateQuestion}
-              // setChange={setChange}
-            />
-          </div>
+                  {/* {({ remainingTime }) => remainingTime} */}
+                </CountdownCircleTimer>
+              </div>
+              <div className='flex w-full'>
+                <OneQuestion
+                  currentQuestions={currentQuestions[0]}
+                  updateQuestion={updateQuestion}
+                  // setChange={setChange}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      <div className='flex flex-col w-full'>
-        <PaginationComp
-          handleChange={handleChange}
-          currentPage={currentPage}
-          count={count}
-        />
-        <Button
-          onClick={() => handleSubmit()}
-          colorScheme='teal'
-          isFullWidth={true}
-          setResult={setResult}
-        >
-          Submit
-        </Button>
-      </div>
-      <ToastContainer />
-      {result && (
-        <ResultComponent res={res} figures={calc} handleSubmit={handleSubmit} />
+      {!result && (
+        <div className='flex flex-col w-full'>
+          <PaginationComp
+            handleChange={handleChange}
+            currentPage={currentPage}
+            count={count}
+          />
+          {/* <Button
+            onClick={() => handleSubmit()}
+            colorScheme='teal'
+            isFullWidth={true}
+          >
+            Submit
+          </Button> */}
+        </div>
       )}
+      <ToastContainer />
+      {result && <ResultComponent figures={calc} handleSubmit={handleSubmit} />}
     </div>
   );
 };

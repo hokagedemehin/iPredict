@@ -11,10 +11,10 @@ import {
   // query,
   // where,
 } from 'firebase/firestore';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
-const AddQuestionsToFirestore = async (newArr, email, figures) => {
+const AddResponseToFirestore = async (newArr, email, figures) => {
   // setIsConfirmed(true);
   // console.log("match selcted: ", matchSelect);
   console.log('newArr firebase: ', newArr);
@@ -45,9 +45,6 @@ const AddQuestionsToFirestore = async (newArr, email, figures) => {
           response: ques?.response,
           rightAnswer: ques?.rightAnswer,
           createdAt: nowDate,
-          noOfQuestions: figures.noOfQuestions,
-          correctAnswers: figures.correctAnswers,
-          wrongAnswers: figures.wrongAnswers,
         })
     );
 
@@ -56,10 +53,13 @@ const AddQuestionsToFirestore = async (newArr, email, figures) => {
       {
         // createdAt: nowDate,
         ID: docID,
+        noOfQuestions: figures.noOfQuestions,
+        correctAnswers: figures.correctAnswers,
+        wrongAnswers: figures.wrongAnswers,
       },
       { merge: true }
     );
-    toast.success('✅ Added successfully');
+    // toast.success('✅ Added successfully');
     // console.log("data added successfully");
   } catch (err) {
     console.error('error - addMatchToFirestore', err);
@@ -68,4 +68,4 @@ const AddQuestionsToFirestore = async (newArr, email, figures) => {
   }
 };
 
-export default AddQuestionsToFirestore;
+export default AddResponseToFirestore;
