@@ -18,6 +18,8 @@ const TriviaHomePageComponent = () => {
     'presido',
   ];
 
+  const price = ['200', '500', '1000', '2000', '5000', '10,000'];
+
   return (
     <div>
       <div className='flex flex-col space-y-4 m-4'>
@@ -32,7 +34,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#B25B90] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[0]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[0]} / ${price[0]}`);
             }}
           >
             <div className='px-5 py-3 text-sm text-center font-bold bg-[#B25B90] rounded-xl text-white'>
@@ -69,7 +71,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#8A2D65] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[1]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[1]} / ${price[1]}`);
             }}
           >
             <div className='px-5 py-3 text-center font-bold bg-[#8A2D65] rounded-xl text-white text-sm'>
@@ -106,7 +108,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#9F1616] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[2]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[2]} / ${price[2]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-xs text-center font-bold bg-[#9F1616] rounded-xl'>
@@ -143,7 +145,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#670333] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[3]}`);
+              handleClick(e, `/triviagame/quiz/${15}/${name[3]} / ${price[3]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-sm text-center font-bold bg-[#670333] rounded-xl'>
@@ -180,7 +182,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#FF0000] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[4]}`);
+              handleClick(e, `/triviagame/quiz/${15}/${name[4]} / ${price[4]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-sm text-center font-bold bg-[#FF0000] rounded-xl'>
@@ -217,7 +219,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#B90000] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[5]}`);
+              handleClick(e, `/triviagame/quiz/${15}/${name[5]} / ${price[5]}`);
             }}
           >
             <div className='px-6 py-3 text-white text-sm text-center font-bold bg-[#B90000] rounded-xl'>

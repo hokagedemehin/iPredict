@@ -16,7 +16,7 @@ const TriviaGamesPageQuiz = () => {
   // const { user } = useUser();
   let timer = 0;
   if (router?.query?.quiz) {
-    timer = router?.query?.quiz[0] == 10 ? 15 : 20;
+    timer = router?.query?.quiz[0] == 10 ? 20 : 30;
   }
 
   const { data, isSuccess } = useQuery(
@@ -106,6 +106,7 @@ const TriviaGamesPageQuiz = () => {
           <TriviaQuizComponent
             data={start}
             ques={parseInt(router?.query?.quiz[0])}
+            price={router?.query?.quiz[2]}
             timer={timer}
           />
         )}

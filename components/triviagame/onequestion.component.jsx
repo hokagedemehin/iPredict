@@ -58,10 +58,10 @@ const OneQuestion = ({ currentQuestions, updateQuestion }) => {
             </Stack>
           </RadioGroup>
           {/* ANswer */}
-          <div className='flex space-x-2 font'>
+          {/* <div className='flex space-x-2 font'>
             <p>Answer :</p>
             <p>{ques?.rightAnswer}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
