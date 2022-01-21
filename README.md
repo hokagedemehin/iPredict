@@ -9,17 +9,19 @@ This is the repo for the i-predict web application. This is an application to ma
 ## Project Status
 
 - [x] Predit & Win (Complete) ✅
-- [ ] News & Transfer (Not Started) 🛌🏾
+- [ ] News & Transfer (On Going) 🤹🏾‍♀️
 - [ ] Team Cards (Not Started) 🛌🏾
-- [x] Trivia Games (On Going) 🤹🏾‍♀️
+- [x] Trivia Games (Complete) ✅
 - [ ] Spin Match Virtual - (Not Started) 🛌🏾
-- [ ] News Magazine - (Not Started) 🛌🏾
+- [ ] News Magazine - (On Going) 🤹🏾‍♀️
+- [ ] Profile Page (On Going) 🤹🏾‍♀️
 
 ## Contributing
 
-Contributions are welcome. Feel free to open a pull request with changes. 
+Contributions are welcome. Feel free to open a pull request with changes.
 
 ## Technologies Used
+
 This project is currently making use of the following technologies and it might increase or reduce based on what is needed
 
 - Next.Js

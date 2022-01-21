@@ -1,9 +1,10 @@
-import { Heading } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import Layout from "../../components/layout/layout";
-import NavHeader from "../../components/nav/header.component";
-import { useUser } from "../../utils/auth/userContext";
+import { Heading } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
+import Layout from '../../components/layout/layout';
+import NavHeader from '../../components/nav/header.component';
+import { useUser } from '../../utils/auth/userContext';
 // import NavHeader from "../../components/nav/header.component original";
 
 const TeamCardsPage = () => {
@@ -12,17 +13,18 @@ const TeamCardsPage = () => {
   // console.log(user);
   useEffect(() => {
     if (!user) {
-      router.push("/login");
+      router.push('/login');
     }
   }, [user]);
   return (
-    <Layout name="team card" desc="I-Predict Team Card">
+    <Layout name='team card' desc='I-Predict Team Card'>
       <NavHeader />
-      <div className="max-w-sm mx-auto">
-        <div className="text text-center my-5">
+      <div className='max-w-sm mx-auto'>
+        <div className='text text-center my-5'>
           <Heading>Team Cards</Heading>
         </div>
-        {/* <ContentComponent /> */}
+
+        <TeamCardEmptyComponent />
       </div>
     </Layout>
   );

@@ -9,6 +9,7 @@ import SingleTriviaAttemptComponent from './single.trivia.attempt';
 import TriviaSkeletonAttempts from './trivia.skeleton.attempts';
 import moment from 'moment';
 import SearchAllAttempts from './searchattempts.component';
+import TriviaAttemptsEmptyComponent from '../../emptypages/triviaattempts.empty';
 
 const TriviaAttemptsPageComponent = () => {
   const { user, userDoc } = useUser();
@@ -88,6 +89,7 @@ const TriviaAttemptsPageComponent = () => {
               userDoc={userDoc}
             />
           ))}
+        {trivia.length === 0 && isSuccess && <TriviaAttemptsEmptyComponent />}
         {/* <div>
             <PaginationComp count={count} handleChange={handleChange} />
           </div> */}

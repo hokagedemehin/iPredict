@@ -26,7 +26,7 @@ const SingleTriviaAttemptComponent = ({ attempt, userDoc }) => {
               <Text fontSize='lg'>{userDoc?.firstName}</Text>
               <Text fontSize='lg'>{userDoc?.lastName}</Text>
             </div>
-            {attempt.correctAnswers == 6 && (
+            {attempt.correctAnswers == 10 && (
               <Icon as={BsFillPatchCheckFill} color='green.500' boxSize={7} />
             )}
           </div>

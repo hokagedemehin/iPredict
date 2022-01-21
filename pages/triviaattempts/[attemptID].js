@@ -24,9 +24,9 @@ const TriviaGamesPage = () => {
   );
   // console.log(router.query);
   useEffect(() => {
-    // if (!user) {
-    //   router.push('/login');
-    // }
+    if (!user) {
+      router.push('/login');
+    }
   }, [user]);
   useEffect(() => {
     if (isSuccess) {
@@ -75,6 +75,9 @@ const TriviaGamesPage = () => {
                 index={index}
               />
             ))}
+        </div>
+        <div>
+          {question.length === 0 && isSuccess && <div>This is empty</div>}
         </div>
       </div>
     </Layout>
