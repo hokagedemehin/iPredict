@@ -34,7 +34,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#B25B90] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[0]} / ${price[0]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[0]}/${price[0]}`);
             }}
           >
             <div className='px-5 py-3 text-sm text-center font-bold bg-[#B25B90] rounded-xl text-white'>
@@ -52,7 +52,7 @@ const TriviaHomePageComponent = () => {
                 10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 10sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
@@ -71,7 +71,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#8A2D65] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[1]} / ${price[1]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[1]}/${price[1]}`);
             }}
           >
             <div className='px-5 py-3 text-center font-bold bg-[#8A2D65] rounded-xl text-white text-sm'>
@@ -89,7 +89,7 @@ const TriviaHomePageComponent = () => {
                 10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 10sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
@@ -108,7 +108,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#9F1616] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${10}/${name[2]} / ${price[2]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[2]}/${price[2]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-xs text-center font-bold bg-[#9F1616] rounded-xl'>
@@ -126,7 +126,7 @@ const TriviaHomePageComponent = () => {
                 10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 10sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
@@ -145,7 +145,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#670333] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[3]} / ${price[3]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[3]}/${price[3]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-sm text-center font-bold bg-[#670333] rounded-xl'>
@@ -160,10 +160,10 @@ const TriviaHomePageComponent = () => {
                 fontSize='xs'
                 className='font-bold text-xl text-center -mb-4'
               >
-                15 Questions
+                10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 20sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
@@ -182,7 +182,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#FF0000] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[4]} / ${price[4]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[4]}/${price[4]}`);
             }}
           >
             <div className='px-4 py-3 text-white text-sm text-center font-bold bg-[#FF0000] rounded-xl'>
@@ -197,10 +197,10 @@ const TriviaHomePageComponent = () => {
                 fontSize='xs'
                 className='font-bold text-xl text-center -mb-4'
               >
-                15 Questions
+                10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 20sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
@@ -219,7 +219,7 @@ const TriviaHomePageComponent = () => {
           <div
             className='flex flex-col shadow-md shadow-[#B90000] rounded-xl ring-1 p-1 cursor-pointer'
             onClick={(e) => {
-              handleClick(e, `/triviagame/quiz/${15}/${name[5]} / ${price[5]}`);
+              handleClick(e, `/triviagame/quiz/${10}/${name[5]}/${price[5]}`);
             }}
           >
             <div className='px-6 py-3 text-white text-sm text-center font-bold bg-[#B90000] rounded-xl'>
@@ -234,10 +234,10 @@ const TriviaHomePageComponent = () => {
                 fontSize='xs'
                 className='font-bold text-xl text-center -mb-4'
               >
-                15 Questions
+                10 Questions
               </Text>
               <Text fontSize='xs' className='font-bold text-xl text-center'>
-                Time: 15sec
+                Time: 60sec
               </Text>
               <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
                 <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>

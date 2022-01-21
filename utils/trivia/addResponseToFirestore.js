@@ -11,13 +11,17 @@ import {
   // query,
   // where,
 } from 'firebase/firestore';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const AddResponseToFirestore = async (newArr, email, figures) => {
+const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
   // setIsConfirmed(true);
-  // console.log("match selcted: ", matchSelect);
-  console.log('newArr firebase: ', newArr);
+  const email = userDoc?.email;
+  const firstName = userDoc?.firstName;
+  const lastName = userDoc?.lastName;
+
+  console.log('firestore figures: ', figures);
+  console.log('finalResult firebase: ', finalResult);
   const nowDate = new Date();
   const docID = Date.now().toString();
 
@@ -35,34 +39,38 @@ const AddResponseToFirestore = async (newArr, email, figures) => {
     //   createdAt: nowDate,
     //   confirmed: true,
     // });
-    newArr.forEach(
+    finalResult.forEach(
       async (ques) =>
         await addDoc(predictRef, {
           question: ques?.question,
           optionA: ques?.optionA,
           optionB: ques?.optionB,
           optionC: ques?.optionC,
-          response: ques?.response,
+          response: !ques?.response ? '' : ques?.response,
           rightAnswer: ques?.rightAnswer,
           createdAt: nowDate,
+          winner: 'winner',
+          firstname: firstName,
+          lastName: lastName,
+          email: email,
         })
     );
 
     await setDoc(
       parentRef,
       {
-        // createdAt: nowDate,
+        createdAt: nowDate,
         ID: docID,
-        noOfQuestions: figures.noOfQuestions,
-        correctAnswers: figures.correctAnswers,
-        wrongAnswers: figures.wrongAnswers,
+        noOfQuestions: figures?.noOfQuestions,
+        correctAnswers: figures?.correctAnswers,
+        wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
       },
       { merge: true }
     );
-    // toast.success('✅ Added successfully');
+    toast.success('✅ Added successfully');
     // console.log("data added successfully");
   } catch (err) {
-    console.error('error - addMatchToFirestore', err);
+    console.error('error - addResponseToFirestore', err);
   } finally {
     // setIsConfirmed(false);
   }

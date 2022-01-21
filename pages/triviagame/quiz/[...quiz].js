@@ -14,10 +14,10 @@ const TriviaGamesPageQuiz = () => {
   const router = useRouter();
   // console.log('router: ', router);
   // const { user } = useUser();
-  let timer = 0;
-  if (router?.query?.quiz) {
-    timer = router?.query?.quiz[0] == 10 ? 20 : 30;
-  }
+  const timer = 60;
+  // if (router?.query?.quiz) {
+  //   timer = router?.query?.quiz[0] == 10 ? 60 : 60;
+  // }
 
   const { data, isSuccess } = useQuery(
     'viewquestions',

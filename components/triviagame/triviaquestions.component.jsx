@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+// import debounce from 'lodash.debounce';
+// const _ = require('lodash');
 // import { useRouter } from "next/router";
 
 // import { useUser } from "../../../services/context/userContext";
@@ -15,10 +16,12 @@ import { useUser } from '../../utils/auth/userContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResultComponent from './result/result.component';
+// import { useEffect } from 'react';
+// import { useMemo } from 'react';
 
 const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   const router = useRouter();
-  const { user } = useUser();
+  const { userDoc } = useUser();
   // const timer = timer
   const newArr = [];
   // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
@@ -30,9 +33,10 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   const [result, setResult] = useState(false);
   const [finalResult, setFinalResult] = useState([]);
   const [calc, setCalc] = useState({});
-  // console.log('res: ', res);
+  const [timeUp, setTimeUp] = useState(false);
+  console.log('res: ', res);
   console.log('finalResult: ', finalResult);
-  // console.log('result: ', result);
+  console.log('calc: ', calc);
 
   const handleChange = (value) => {
     setCurrentPage(currentPage + value);
@@ -46,25 +50,53 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
       price: price,
     };
     setResult(true);
-    for (const [key, value] of Object.entries(res)) {
-      const ans = data.filter((val) => val.ID === key);
-      ans[0].response = value;
-      // console.log('ans: ', ans);
-      if (
-        ans[0].rightAnswer.toLowerCase().trim() == value.toLowerCase().trim()
-      ) {
-        figures.correctAnswers = figures.correctAnswers + 1;
-      } else {
-        figures.wrongAnswers = figures.wrongAnswers + 1;
+    if (res.length == 0) {
+      setFinalResult(data);
+      setCalc(figures);
+      await AddResponseToFirestore(finalResult, userDoc, calc);
+      // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
+      // }
+      // _.debounce(() => {
+      //   // await AddResponseToFirestore(finalResult, user?.email, calc);
+      //   console.log('debounce here');
+      // }, 500);
+    } else {
+      for (const [key, value] of Object.entries(res)) {
+        const ans = data.filter((val) => val.ID === key);
+        ans[0].response = value;
+        // console.log('ans: ', ans);
+        if (
+          ans[0].rightAnswer.toLowerCase().trim() == value.toLowerCase().trim()
+        ) {
+          figures.correctAnswers = figures.correctAnswers + 1;
+        } else {
+          figures.wrongAnswers = figures.wrongAnswers + 1;
+        }
+        newArr.push(...ans);
       }
-      newArr.push(...ans);
+      setCalc(figures);
+      setFinalResult(newArr);
+      await AddResponseToFirestore(finalResult, userDoc, calc);
     }
-    setCalc(figures);
-    setFinalResult(newArr);
+    // if (finalResult.length !== 0) {
+    //   await AddResponseToFirestore(finalResult, user?.email, calc);
+    // }
     // console.log('figures: ', figures);
     // console.log('newArr: ', newArr);
-    await AddResponseToFirestore(newArr, user?.email, calc);
   };
+
+  // useEffect(() => {
+  //   if (finalResult.length !== 0 && calc.length !== 0) {
+  //     AddResponseToFirestore(finalResult, user?.email, calc);
+  //   }
+
+  //   return () => {};
+  // }, [finalResult]);
+
+  // useMemo(
+  //   async () => await AddResponseToFirestore(finalResult, user?.email, calc),
+  //   [calc]
+  // );
 
   const indexOfLastQuestion = currentPage * questionPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionPerPage;
@@ -87,7 +119,15 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
     if (remainingTime === 0) {
       // handleSubmit();
       setResult(true);
-      return;
+      setTimeUp(true);
+      return (
+        <ResultComponent
+          figures={calc}
+          handleSubmit={handleSubmit}
+          timeUp={timeUp}
+          finalResult={finalResult}
+        />
+      );
     }
 
     return (
@@ -132,7 +172,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
                   size={50}
                   duration={timer}
                   colors={['#004777', '#F7B801', '#A30000']}
-                  colorsTime={[10, 5, 0]}
+                  colorsTime={[60, 30, 0]}
                   onComplete={() => ({ shouldRepeat: true, delay: 1 })}
                 >
                   {renderTime}
@@ -168,7 +208,14 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
         </div>
       )}
       <ToastContainer />
-      {result && <ResultComponent figures={calc} handleSubmit={handleSubmit} />}
+      {result && (
+        <ResultComponent
+          figures={calc}
+          handleSubmit={handleSubmit}
+          timeUp={timeUp}
+          finalResult={finalResult}
+        />
+      )}
     </div>
   );
 };
