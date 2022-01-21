@@ -25,7 +25,7 @@ import {
 import { BsNewspaper, BsFileSpreadsheetFill } from 'react-icons/bs';
 import { MdOutlineQuiz } from 'react-icons/md';
 import { AiOutlineHome } from 'react-icons/ai';
-import { GoSignOut, GoSignIn } from 'react-icons/go';
+import { GoSignOut } from 'react-icons/go';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase/firebase';
 import { useUser } from '../../utils/auth/userContext';
