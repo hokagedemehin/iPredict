@@ -14,8 +14,12 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddResponseToFirestore = async (finalResult, email, figures) => {
+const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
   // setIsConfirmed(true);
+  const email = userDoc?.email;
+  const firstName = userDoc?.firstName;
+  const lastName = userDoc?.lastName;
+
   console.log('firestore figures: ', figures);
   console.log('finalResult firebase: ', finalResult);
   const nowDate = new Date();
@@ -45,6 +49,10 @@ const AddResponseToFirestore = async (finalResult, email, figures) => {
           response: !ques?.response ? '' : ques?.response,
           rightAnswer: ques?.rightAnswer,
           createdAt: nowDate,
+          winner: 'winner',
+          firstname: firstName,
+          lastName: lastName,
+          email: email,
         })
     );
 

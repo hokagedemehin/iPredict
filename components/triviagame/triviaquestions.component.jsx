@@ -21,7 +21,7 @@ import ResultComponent from './result/result.component';
 
 const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   const router = useRouter();
-  const { user } = useUser();
+  const { userDoc } = useUser();
   // const timer = timer
   const newArr = [];
   // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
@@ -53,7 +53,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
     if (res.length == 0) {
       setFinalResult(data);
       setCalc(figures);
-      await AddResponseToFirestore(finalResult, user?.email, calc);
+      await AddResponseToFirestore(finalResult, userDoc, calc);
       // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
       // }
       // _.debounce(() => {
@@ -76,7 +76,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
       }
       setCalc(figures);
       setFinalResult(newArr);
-      await AddResponseToFirestore(finalResult, user?.email, calc);
+      await AddResponseToFirestore(finalResult, userDoc, calc);
     }
     // if (finalResult.length !== 0) {
     //   await AddResponseToFirestore(finalResult, user?.email, calc);
@@ -172,7 +172,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
                   size={50}
                   duration={timer}
                   colors={['#004777', '#F7B801', '#A30000']}
-                  colorsTime={[10, 5, 0]}
+                  colorsTime={[60, 30, 0]}
                   onComplete={() => ({ shouldRepeat: true, delay: 1 })}
                 >
                   {renderTime}
