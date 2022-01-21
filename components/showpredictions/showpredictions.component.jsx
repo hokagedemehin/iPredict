@@ -22,7 +22,7 @@ const ShowPredictionComponent = () => {
     async () => await GetMyPrediction(user),
     { enabled: !!user }
   );
-  console.log('data :>> ', data);
+  // console.log('data :>> ', data);
 
   useEffect(() => {
     if (isSuccess) {

@@ -1,38 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Flex,
-  Box,
+  // Box,
   Spacer,
   IconButton,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
+  Image,
+  Button,
 } from '@chakra-ui/react';
-import { BellIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons';
 // import { FaTwitter } from "react-icons/fa";
 import { useRouter } from 'next/router';
 
 import {
   GiSoccerBall,
   GiCardPlay,
-  GiCartwheel,
+  GiWallet,
   GiNewspaper,
-  // GiFocusedLightning,
+  GiCartwheel,
 } from 'react-icons/gi';
 import { BsNewspaper, BsFileSpreadsheetFill } from 'react-icons/bs';
 import { MdOutlineQuiz } from 'react-icons/md';
 import { AiOutlineHome } from 'react-icons/ai';
-import { GoSignOut, GoSignIn } from 'react-icons/go';
+import { GoSignOut } from 'react-icons/go';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../utils/firebase/firebase';
 import { useUser } from '../../utils/auth/userContext';
+import { RiLoginCircleLine } from 'react-icons/ri';
+import { FaUser } from 'react-icons/fa';
 
 const NavHeader = () => {
   const router = useRouter();
   const { user } = useUser();
-  const [navName, setNavName] = useState('');
-  console.log('navname', navName);
+  // const [navName, setNavName] = useState('');
+  // console.log('navname', navName);
   const handleLogout = async () => {
     // e.preventDefault();
     await signOut(auth);
@@ -40,8 +44,8 @@ const NavHeader = () => {
   };
   const handleClick = (e, href) => {
     e.preventDefault();
-    console.log('e :>> ', e);
-    setNavName(e.target.dataset.name);
+    // console.log('e :>> ', e);
+    // setNavName(e.target.dataset.name);
     router.push(href);
   };
   return (
@@ -125,7 +129,7 @@ const NavHeader = () => {
               News Magazine
             </MenuItem>
 
-            {user ? (
+            {/* {user ? (
               <MenuItem
                 icon={<GoSignOut />}
                 // onClick={() => router.push("/magazine")}
@@ -143,22 +147,86 @@ const NavHeader = () => {
               >
                 Sign In
               </MenuItem>
-            )}
+            )} */}
           </MenuList>
         </Menu>
         <Spacer />
-
-        <Box
+        {user ? (
+          <Menu>
+            <MenuButton
+              cursor='pointer'
+              _hover={{
+                background: 'gray.200',
+              }}
+              p='2'
+              rounded='full'
+              as='button'
+            >
+              <Image
+                className='h-8 w-8 rounded-full'
+                src='https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100'
+                alt="user's profile"
+                fallbackSrc='https://via.placeholder.com/30?text=user'
+                borderRadius='md'
+                // boxSize='200px'
+              />
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                data-name='wallet'
+                icon={<GiWallet />}
+                onClick={(e) => handleClick(e, '/wallet')}
+              >
+                wallet
+              </MenuItem>
+              <MenuItem
+                data-name='profile'
+                icon={<FaUser />}
+                onClick={(e) => handleClick(e, '/profile')}
+              >
+                Profile
+              </MenuItem>
+              <MenuItem
+                icon={<GoSignOut />}
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Sign Out
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        ) : (
+          <Button
+            rightIcon={<RiLoginCircleLine />}
+            variant='ghost'
+            // fontSize='20px'
+            // size='sm'
+            // colorScheme='blue'
+            onClick={(e) => handleClick(e, '/login')}
+          >
+            Login
+          </Button>
+        )}
+        {/* <Box
           cursor='pointer'
           _hover={{
             background: 'gray.200',
           }}
-          p='1'
-          rounded='md'
+          p='2'
+          rounded='full'
           as='button'
         >
-          <BellIcon boxSize='7' />
-        </Box>
+          <Image
+            className='h-8 w-8 rounded-full'
+            src='https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100'
+            // src="https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100"
+            alt="user's profile"
+            fallbackSrc='https://via.placeholder.com/30?text=user'
+            borderRadius='md'
+            // boxSize='200px'
+          />
+        </Box> */}
       </Flex>
     </>
   );
