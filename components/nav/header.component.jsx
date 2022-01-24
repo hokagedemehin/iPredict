@@ -11,7 +11,11 @@ import {
   Image,
   Button,
 } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import {
+  HamburgerIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@chakra-ui/icons';
 // import { FaTwitter } from "react-icons/fa";
 import { useRouter } from 'next/router';
 
@@ -49,87 +53,88 @@ const NavHeader = () => {
     router.push(href);
   };
   return (
-    <>
-      <Flex px='4' py='2'>
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label='Options'
-            icon={<HamburgerIcon />}
-            variant='outline'
-          />
-          <MenuList>
-            <MenuItem
-              data-name='Home'
-              icon={<AiOutlineHome />}
-              onClick={(e) => handleClick(e, '/')}
-              // className={`${
-              //   navName === 'Home' ? 'bg-green-600 text-white' : ' '
-              // }`}
-            >
-              Home
-            </MenuItem>
-            <MenuItem
-              data-name='Predict & Win'
-              icon={<GiSoccerBall />}
-              onClick={(e) => handleClick(e, '/predictandwin')}
-              // className={`${
-              //   navName === 'Predict & Win' ? 'bg-green-600 text-white' : ' '
-              // }`}
-            >
-              Predict & Win
-            </MenuItem>
-            <MenuItem
-              data-name='My Predictions'
-              icon={<BsFileSpreadsheetFill />}
-              onClick={(e) => handleClick(e, '/showprediction')}
-            >
-              My Predictions
-            </MenuItem>
-            <MenuItem
-              data-name='News & Transfers'
-              icon={<GiNewspaper />}
-              onClick={(e) => handleClick(e, '/news')}
-            >
-              News & Transfers
-            </MenuItem>
-            <MenuItem
-              data-name='Team Cards'
-              icon={<GiCardPlay />}
-              onClick={(e) => handleClick(e, '/teamcard')}
-            >
-              Team Cards
-            </MenuItem>
-            <MenuItem
-              data-name='Trivia Game'
-              icon={<MdOutlineQuiz />}
-              onClick={(e) => handleClick(e, '/triviagame')}
-            >
-              Trivia Game
-            </MenuItem>
-            <MenuItem
-              data-name='Trivia Attempts'
-              icon={<BsFileSpreadsheetFill />}
-              onClick={(e) => handleClick(e, '/triviaattempts')}
-            >
-              Trivia Attempts
-            </MenuItem>
-            <MenuItem
-              data-name='Spin Match Virtual'
-              icon={<GiCartwheel />}
-              onClick={(e) => handleClick(e, '/spinmatch')}
-            >
-              Spin Match Virtual
-            </MenuItem>
-            <MenuItem
-              data-name='News Magazine'
-              icon={<BsNewspaper />}
-              onClick={(e) => handleClick(e, '/magazine')}
-            >
-              News Magazine
-            </MenuItem>
+    <div className='relative'>
+      <Flex px='4' py='2' className=''>
+        <div className='sm:hidden'>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label='Options'
+              icon={<HamburgerIcon />}
+              variant='outline'
+            />
+            <MenuList>
+              <MenuItem
+                data-name='Home'
+                icon={<AiOutlineHome />}
+                onClick={(e) => handleClick(e, '/')}
+                // className={`${
+                //   navName === 'Home' ? 'bg-green-600 text-white' : ' '
+                // }`}
+              >
+                Home
+              </MenuItem>
+              <MenuItem
+                data-name='Predict & Win'
+                icon={<GiSoccerBall />}
+                onClick={(e) => handleClick(e, '/predictandwin')}
+                // className={`${
+                //   navName === 'Predict & Win' ? 'bg-green-600 text-white' : ' '
+                // }`}
+              >
+                Predict & Win
+              </MenuItem>
+              <MenuItem
+                data-name='My Predictions'
+                icon={<BsFileSpreadsheetFill />}
+                onClick={(e) => handleClick(e, '/showprediction')}
+              >
+                My Predictions
+              </MenuItem>
+              <MenuItem
+                data-name='News & Transfers'
+                icon={<GiNewspaper />}
+                onClick={(e) => handleClick(e, '/news')}
+              >
+                News & Transfers
+              </MenuItem>
+              <MenuItem
+                data-name='Team Cards'
+                icon={<GiCardPlay />}
+                onClick={(e) => handleClick(e, '/teamcard')}
+              >
+                Team Cards
+              </MenuItem>
+              <MenuItem
+                data-name='Trivia Game'
+                icon={<MdOutlineQuiz />}
+                onClick={(e) => handleClick(e, '/triviagame')}
+              >
+                Trivia Game
+              </MenuItem>
+              <MenuItem
+                data-name='Trivia Attempts'
+                icon={<BsFileSpreadsheetFill />}
+                onClick={(e) => handleClick(e, '/triviaattempts')}
+              >
+                Trivia Attempts
+              </MenuItem>
+              <MenuItem
+                data-name='Spin Match Virtual'
+                icon={<GiCartwheel />}
+                onClick={(e) => handleClick(e, '/spinmatch')}
+              >
+                Spin Match Virtual
+              </MenuItem>
+              <MenuItem
+                data-name='News Magazine'
+                icon={<BsNewspaper />}
+                onClick={(e) => handleClick(e, '/magazine')}
+              >
+                News Magazine
+              </MenuItem>
 
-            {/* {user ? (
+              {/* {user ? (
               <MenuItem
                 icon={<GoSignOut />}
                 // onClick={() => router.push("/magazine")}
@@ -148,8 +153,139 @@ const NavHeader = () => {
                 Sign In
               </MenuItem>
             )} */}
-          </MenuList>
-        </Menu>
+            </MenuList>
+          </Menu>
+        </div>
+        <div className='hidden sm:flex w-full max-w-2xl'>
+          <nav className='flex justify-around w-full items-center'>
+            <Button variant='ghost' onClick={(e) => handleClick(e, '/')}>
+              Home
+            </Button>
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    isActive={isOpen}
+                    as={Button}
+                    variant='ghost'
+                    rightIcon={isOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+                  >
+                    Predict
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      data-name='Predict & Win'
+                      icon={<GiSoccerBall />}
+                      onClick={(e) => handleClick(e, '/predictandwin')}
+                      // className={`${
+                      //   navName === 'Predict & Win' ? 'bg-green-600 text-white' : ' '
+                      // }`}
+                    >
+                      Predict & Win
+                    </MenuItem>
+                    <MenuItem
+                      data-name='My Predictions'
+                      icon={<BsFileSpreadsheetFill />}
+                      onClick={(e) => handleClick(e, '/showprediction')}
+                    >
+                      My Predictions
+                    </MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    isActive={isOpen}
+                    as={Button}
+                    variant='ghost'
+                    rightIcon={isOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+                  >
+                    News
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      data-name='News & Transfers'
+                      icon={<GiNewspaper />}
+                      onClick={(e) => handleClick(e, '/news')}
+                    >
+                      News & Transfers
+                    </MenuItem>
+                    <MenuItem
+                      data-name='News Magazine'
+                      icon={<BsNewspaper />}
+                      onClick={(e) => handleClick(e, '/magazine')}
+                    >
+                      News Magazine
+                    </MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    isActive={isOpen}
+                    as={Button}
+                    variant='ghost'
+                    rightIcon={isOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+                  >
+                    Trivia
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      data-name='Trivia Game'
+                      icon={<MdOutlineQuiz />}
+                      onClick={(e) => handleClick(e, '/triviagame')}
+                    >
+                      Trivia Game
+                    </MenuItem>
+                    <MenuItem
+                      data-name='Trivia Attempts'
+                      icon={<BsFileSpreadsheetFill />}
+                      onClick={(e) => handleClick(e, '/triviaattempts')}
+                    >
+                      Trivia Attempts
+                    </MenuItem>
+                    <MenuItem
+                      data-name='Spin Match Virtual'
+                      icon={<GiCartwheel />}
+                      onClick={(e) => handleClick(e, '/spinmatch')}
+                    >
+                      Spin Match Virtual
+                    </MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    isActive={isOpen}
+                    as={Button}
+                    variant='ghost'
+                    rightIcon={isOpen ? <ChevronDownIcon /> : <ChevronUpIcon />}
+                  >
+                    Cards
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      data-name='Team Cards'
+                      icon={<GiCardPlay />}
+                      onClick={(e) => handleClick(e, '/teamcard')}
+                    >
+                      Team Cards
+                    </MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+          </nav>
+        </div>
         <Spacer />
         {user ? (
           <Menu>
@@ -208,7 +344,16 @@ const NavHeader = () => {
             Login
           </Button>
         )}
-        {/* <Box
+      </Flex>
+    </div>
+  );
+};
+
+export default NavHeader;
+
+/**
+ * 
+ * <Box
           cursor='pointer'
           _hover={{
             background: 'gray.200',
@@ -226,10 +371,5 @@ const NavHeader = () => {
             borderRadius='md'
             // boxSize='200px'
           />
-        </Box> */}
-      </Flex>
-    </>
-  );
-};
-
-export default NavHeader;
+        </Box>
+ */
