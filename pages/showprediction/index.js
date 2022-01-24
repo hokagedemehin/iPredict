@@ -19,7 +19,7 @@ const ShowPrediction = () => {
   return (
     <Layout name='predictions' desc='See all Users Predictions'>
       <NavHeader />
-      <div className='mx-4'>
+      <div className=''>
         <div className='text text-center my-5'>
           <Heading>All Predictions</Heading>
         </div>

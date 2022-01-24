@@ -41,7 +41,7 @@ const TriviaGamesPage = () => {
   return (
     <Layout name='trivia-attempts' desc='I-Predict Trivia Attempts'>
       <NavHeader />
-      <div className='mx-4'>
+      <div className=''>
         <div className='flex mx-4 my-2'>
           <Button
             variant='link'

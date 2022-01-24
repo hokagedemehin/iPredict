@@ -19,7 +19,7 @@ const PredictAndWinPage = () => {
   return (
     <Layout name='matches' desc='I-Predict and Win'>
       <NavHeader />
-      <div className='mx-4'>
+      <div className=''>
         <div className='text text-center my-5'>
           <Heading>Predict & Win</Heading>
         </div>

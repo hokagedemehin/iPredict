@@ -116,8 +116,8 @@ const PredictAndWinComponent = () => {
   // console.log(matchTime);
   // console.log();
   return (
-    <div>
-      <div className='flex flex-col mt-5 mx-3 shadow-md rounded-lg'>
+    <div className='mx-2'>
+      <div className='flex flex-col mt-5 max-w-2xl mx-auto shadow-md rounded-lg'>
         {isLoadings && (
           <Skeleton className='flex items-center justify-center mb-4 mt-2 h-28 w-full'>
             <p fontSize='lg' fontWeight='bold'>
@@ -143,7 +143,7 @@ const PredictAndWinComponent = () => {
       </div>
       <div>
         {rightNow >= matchTime || matchSelect.length == 0 ? (
-          <div className='flex my-5 mx-2 shadow-sm'>
+          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<ImBlocked />}
               colorScheme='blackAlpha'
@@ -156,7 +156,7 @@ const PredictAndWinComponent = () => {
             </Button>
           </div>
         ) : (
-          <div className='flex my-5 mx-2 shadow-sm'>
+          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
               colorScheme='teal'
