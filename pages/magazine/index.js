@@ -19,7 +19,7 @@ const MagazinePage = () => {
   return (
     <Layout name='magazine' desc='I-predict Magazine'>
       <NavHeader />
-      <div className='max-w-sm mx-auto'>
+      <div className='mx-4'>
         <div className='text text-center my-5'>
           <Heading>News Magazine</Heading>
         </div>

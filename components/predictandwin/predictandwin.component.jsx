@@ -1,21 +1,21 @@
 // import { Button, InputGroup, InputLeftAddon, Select } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import selectedMacthesForPrediction from "../../utils/prediction/selectedMacthesForPrediction";
-import MatchListComponent from "./matchlist.component";
-import NoMatchListComponent from "./nomatchlist.component";
+import React, { useEffect, useState } from 'react';
+import selectedMacthesForPrediction from '../../utils/prediction/selectedMacthesForPrediction';
+import MatchListComponent from './matchlist.component';
+import NoMatchListComponent from './nomatchlist.component';
 // import { useCollection } from "react-firebase-hooks/firestore";
 // import { collection } from "firebase/firestore";
 // import { db } from "../../utils/firebase/firebase";
-import { Button, Skeleton } from "@chakra-ui/react";
-import { GiSoccerBall } from "react-icons/gi";
-import { ImBlocked } from "react-icons/im";
-import addPredictionToFirestore from "../../utils/prediction/addPredictionToFirestore";
-import { useUser } from "../../utils/auth/userContext";
-import { ToastContainer } from "react-toastify";
+import { Button, Skeleton } from '@chakra-ui/react';
+import { GiSoccerBall } from 'react-icons/gi';
+import { ImBlocked } from 'react-icons/im';
+import addPredictionToFirestore from '../../utils/prediction/addPredictionToFirestore';
+import { useUser } from '../../utils/auth/userContext';
+import { ToastContainer } from 'react-toastify';
 // import moment from "moment";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useQuery } from "react-query";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useQuery } from 'react-query';
 
 const PredictAndWinComponent = () => {
   const [matchSelect, setMatchSelect] = useState([]);
@@ -35,7 +35,7 @@ const PredictAndWinComponent = () => {
     isSuccess,
     dataUpdatedAt,
   } = useQuery(
-    "allselectedMatches",
+    'allselectedMatches',
     async () => await selectedMacthesForPrediction()
   );
 
@@ -59,9 +59,9 @@ const PredictAndWinComponent = () => {
   const handleSubmission = async () => {
     const checkVal = Object.keys(formValue).length / matchSelect.length;
     if (checkVal !== 2) {
-      toast.error("❌ All predictions are required");
+      toast.error('❌ All predictions are required');
     } else if (matchTime <= rightNow) {
-      toast.error("🚧 Prediction is closed");
+      toast.error('🚧 Prediction is closed');
     } else {
       for (const [key, value] of Object.entries(formValue)) {
         const homeVal = matchSelect.filter((item) => item.homeName === key);
@@ -117,10 +117,10 @@ const PredictAndWinComponent = () => {
   // console.log();
   return (
     <div>
-      <div className="flex flex-col mt-5 mx-3 shadow-md rounded-lg">
+      <div className='flex flex-col mt-5 mx-3 shadow-md rounded-lg'>
         {isLoadings && (
-          <Skeleton className="flex items-center justify-center mb-4 mt-2 h-28 w-full">
-            <p fontSize="lg" fontWeight="bold">
+          <Skeleton className='flex items-center justify-center mb-4 mt-2 h-28 w-full'>
+            <p fontSize='lg' fontWeight='bold'>
               New matches are coming soon
             </p>
           </Skeleton>
@@ -143,30 +143,30 @@ const PredictAndWinComponent = () => {
       </div>
       <div>
         {rightNow >= matchTime || matchSelect.length == 0 ? (
-          <div className="flex my-5 mx-2 shadow-sm">
+          <div className='flex my-5 mx-2 shadow-sm'>
             <Button
               leftIcon={<ImBlocked />}
-              colorScheme="blackAlpha"
-              variant="outline"
+              colorScheme='blackAlpha'
+              variant='outline'
               isFullWidth
-              fontSize="xl"
+              fontSize='xl'
               isDisabled
             >
               Prediction Closed
             </Button>
           </div>
         ) : (
-          <div className="flex my-5 mx-2 shadow-sm">
+          <div className='flex my-5 mx-2 shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
-              colorScheme="teal"
-              variant="solid"
+              colorScheme='teal'
+              variant='solid'
               isFullWidth
-              fontSize="xl"
+              fontSize='xl'
               onClick={handleSubmission}
               isLoading={isLoading}
-              loadingText="Saving"
-              spinnerPlacement="end"
+              loadingText='Saving'
+              spinnerPlacement='end'
             >
               Submit Prediction
             </Button>

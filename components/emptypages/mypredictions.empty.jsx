@@ -8,7 +8,8 @@ const MyPredictionsEmptyComponent = () => {
         <Image
           src='/emptycanvas/nopredictions.png'
           borderRadius='md'
-          // boxSize='200px'
+          boxSize={['200px', '300px', '400px']}
+          objectFit='cover'
           alt='No predictions made'
           fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
         />
