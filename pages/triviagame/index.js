@@ -18,7 +18,7 @@ const TriviaGamesPage = () => {
   return (
     <Layout name='trivia' desc='I-Predict Trivia Game'>
       <NavHeader />
-      <div className='max-w-sm mx-auto'>
+      <div className=''>
         <div className='text text-center my-5'>
           <Heading>Trivia Game</Heading>
         </div>

@@ -39,7 +39,7 @@ const ShowPredictionComponent = () => {
 
   return (
     <div>
-      <div className='  '>
+      <div className=' mx-2 '>
         {isLoading &&
           [0, 1, 2, 3].map((match, index) => (
             <AllMatchesSkeletonPredictions key={index} match={match} />

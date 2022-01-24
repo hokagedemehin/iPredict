@@ -140,7 +140,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   return (
     <div className=''>
       <div className='flex'>
-        <div className='flex flex-col w-72'>
+        <div className='flex flex-col w-72 sm:w-[28rem]'>
           <div className='flex justify-between'>
             <Button
               variant='link'

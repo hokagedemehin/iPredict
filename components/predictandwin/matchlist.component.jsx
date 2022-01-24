@@ -64,7 +64,7 @@ const MatchListComponent = ({
   // };
 
   return (
-    <div className='flex space-x-4 justify-between items-center mx-2 my-5'>
+    <div className='flex space-x-4 justify-between items-center mx-2 my-5 '>
       <div className='flex justify-between items-center space-x-1 w-full '>
         <div className='flex space-x-1 justify-center items-center'>
           <Image
@@ -76,7 +76,7 @@ const MatchListComponent = ({
           />
           <Box>
             {/* <Text fontSize="sm">Manchester United</Text> */}
-            <Text fontSize='xs'>{match.homeName}</Text>
+            <Text fontSize={['xs', 'md', 'xl']}>{match.homeName}</Text>
           </Box>
         </div>
         <div className=''>
@@ -111,7 +111,7 @@ const MatchListComponent = ({
         /> */}
       </div>
       <div>
-        <Text fontSize='lg' fontWeight='black'>
+        <Text fontSize={['lg', 'xl']} fontWeight='black'>
           VS
         </Text>
       </div>
@@ -126,7 +126,7 @@ const MatchListComponent = ({
           />
           <Box>
             {/* <Text fontSize="sm">Manchester City</Text> */}
-            <Text fontSize='sm'>{match.awayName}</Text>
+            <Text fontSize={['xs', 'md', 'xl']}>{match.awayName}</Text>
           </Box>
         </div>
         {/* <NumberInput

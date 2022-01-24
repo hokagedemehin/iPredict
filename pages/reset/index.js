@@ -52,7 +52,7 @@ const ResetPage = () => {
   };
 
   return (
-    <Layout name='Login' desc='Users can reset their password here'>
+    <Layout name='Reset' desc='Users can reset their password here'>
       <div className='flex flex-col justify-center items-center pt-10'>
         <Heading>Reset Password</Heading>
         <form className='mt-5'>

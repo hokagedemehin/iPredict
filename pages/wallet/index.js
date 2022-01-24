@@ -19,7 +19,7 @@ const UserWalletPage = () => {
   return (
     <Layout name='wallet' desc='I-Predict User Wallet'>
       <NavHeader />
-      <div className='max-w-sm mx-auto'>
+      <div className='mx-4'>
         <div className='text text-center my-5'>
           <Heading>My Wallet</Heading>
         </div>
