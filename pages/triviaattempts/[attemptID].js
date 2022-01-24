@@ -42,11 +42,12 @@ const TriviaGamesPage = () => {
     <Layout name='trivia-attempts' desc='I-Predict Trivia Attempts'>
       <NavHeader />
       <div className=''>
-        <div className='flex mx-4 my-2'>
+        <div className='flex my-2 max-w-xl mx-auto'>
           <Button
             variant='link'
             leftIcon={<ArrowBackIcon />}
             onClick={() => router.push('/triviaattempts')}
+            className='mx-4 sm:mx-0'
           >
             Back
           </Button>
@@ -54,7 +55,7 @@ const TriviaGamesPage = () => {
         <div className='text text-center my-5'>
           <Heading size='md'>Attempted Questions</Heading>
         </div>
-        <div className='space-y-4 mx-4'>
+        <div className='space-y-4 max-w-xl mx-auto'>
           {isLoading &&
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((ques, index) => (
               <Skeleton key={index} className='rounded-lg'>
@@ -66,7 +67,7 @@ const TriviaGamesPage = () => {
               </Skeleton>
             ))}
         </div>
-        <div className='mx-4 space-y-2'>
+        <div className=' space-y-2 max-w-xl mx-auto'>
           {isSuccess &&
             question.map((ques, index) => (
               <AttemptedQuestionsPageComponent
@@ -75,9 +76,6 @@ const TriviaGamesPage = () => {
                 index={index}
               />
             ))}
-        </div>
-        <div>
-          {question.length === 0 && isSuccess && <div>This is empty</div>}
         </div>
       </div>
     </Layout>
