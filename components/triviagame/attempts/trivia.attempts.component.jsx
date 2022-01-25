@@ -16,7 +16,7 @@ const TriviaAttemptsPageComponent = () => {
   const { user, userDoc } = useUser();
   const email = user?.email;
   const [trivia, setTrivia] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('second');
+  const [searchTerm, setSearchTerm] = useState('');
   // const [currentPage, setCurrentPage] = useState(1);
   // const [clientPerPage] = useState(8);
 
@@ -58,18 +58,8 @@ const TriviaAttemptsPageComponent = () => {
     });
   }
 
-  // const handleChange = (event, value) => {
-  //   setCurrentPage(value);
-  // };
-
-  // const indexOfLastClient = currentPage * clientPerPage;
-  // const indexOfFirstClient = indexOfLastClient - clientPerPage;
-  // const currentClients = trivia?.slice(indexOfFirstClient, indexOfLastClient);
-
-  // console.log("currentClients:", currentClients);
-
-  // const count = Math.ceil(trivia.length / clientPerPage);
-
+  // console.log('data1', data1);
+  // console.log('trivia', trivia);
   return (
     <div className=''>
       <div className='flex flex-wrap w-full justify-center max-w-2xl mx-auto'>
@@ -85,6 +75,7 @@ const TriviaAttemptsPageComponent = () => {
 
         {isSuccess &&
           trivia.length !== 0 &&
+          data1.length !== 0 &&
           data1.map((attempt, index) => (
             <SingleTriviaAttemptComponent
               key={index}
