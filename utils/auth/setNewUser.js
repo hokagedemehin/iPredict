@@ -1,9 +1,9 @@
-import { auth, db } from "../firebase/firebase";
+import { auth, db } from '../firebase/firebase';
 // import { useUser } from "../context/userContext";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SetNewUser = async (formValue, setIsLoading) => {
   // const email1 = formValue.email;
@@ -24,7 +24,7 @@ export const SetNewUser = async (formValue, setIsLoading) => {
 
     const { uid, email } = response.user;
 
-    const docRef = doc(db, "users", uid);
+    const docRef = doc(db, 'users', uid);
 
     await setDoc(
       docRef,
@@ -33,15 +33,18 @@ export const SetNewUser = async (formValue, setIsLoading) => {
         lastName: lastName,
         email: email,
         image:
-          "https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100",
+          'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
         createdTimestamp: serverTimestamp(),
-        role: "user",
+        updatedAt: serverTimestamp(),
+        role: 'user',
+        coins: 0,
+        wallet: 0,
       },
       { merge: true }
     );
   } catch (error) {
     console.error(error);
-    toast.error("💥Something is wrong 😪😥💥");
+    toast.error('💥Something is wrong 😪😥💥');
   } finally {
     setIsLoading(false);
   }

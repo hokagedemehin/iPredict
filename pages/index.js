@@ -4,6 +4,7 @@
 // import { Heading } from "@chakra-ui/react";
 import ContentComponent from '../components/home/content.section.component';
 import HeroComponent from '../components/home/hero.component';
+// import HomeLayout from '../components/layout/homelayout';
 import Layout from '../components/layout/layout';
 import NavHeader from '../components/nav/header.component';
 
@@ -16,7 +17,7 @@ export default function Home() {
       </div>
       {/* <div className='bg-[#0D37CE]'> */}
       <div className=''>
-        <div className='text text-center my-5'></div>
+        {/* <div className='text text-center'></div> */}
         <ContentComponent />
       </div>
     </Layout>
