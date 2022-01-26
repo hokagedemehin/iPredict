@@ -10,7 +10,7 @@ import { useUser } from '../../utils/auth/userContext';
 
 const UserWalletPage = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, userDoc } = useUser();
   // console.log(user);
   useEffect(() => {
     if (!user) {
@@ -24,7 +24,7 @@ const UserWalletPage = () => {
         <div className='text text-center my-5'>
           <Heading>My Wallet</Heading>
         </div>
-        <WalletHomePage />
+        <WalletHomePage userDoc={userDoc} user={user} />
         {/* <NoWalletEmptyComponent /> */}
       </div>
     </Layout>
