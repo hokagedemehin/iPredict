@@ -5,7 +5,7 @@ import { GiMoneyStack } from 'react-icons/gi';
 import { useQuery } from 'react-query';
 import GetUserInfo from '../../utils/auth/getUserInfo';
 
-import CoinsComponent from './coins.component';
+// import CoinsComponent from './coins.component';
 import CoinsComponentPayStack from './coins.paystack.component';
 
 const WalletHomePage = ({ userDoc, user }) => {
