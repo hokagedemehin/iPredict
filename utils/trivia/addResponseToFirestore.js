@@ -60,7 +60,7 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures, type) => {
         noOfQuestions: figures?.noOfQuestions,
         correctAnswers: figures?.correctAnswers,
         wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
-        winner: figures?.correctAnswers == 10 ? 'winner' : null,
+        winner: figures?.correctAnswers == 10 ? 'yes' : 'no',
         firstname: firstName,
         lastName: lastName,
         email: email,
