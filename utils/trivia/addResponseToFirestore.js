@@ -14,7 +14,7 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
+const AddResponseToFirestore = async (finalResult, userDoc, figures, type) => {
   // setIsConfirmed(true);
   const email = userDoc?.email;
   const firstName = userDoc?.firstName;
@@ -64,6 +64,7 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
         firstname: firstName,
         lastName: lastName,
         email: email,
+        type: type,
       },
       { merge: true }
     );
@@ -77,10 +78,12 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
       noOfQuestions: figures?.noOfQuestions,
       correctAnswers: figures?.correctAnswers,
       wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
-      winner: figures?.correctAnswers == 10 ? 'winner' : null,
-      firstname: firstName,
-      lastName: lastName,
+      winner: figures?.correctAnswers == 10 ? 'yes' : 'no',
+      fullName: `${firstName} ${lastName}`,
+      // firstname: firstName,
+      // lastName: lastName,
       email: email,
+      type: type,
     });
     const triviaAttemptsCollectionRef = doc(db, `TriviaAttempts`, newID.id);
     await setDoc(
