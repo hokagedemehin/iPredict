@@ -108,6 +108,7 @@ const TriviaGamesPageQuiz = () => {
             ques={parseInt(router?.query?.quiz[0])}
             price={router?.query?.quiz[2]}
             timer={timer}
+            type={router?.query.quiz[1]}
           />
         )}
       </div>

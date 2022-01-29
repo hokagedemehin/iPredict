@@ -19,7 +19,7 @@ import ResultComponent from './result/result.component';
 // import { useEffect } from 'react';
 // import { useMemo } from 'react';
 
-const TriviaQuizComponent = ({ data, ques, timer, price }) => {
+const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
   const router = useRouter();
   const { userDoc } = useUser();
   // const timer = timer
@@ -76,7 +76,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
       }
       setCalc(figures);
       setFinalResult(newArr);
-      await AddResponseToFirestore(finalResult, userDoc, calc);
+      await AddResponseToFirestore(finalResult, userDoc, calc, type);
     }
     // if (finalResult.length !== 0) {
     //   await AddResponseToFirestore(finalResult, user?.email, calc);
