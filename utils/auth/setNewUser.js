@@ -38,7 +38,7 @@ export const SetNewUser = async (formValue, setIsLoading) => {
         updatedAt: serverTimestamp(),
         role: 'user',
         coins: 0,
-        wallet: 0,
+        money: 0,
       },
       { merge: true }
     );
