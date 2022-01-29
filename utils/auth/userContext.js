@@ -1,7 +1,7 @@
-import { useState, useEffect, createContext, useContext } from "react";
-import { auth, db } from "../firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, onSnapshot } from "firebase/firestore";
+import { useState, useEffect, createContext, useContext } from 'react';
+import { auth, db } from '../firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, onSnapshot } from 'firebase/firestore';
 // import {
 //   useDocument,
 //   useDocumentData,
@@ -27,7 +27,7 @@ export default function UserContextComp({ children }) {
 
           setUser({ uid, email });
 
-          onSnapshot(doc(db, "users", uid), (docUser) => {
+          onSnapshot(doc(db, 'Users', uid), (docUser) => {
             setUserDoc(docUser.data());
           });
           // console.log(userDoc);

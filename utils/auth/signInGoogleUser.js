@@ -18,7 +18,7 @@ export const SignInGoogleUser = async () => {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     const { uid, displayName, email } = result.user;
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, 'Users', uid);
 
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {
@@ -33,7 +33,7 @@ export const SignInGoogleUser = async () => {
 
           image:
             'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
-          createdTimestamp: serverTimestamp(),
+          createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
           role: 'user',
           coins: 0,

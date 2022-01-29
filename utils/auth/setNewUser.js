@@ -24,7 +24,7 @@ export const SetNewUser = async (formValue, setIsLoading) => {
 
     const { uid, email } = response.user;
 
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, 'Users', uid);
 
     await setDoc(
       docRef,
@@ -34,7 +34,7 @@ export const SetNewUser = async (formValue, setIsLoading) => {
         email: email,
         image:
           'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
-        createdTimestamp: serverTimestamp(),
+        createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         role: 'user',
         coins: 0,
