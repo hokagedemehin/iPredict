@@ -49,10 +49,6 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
           response: !ques?.response ? '' : ques?.response,
           rightAnswer: ques?.rightAnswer,
           createdAt: nowDate,
-          winner: 'winner',
-          firstname: firstName,
-          lastName: lastName,
-          email: email,
         })
     );
 
@@ -64,6 +60,33 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
         noOfQuestions: figures?.noOfQuestions,
         correctAnswers: figures?.correctAnswers,
         wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
+        winner: figures?.correctAnswers == 10 ? 'winner' : null,
+        firstname: firstName,
+        lastName: lastName,
+        email: email,
+      },
+      { merge: true }
+    );
+
+    // Also write the attempts to trivia attempts collection for admin use
+
+    const triviaAttemptsRef = collection(db, 'TriviaAttempts');
+    const newID = await addDoc(triviaAttemptsRef, {
+      createdAt: nowDate,
+      attemptID: docID,
+      noOfQuestions: figures?.noOfQuestions,
+      correctAnswers: figures?.correctAnswers,
+      wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
+      winner: figures?.correctAnswers == 10 ? 'winner' : null,
+      firstname: firstName,
+      lastName: lastName,
+      email: email,
+    });
+    const triviaAttemptsCollectionRef = doc(db, `TriviaAttempts`, newID.id);
+    await setDoc(
+      triviaAttemptsCollectionRef,
+      {
+        docId: newID.id,
       },
       { merge: true }
     );
