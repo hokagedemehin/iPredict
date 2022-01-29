@@ -22,7 +22,7 @@ const AttemptedQuestionsPageComponent = ({ ques, index }) => {
   return (
     <div>
       <div
-        className='flex p-3 shadow-md rounded-lg cursor-pointer ring-1 ring-gray-200 justify-center items-center max-w-xl mx-auto'
+        className='flex p-3 shadow-md rounded-lg cursor-pointer ring-1 ring-gray-200 justify-center items-center max-w-xl mx-auto space-x-2'
         onClick={onOpen}
       >
         <Text isTruncated fontSize='lg'>
