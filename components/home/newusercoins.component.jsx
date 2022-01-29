@@ -1,14 +1,15 @@
 import { Button, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import {} from '@chakra-ui/react';
 import ClaimFreeCoins from '../../utils/user/claimFreeCoins';
 
 const NewUserFreeCoins = ({ user }) => {
   // const { isOpen, onClose } = useDisclosure();
+  const [isLoad, setIsLoad] = useState(false);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    await ClaimFreeCoins(user);
+    await ClaimFreeCoins(user, setIsLoad);
   };
 
   return (
@@ -19,6 +20,7 @@ const NewUserFreeCoins = ({ user }) => {
           variant='solid'
           colorScheme='teal'
           size='sm'
+          isLoading={isLoad}
           onClick={(e) => handleClick(e)}
         >
           Claim

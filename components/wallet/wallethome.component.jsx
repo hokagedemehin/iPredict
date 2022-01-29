@@ -9,6 +9,8 @@ import GetUserInfo from '../../utils/auth/getUserInfo';
 import CoinsComponentPayStack from './coins.paystack.component';
 
 const WalletHomePage = ({ userDoc, user }) => {
+  // const [userData, setUserData] = useState([]);
+  // console.log('userData', userData);
   const walletData = [
     { id: 1, coins: 10, amount: 50 },
     { id: 2, coins: 25, amount: 100 },
@@ -89,7 +91,7 @@ const WalletHomePage = ({ userDoc, user }) => {
             </div>
           </div>
         </div>
-        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5'>
+        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 px-2'>
           <div className='flex flex-wrap gap-4 justify-center items-center'>
             {walletData.map((data, index) => (
               <CoinsComponentPayStack

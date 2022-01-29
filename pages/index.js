@@ -26,10 +26,13 @@ export default function Home() {
           {/* <div className='text text-center'></div> */}
           <ContentComponent />
         </div>
-        {!userDoc?.freeClaim && (
-          <div className='absolute inset-x-0 bottom-0 mb-2 mx-4 '>
+
+        {userDoc && !userDoc?.freeClaim ? (
+          <div className='absolute inset-x-0 bottom-0 mb-3 mx-4 '>
             <NewUserFreeCoins user={user} />
           </div>
+        ) : (
+          ''
         )}
       </div>
     </Layout>
