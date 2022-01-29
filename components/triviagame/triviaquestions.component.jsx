@@ -53,7 +53,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
     if (res.length == 0) {
       setFinalResult(data);
       setCalc(figures);
-      await AddResponseToFirestore(finalResult, userDoc, calc);
+      await AddResponseToFirestore(finalResult, userDoc, calc, type);
       // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
       // }
       // _.debounce(() => {

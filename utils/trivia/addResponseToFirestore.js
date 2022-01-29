@@ -13,9 +13,18 @@ import {
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import DeductCoinsFromWallet from '../wallet/deductCoinsFromWallet';
 
-const AddResponseToFirestore = async (finalResult, userDoc, figures, type) => {
+const AddResponseToFirestore = async (
+  finalResult,
+  userDoc,
+  figures,
+  type
+  // user,
+  // coins
+) => {
   // setIsConfirmed(true);
+  // const uid = user?.uid;
   const email = userDoc?.email;
   const firstName = userDoc?.firstName;
   const lastName = userDoc?.lastName;
@@ -93,6 +102,9 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures, type) => {
       },
       { merge: true }
     );
+
+    // DeductCoinsFromWallet(coins, uid);
+
     toast.success('✅ Added successfully');
     // console.log("data added successfully");
   } catch (err) {

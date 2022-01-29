@@ -1,5 +1,5 @@
 // import { Button, InputGroup, InputLeftAddon, Select } from "@chakra-ui/react";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import selectedMacthesForPrediction from '../../utils/prediction/selectedMacthesForPrediction';
 import MatchListComponent from './matchlist.component';
 import NoMatchListComponent from './nomatchlist.component';
@@ -16,6 +16,14 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useQuery } from 'react-query';
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from '@chakra-ui/react';
 
 const PredictAndWinComponent = () => {
   const [matchSelect, setMatchSelect] = useState([]);
@@ -24,6 +32,9 @@ const PredictAndWinComponent = () => {
   // console.log("formValue: ", formValue);
   const [isLoading, setIsLoading] = useState(false);
   const { user, userDoc } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = useRef();
 
   // const [value] = useCollection(collection(db, "MatchesSelected"), {
   //   snapshotListenOptions: { includeMetadataChanges: true },
@@ -62,6 +73,8 @@ const PredictAndWinComponent = () => {
       toast.error('❌ All predictions are required');
     } else if (matchTime <= rightNow) {
       toast.error('🚧 Prediction is closed');
+    } else if (userDoc?.coins < 20) {
+      toast.error('💰 Insufficient coins balance');
     } else {
       for (const [key, value] of Object.entries(formValue)) {
         const homeVal = matchSelect.filter((item) => item.homeName === key);
@@ -80,8 +93,17 @@ const PredictAndWinComponent = () => {
         // console.log("new away: ", awayVal);
       }
       // console.log("new Match Select: ", matchSelect);
-      await addPredictionToFirestore(matchSelect, setIsLoading, user, userDoc);
+      await addPredictionToFirestore(
+        matchSelect,
+        setIsLoading,
+        user,
+        userDoc
+        // setFormValue
+      );
     }
+    // alert('this action happened');
+    // console.log('hakked');
+    onClose();
     // setIsLoading(false);
   };
   // value?.docs?.map((doc) => console.log(doc.data()));
@@ -163,15 +185,54 @@ const PredictAndWinComponent = () => {
               variant='solid'
               isFullWidth
               fontSize='xl'
-              onClick={handleSubmission}
-              isLoading={isLoading}
-              loadingText='Saving'
+              // onClick={handleSubmission}
+              onClick={() => setIsOpen(true)}
+              isLoading={isOpen}
+              loadingText='Loading'
               spinnerPlacement='end'
             >
-              Submit Prediction
+              Submit Prediction (20 coins)
             </Button>
           </div>
         )}
+      </div>
+      <div>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay />
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Submit Predictions
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              20 coins will be deducted from your wallet, do you want to
+              preoceed?
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <Button
+                ref={cancelRef}
+                colorScheme='red'
+                variant='outline'
+                onClick={onClose}
+              >
+                No
+              </Button>
+              <Button
+                colorScheme='teal'
+                onClick={() => handleSubmission()}
+                ml={3}
+                isLoading={isLoading}
+                loadingText='Sending'
+                spinnerPlacement='end'
+              >
+                Yes
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
       <ToastContainer />
     </div>

@@ -16,12 +16,14 @@ import {
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DeductCoinsFromWallet from '../wallet/deductCoinsFromWallet';
 
 const addPredictionToFirestore = async (
   matchSelect,
   setIsLoading,
   user,
   userDoc
+  // setFormValue
 ) => {
   setIsLoading(true);
   try {
@@ -121,6 +123,8 @@ const addPredictionToFirestore = async (
       draggable: true,
       progress: undefined,
     });
+    await DeductCoinsFromWallet(20, user?.uid);
+    // setFormValue([]);
   } catch (error) {
     console.error('error - addMatchToFirestore', error);
   } finally {
