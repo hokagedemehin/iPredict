@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react';
+import { Heading, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Layout from '../../components/layout/layout';
