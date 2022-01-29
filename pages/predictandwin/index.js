@@ -1,4 +1,4 @@
-import { Heading, Text } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Layout from '../../components/layout/layout';
@@ -19,7 +19,7 @@ const PredictAndWinPage = () => {
   return (
     <Layout name='matches' desc='I-Predict and Win'>
       <NavHeader />
-      <div className='max-w-sm mx-auto'>
+      <div className=''>
         <div className='text text-center my-5'>
           <Heading>Predict & Win</Heading>
         </div>

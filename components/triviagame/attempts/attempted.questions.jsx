@@ -22,7 +22,7 @@ const AttemptedQuestionsPageComponent = ({ ques, index }) => {
   return (
     <div>
       <div
-        className='flex p-3 shadow-md rounded-lg cursor-pointer ring-1 ring-gray-200 justify-center items-center'
+        className='flex p-3 shadow-md rounded-lg cursor-pointer ring-1 ring-gray-200 justify-center items-center max-w-xl mx-auto'
         onClick={onOpen}
       >
         <Text isTruncated fontSize='lg'>
@@ -35,7 +35,7 @@ const AttemptedQuestionsPageComponent = ({ ques, index }) => {
           <Icon as={MdOutlineClose} color='red.500' boxSize={7} />
         )}
       </div>
-      <Modal size='xs' isOpen={isOpen} onClose={onClose}>
+      <Modal size={'xs'} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Question {index + 1}</ModalHeader>

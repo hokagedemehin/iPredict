@@ -20,8 +20,8 @@ const AddResponseToFirestore = async (finalResult, userDoc, figures) => {
   const firstName = userDoc?.firstName;
   const lastName = userDoc?.lastName;
 
-  console.log('firestore figures: ', figures);
-  console.log('finalResult firebase: ', finalResult);
+  // console.log('firestore figures: ', figures);
+  // console.log('finalResult firebase: ', finalResult);
   const nowDate = new Date();
   const docID = Date.now().toString();
 

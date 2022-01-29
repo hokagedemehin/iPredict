@@ -34,9 +34,9 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   const [finalResult, setFinalResult] = useState([]);
   const [calc, setCalc] = useState({});
   const [timeUp, setTimeUp] = useState(false);
-  console.log('res: ', res);
-  console.log('finalResult: ', finalResult);
-  console.log('calc: ', calc);
+  // console.log('res: ', res);
+  // console.log('finalResult: ', finalResult);
+  // console.log('calc: ', calc);
 
   const handleChange = (value) => {
     setCurrentPage(currentPage + value);
@@ -140,7 +140,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price }) => {
   return (
     <div className=''>
       <div className='flex'>
-        <div className='flex flex-col w-72'>
+        <div className='flex flex-col w-72 sm:w-[28rem]'>
           <div className='flex justify-between'>
             <Button
               variant='link'

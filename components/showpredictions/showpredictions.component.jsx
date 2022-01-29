@@ -1,10 +1,11 @@
 // import { Heading } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { useUser } from "../../utils/auth/userContext";
-import GetMyPrediction from "../../utils/myprediction/getmyprediction";
-import AllMatchesPredictions from "./allmatchespredictions.component";
-import AllMatchesSkeletonPredictions from "./allmatchesskeleton.component";
+import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { useUser } from '../../utils/auth/userContext';
+import GetMyPrediction from '../../utils/myprediction/getmyprediction';
+import MyPredictionsEmptyComponent from '../emptypages/mypredictions.empty';
+import AllMatchesPredictions from './allmatchespredictions.component';
+import AllMatchesSkeletonPredictions from './allmatchesskeleton.component';
 // import EachPrediction from "./eachprediction";
 
 const ShowPredictionComponent = () => {
@@ -17,10 +18,11 @@ const ShowPredictionComponent = () => {
   // };
 
   const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
-    ["allselectedMatches", user],
+    ['allselectedMatches', user],
     async () => await GetMyPrediction(user),
     { enabled: !!user }
   );
+  // console.log('data :>> ', data);
 
   useEffect(() => {
     if (isSuccess) {
@@ -37,7 +39,7 @@ const ShowPredictionComponent = () => {
 
   return (
     <div>
-      <div className="  ">
+      <div className=' mx-2 '>
         {isLoading &&
           [0, 1, 2, 3].map((match, index) => (
             <AllMatchesSkeletonPredictions key={index} match={match} />
@@ -46,6 +48,9 @@ const ShowPredictionComponent = () => {
           predictedMatch.map((match, index) => (
             <AllMatchesPredictions key={index} match={match} />
           ))}
+        {predictedMatch.length === 0 && isSuccess && (
+          <MyPredictionsEmptyComponent />
+        )}
       </div>
     </div>
   );
