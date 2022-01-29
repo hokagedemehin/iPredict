@@ -19,7 +19,7 @@ export const SignUpGoogleUser = async () => {
     const result = await signInWithPopup(auth, provider);
 
     const { uid, displayName, email } = result.user;
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, 'Users', uid);
 
     const names = displayName.split(' ');
     await setDoc(
@@ -30,7 +30,7 @@ export const SignUpGoogleUser = async () => {
         email: email,
         image:
           'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
-        createdTimestamp: serverTimestamp(),
+        createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         role: 'user',
         coins: 0,
