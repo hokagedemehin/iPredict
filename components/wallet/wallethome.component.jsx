@@ -37,7 +37,7 @@ const WalletHomePage = ({ userDoc, user }) => {
   }, [isSuccess, dataUpdatedAt]);
 
   return (
-    <div>
+    <div className=''>
       <div className='flex flex-col space-y-10 mb-5'>
         <div className='summary w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 '>
           <div className='flex flex-col sm:flex-row space-y-5 sm:space-y-0 '>
