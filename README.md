@@ -14,7 +14,8 @@ This is the repo for the i-predict web application. This is an application to ma
 - [x] Trivia Games (Complete) ✅
 - [ ] Spin Match Virtual - (Not Started) 🛌🏾
 - [ ] News Magazine - (On Going) 🤹🏾‍♀️
-- [ ] Profile Page (On Going) 🤹🏾‍♀️
+- [ ] Profile Page (On Going)  🤹🏾‍♀️
+- [x] Wallet Page (Completed) ✅
 
 ## Contributing
 
