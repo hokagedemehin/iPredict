@@ -33,7 +33,7 @@ const CoinsComponent = ({ data, userDoc, user }) => {
     handleFlutterPayment({
       callback: async (response) => {
         if (response.status === 'successful') {
-          await UpdateUserWallet(data.coins, user);
+          await UpdateUserWallet(data.coins, user?.uid);
           closePaymentModal;
         }
       },

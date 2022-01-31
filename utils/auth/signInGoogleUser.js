@@ -10,7 +10,7 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const SignInGoogleUser = async () => {
+export const SignInGoogleUser = async (referralCode) => {
   // TODO: create a firestore document with the firstname, lastname, email and Password
   // console.log(uid, displayName, email);
 
@@ -38,6 +38,8 @@ export const SignInGoogleUser = async () => {
           role: 'user',
           coins: 0,
           money: 0,
+          referralCode: referralCode,
+          referralPoints: 0,
         },
         { merge: true }
       );
