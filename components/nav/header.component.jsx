@@ -10,8 +10,6 @@ import {
   MenuItem,
   Image,
   Button,
-  Avatar,
-  AvatarBadge,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
