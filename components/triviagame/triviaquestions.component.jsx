@@ -149,7 +149,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
             >
               Back
             </Button>
-            {!result && (
+            {/* {!result && (
               <div className='flex'>
                 <Button
                   onClick={() => handleSubmit()}
@@ -160,7 +160,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
                   Submit
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
           {!result && (
             <div className='flex flex-col'>
@@ -173,7 +173,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
                   duration={timer}
                   colors={['#004777', '#F7B801', '#A30000']}
                   colorsTime={[60, 30, 0]}
-                  onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                  // onComplete={() => ({ shouldRepeat: true, delay: 1 })}
                 >
                   {renderTime}
 
@@ -205,6 +205,19 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           >
             Submit
           </Button> */}
+        </div>
+      )}
+      {!result && (
+        <div className=' mt-10'>
+          <Button
+            onClick={() => handleSubmit()}
+            colorScheme='teal'
+            isFullWidth={true}
+            rightIcon={<ArrowForwardIcon />}
+            fontSize='xl'
+          >
+            Submit
+          </Button>
         </div>
       )}
       <ToastContainer />

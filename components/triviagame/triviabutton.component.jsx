@@ -43,13 +43,15 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (userDoc?.coins < coins[elem]) {
-      toast.error('💰 Insufficient coins balance');
+      // toast.error('💰 Insufficient coins balance');
+      setIsOpen(true);
     } else {
       setIsOpen(true);
     }
   };
   const handleSubmission = async () => {
     // setIsLoading(true);
+    // console.log('works');
     if (userDoc?.coins >= coins[elem]) {
       await TriviaCoins(setIsLoading, coins[elem], user, userDoc);
       if (!isLoading) {

@@ -10,6 +10,8 @@ import {
   MenuItem,
   Image,
   Button,
+  Avatar,
+  AvatarBadge,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -54,7 +56,7 @@ const NavHeader = () => {
   };
   return (
     <div className='relative'>
-      <Flex px='4' py='2' className=''>
+      <Flex px='4' py='2' className=' '>
         <div className='sm:hidden'>
           <Menu>
             <MenuButton
@@ -288,50 +290,65 @@ const NavHeader = () => {
         </div>
         <Spacer />
         {user ? (
-          <Menu>
-            <MenuButton
-              cursor='pointer'
-              _hover={{
-                background: 'gray.200',
-              }}
-              p='2'
-              rounded='full'
-              as='button'
-            >
-              <Image
-                className='h-8 w-8 rounded-full'
-                src='https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100'
-                alt="user's profile"
-                fallbackSrc='https://via.placeholder.com/30?text=user'
-                borderRadius='md'
-                // boxSize='200px'
-              />
-            </MenuButton>
-            <MenuList>
-              <MenuItem
-                data-name='wallet'
+          <div className='flex justify-between items-center space-x-2 sm:space-x-5'>
+            {/* wallet */}
+            <div className='flex'>
+              <IconButton
+                colorScheme='facebook'
+                variant='outline'
+                isRound={true}
+                aria-label='wallet page'
                 icon={<GiWallet />}
                 onClick={(e) => handleClick(e, '/wallet')}
-              >
-                wallet
-              </MenuItem>
-              <MenuItem
-                data-name='profile'
-                icon={<FaUser />}
-                onClick={(e) => handleClick(e, '/profile')}
-              >
-                Profile
-              </MenuItem>
-              <MenuItem
-                icon={<GoSignOut />}
-                onClick={() => {
-                  handleLogout();
+                fontSize='xl'
+              />
+            </div>
+            {/* profile */}
+            <Menu>
+              <MenuButton
+                cursor='pointer'
+                _hover={{
+                  background: 'gray.200',
                 }}
+                p='2'
+                rounded='full'
+                as='button'
               >
-                Sign Out
-              </MenuItem>
-            </MenuList>
-          </Menu>
+                <Image
+                  className='h-8 w-8 rounded-full'
+                  src='https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100'
+                  alt="user's profile"
+                  fallbackSrc='https://via.placeholder.com/30?text=user'
+                  borderRadius='md'
+                  // boxSize='200px'
+                />
+              </MenuButton>
+              <MenuList>
+                {/* <MenuItem
+                  data-name='wallet'
+                  icon={<GiWallet />}
+                  onClick={(e) => handleClick(e, '/wallet')}
+                >
+                  wallet
+                </MenuItem> */}
+                <MenuItem
+                  data-name='profile'
+                  icon={<FaUser />}
+                  onClick={(e) => handleClick(e, '/profile')}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  icon={<GoSignOut />}
+                  onClick={() => {
+                    handleLogout();
+                  }}
+                >
+                  Sign Out
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
         ) : (
           <Button
             rightIcon={<RiLoginCircleLine />}
