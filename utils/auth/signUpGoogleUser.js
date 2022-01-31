@@ -38,6 +38,8 @@ export const SignUpGoogleUser = async (referralCode, registerID) => {
         firstName: names[0],
         lastName: names[1],
         email: email,
+        phoneNo: '',
+        birthDay: '1 Jan',
         image:
           'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
         createdAt: serverTimestamp(),
