@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+// import { auth } from "../../services/firebase/firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { SetNewTailor } from "../../services/actions/setNewTailor";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SetNewUser } from '../../utils/auth/setNewUser';
 import { SignUpGoogleUser } from '../../utils/auth/signUpGoogleUser';
 import { Button } from '@chakra-ui/react';
-
+// import { SignUpGoogleTailor } from "../../services/actions/signUpGoogleTailor";
 import { nanoid } from 'nanoid';
 
-const RegisterComponent = () => {
+const RegisterReferralComponent = ({ registerID }) => {
   const [formValue, setFormValue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +44,7 @@ const RegisterComponent = () => {
       formValue?.email &&
       formValue?.password
     ) {
-      await SetNewUser(formValue, setIsLoading, referralCode, 'none');
+      await SetNewUser(formValue, setIsLoading, referralCode, registerID);
     }
     // console.log(res);
 
@@ -51,7 +54,7 @@ const RegisterComponent = () => {
 
   const handleGoogleSignUp = async (e) => {
     e.preventDefault();
-    await SignUpGoogleUser(referralCode, 'none');
+    await SignUpGoogleUser(referralCode, registerID);
   };
 
   const handleClick = (e) => {
@@ -135,6 +138,23 @@ const RegisterComponent = () => {
                   />
                 </div>
 
+                <div>
+                  <label
+                    htmlFor='referral'
+                    className='inline-block text-gray-800 text-sm sm:text-base mb-2'
+                  >
+                    Referral Code
+                  </label>
+                  <input
+                    // required
+                    type='text'
+                    name='referral'
+                    disabled
+                    // onChange={(e) => handleChange(e)}
+                    value={registerID}
+                    className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
+                  />
+                </div>
                 <div className='flex my-5'>
                   <Button
                     // leftIcon={<BiMailSend />}
@@ -213,4 +233,4 @@ const RegisterComponent = () => {
   );
 };
 
-export default RegisterComponent;
+export default RegisterReferralComponent;

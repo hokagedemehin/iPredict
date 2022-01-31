@@ -1,8 +1,8 @@
 import { doc, serverTimestamp, updateDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 
-const UpdateUserWallet = async (coins, user) => {
-  const userRef = doc(db, 'Users', user?.uid);
+const UpdateUserWallet = async (coins, uid) => {
+  const userRef = doc(db, 'Users', uid);
   const userCoinsData = await getDoc(userRef);
   const userCoins = userCoinsData.data().coins;
   const newCoins = userCoins + coins;
