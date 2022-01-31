@@ -15,25 +15,32 @@ export default function Home() {
 
   return (
     <Layout name='home' desc='Predict and win always'>
-      <div className='bg-[#0D37CE] min-h-screen relative'>
-        <div className='bg-yellow-300 pb-4'>
+      <div className='bg-[#0D37CE] min-h-screen w-full'>
+        <div className='bg-yellow-300 pb-4 w-full'>
           <NavHeader />
 
           <HeroComponent />
         </div>
         {/* <div className='bg-[#0D37CE]'> */}
-        <div className=''>
+        <div className='w-full'>
           {/* <div className='text text-center'></div> */}
-          <ContentComponent />
+          <ContentComponent userDoc={userDoc} />
         </div>
 
         {userDoc && !userDoc?.freeClaim ? (
-          <div className='absolute inset-x-0 bottom-0 mb-3 mx-4 '>
+          <div className='pt-16 pb-3 mx-4 '>
             <NewUserFreeCoins user={user} />
           </div>
         ) : (
           ''
         )}
+        {/* {userDoc && !userDoc?.freeClaim ? (
+          <div className='absolute inset-x-0 bottom-0 mb-3 mx-4 '>
+            <NewUserFreeCoins user={user} />
+          </div>
+        ) : (
+          ''
+        )} */}
       </div>
     </Layout>
   );

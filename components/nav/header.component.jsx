@@ -298,7 +298,7 @@ const NavHeader = () => {
                 aria-label='wallet page'
                 icon={<GiWallet />}
                 onClick={(e) => handleClick(e, '/wallet')}
-                fontSize='xl'
+                fontSize='lg'
               />
             </div>
             {/* profile */}

@@ -13,7 +13,7 @@ const NewUserFreeCoins = ({ user }) => {
   };
 
   return (
-    <div className=' ring-1 py-2 rounded-lg shadow-md shadow-black bg-blue-400 max-w-sm mx-auto'>
+    <div className=' ring-1 py-2 rounded-lg shadow-md shadow-black bg-blue-400 max-w-xs mx-auto'>
       <div className='flex text-center justify-center items-center space-x-3 '>
         <Text className='font-semibold'>Claim your free 15 coins Now!</Text>
         <Button
