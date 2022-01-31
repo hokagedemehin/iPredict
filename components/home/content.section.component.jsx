@@ -74,22 +74,26 @@ const ContentComponent = ({ userDoc }) => {
         </div>
       </div>
       <div className='pt-16 text-center mx-4'>
-        <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
-          <Heading fontSize={['xs', 'md', '2xl']}>
-            Share your referral code and earn 5 coins NOW!
-          </Heading>
+        {userDoc && !userDoc?.referralCode ? (
+          <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
+            <Heading fontSize={['xs', 'md', '2xl']}>
+              Share your referral code and earn 5 coins NOW!
+            </Heading>
 
-          <CopyToClipboard
-            text={`https://ipredict.vercel.app/register/${userDoc?.referralCode}`}
-            onCopy={() => handleCopy()}
-          >
-            <div className=' bg-white text-black shadow-black rounded-lg w-fit mx-auto px-2 py-2 flex space-x-3 items-center justify-center'>
-              <Text fontSize={['xs', 'sm', 'xl']} className='font-semibold'>
-                https://ipredict.vercel.app/register/{userDoc?.referralCode}
-              </Text>
-            </div>
-          </CopyToClipboard>
-        </div>
+            <CopyToClipboard
+              text={`https://ipredict.vercel.app/register/${userDoc?.referralCode}`}
+              onCopy={() => handleCopy()}
+            >
+              <div className=' bg-white text-black shadow-black rounded-lg w-fit mx-auto px-2 py-2 flex space-x-3 items-center justify-center'>
+                <Text fontSize={['xs', 'sm', 'xl']} className='font-semibold'>
+                  https://ipredict.vercel.app/register/{userDoc?.referralCode}
+                </Text>
+              </div>
+            </CopyToClipboard>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
