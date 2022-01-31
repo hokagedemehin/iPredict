@@ -12,7 +12,7 @@ const OneQuestion = ({ currentQuestions, updateQuestion }) => {
       <div className='space-y-2'>
         {/* QUestion */}
         <div className='flex'>
-          <p className='text-xl'>{ques?.question}</p>
+          <p className='text-xl sm:text-2xl'>{ques?.question}</p>
         </div>
         {/* OPtions */}
         <div className='flex flex-col space-y-1'>
