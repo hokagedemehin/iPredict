@@ -47,6 +47,8 @@ export const SetNewUser = async (
         firstName: firstName,
         lastName: lastName,
         email: email,
+        phoneNo: '',
+        birthDay: '12 Jan',
         image:
           'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
         createdAt: serverTimestamp(),
