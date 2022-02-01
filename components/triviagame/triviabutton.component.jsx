@@ -84,7 +84,7 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
         <div className='flex flex-col mb-3'>
           <Text className='font-bold text-xl text-center -mb-2'>WIN</Text>
           <Text className='font-bold text-xl text-center tracking-wider -mb-2'>
-            N{price[elem]}
+            &#x20A6;{price[elem]}
           </Text>
           <Text fontSize='xs' className='font-bold text-xl text-center -mb-4'>
             10 Questions

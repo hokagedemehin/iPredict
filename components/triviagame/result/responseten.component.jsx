@@ -65,7 +65,7 @@ const TenResponse = ({ figures }) => {
           <Text className='text-center text-xl font-bold mt-4'>
             You Won !!!
           </Text>
-          <Heading className='text-center'>N {figures.price}</Heading>
+          <Heading className='text-center'>&#x20A6;{figures.price}</Heading>
           <Button
             fontSize='lg'
             variant='outline'
