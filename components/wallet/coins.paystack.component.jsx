@@ -53,7 +53,7 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
         onClick={(e) => {
           handleClick(e);
         }}
-        className='flex flex-col justify-center items-center ring-1 shadow-md shadow-black px-3 sm:px-5 py-5 sm:py-7 rounded-md bg-purple-800 cursor-pointer hover:bg-purple-600 transform transition duration-200 ease-in hover:scale-105'
+        className='flex flex-col justify-center items-center ring-1 shadow-md shadow-black px-3 sm:px-5 py-5 sm:py-7 rounded-md bg-purple-800 cursor-pointer hover:bg-purple-600 transform transition duration-200 ease-in hover:scale-105 relative'
       >
         <Image
           className='h-8 w-8 sm:h-10 sm:w-10 rounded-full'
@@ -64,11 +64,24 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
         <Text className='text-white sm:text-xl font-semibold'>
           {data.coins} Coins
         </Text>
-        <div className='px-6 py-1 ring-1 bg-white font-bold rounded-lg sm:text-xl'>
-          N{data.amount}
+        <div className='px-6 py-1 ring-1 bg-white font-bold rounded-lg sm:text-xl text-center flex flex-col - '>
+          &#x20A6;{data.amount}
+          {data.discount !== '0' && (
+            <s className='text-xs sm:text-sm -mt-2'>&#x20A6;{data.discount}</s>
+          )}
         </div>
         <div className='px-6 py-1 mt-4 text-white font-bold ring-1 ring-white rounded-lg'>
           Buy
+        </div>
+        <div className='absolute  top-0 right-0 mr-1 mt-1 '>
+          <Image
+            src={`wallet/${data.badge}`}
+            borderRadius='md'
+            boxSize='27px'
+            objectFit='cover'
+            alt='No search result'
+            fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
+          />
         </div>
       </div>
     </div>

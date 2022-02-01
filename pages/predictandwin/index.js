@@ -26,7 +26,7 @@ const PredictAndWinPage = () => {
         <div className='mx-2'>
           <div className='flex flex-col px-5 sm:px-10 py-5 bg-gradient-to-r from-purple-700 to-blue-600 text-center max-w-sm mx-auto rounded-lg shadow-md mb-10 text-white'>
             <Text className='font-semibold'>This week chance of winning</Text>
-            <Heading className=''>N20,000</Heading>
+            <Heading className=''>&#x20A6;20,000</Heading>
             <Text className='text-[9px]'>
               First 10 people to get the correct scores share the price above.
             </Text>

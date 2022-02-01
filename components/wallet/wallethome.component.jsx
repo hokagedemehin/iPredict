@@ -12,12 +12,24 @@ const WalletHomePage = ({ userDoc, user }) => {
   // const [userData, setUserData] = useState([]);
   // console.log('userData', userData);
   const walletData = [
-    { id: 1, coins: 10, amount: 50 },
-    { id: 2, coins: 25, amount: 100 },
-    { id: 3, coins: 60, amount: 200 },
-    { id: 4, coins: 150, amount: 500 },
-    { id: 5, coins: 350, amount: 1000 },
-    { id: 6, coins: 1800, amount: 5000 },
+    { id: 1, coins: 10, amount: 50, discount: '0', badge: 'discount1.png' },
+    { id: 2, coins: 25, amount: 100, discount: '125', badge: 'discount1.png' },
+    { id: 3, coins: 60, amount: 200, discount: '300', badge: 'discount1.png' },
+    { id: 4, coins: 150, amount: 500, discount: '750', badge: 'discount1.png' },
+    {
+      id: 5,
+      coins: 350,
+      amount: 1000,
+      discount: '1750',
+      badge: 'discount1.png',
+    },
+    {
+      id: 6,
+      coins: 1800,
+      amount: 5000,
+      discount: '9000',
+      badge: 'special1.png',
+    },
   ];
 
   const [userInfo, setUserInfo] = useState([]);
@@ -70,7 +82,7 @@ const WalletHomePage = ({ userDoc, user }) => {
                 </div>
                 <div className='flex items-center gap-1 font-bold'>
                   <Icon as={GiMoneyStack} className='' />
-
+                  &#x20A6;
                   {isLoading ? (
                     <Skeleton>money</Skeleton>
                   ) : isSuccess && userInfo.length !== 0 ? (
