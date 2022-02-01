@@ -26,8 +26,8 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
     'presido',
   ];
 
-  const price = ['200', '500', '1000', '2000', '5000', '10,000'];
-  const coins = ['5', '80', '150', '300', '500', '800'];
+  const price = ['200', '1500', '5000', '10,000', '20,000', '50,000'];
+  const coins = ['5', '20', '50', '80', '150', '300'];
   const color = [
     '#B25B90',
     '#8A2D65',
