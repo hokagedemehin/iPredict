@@ -67,6 +67,9 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
         <div className='px-6 py-1 ring-1 bg-white font-bold rounded-lg sm:text-xl'>
           N{data.amount}
         </div>
+        <div className='px-6 py-1 mt-4 text-white font-bold ring-1 ring-white rounded-lg'>
+          Buy
+        </div>
       </div>
     </div>
   );
