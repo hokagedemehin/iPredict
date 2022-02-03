@@ -29,7 +29,7 @@ export default function Home() {
 
         {userDoc && !userDoc?.freeClaim ? (
           <div className='pt-16 pb-3 mx-4 '>
-            <NewUserFreeCoins user={user} />
+            <NewUserFreeCoins user={user} userDoc={userDoc} />
           </div>
         ) : (
           ''

@@ -1,4 +1,14 @@
-import { Button, Icon, Skeleton, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Icon,
+  Skeleton,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsCoin } from 'react-icons/bs';
 import { GiMoneyStack } from 'react-icons/gi';
@@ -7,6 +17,7 @@ import GetUserInfo from '../../utils/auth/getUserInfo';
 
 // import CoinsComponent from './coins.component';
 import CoinsComponentPayStack from './coins.paystack.component';
+import HistoryComponent from './history.component';
 
 const WalletHomePage = ({ userDoc, user }) => {
   // const [userData, setUserData] = useState([]);
@@ -107,17 +118,40 @@ const WalletHomePage = ({ userDoc, user }) => {
             </div>
           </div>
         </div>
-        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 px-2'>
-          <div className='flex flex-wrap gap-4 justify-center items-center'>
-            {walletData.map((data, index) => (
-              <CoinsComponentPayStack
-                key={index}
-                data={data}
-                userDoc={userDoc}
-                user={user}
-              />
-            ))}
-          </div>
+        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 px-2 '>
+          <Tabs isFitted variant='unstyled' colorScheme='teal'>
+            <TabList mb='1rem'>
+              <Tab
+                _selected={{ color: 'white', bg: 'purple.700' }}
+                className='text-white rounded-full font-bold'
+              >
+                Buy Coins
+              </Tab>
+              <Tab
+                _selected={{ color: 'white', bg: 'purple.700' }}
+                className='text-white rounded-full font-bold'
+              >
+                History
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <div className='flex flex-wrap gap-4 justify-center items-center'>
+                  {walletData.map((data, index) => (
+                    <CoinsComponentPayStack
+                      key={index}
+                      data={data}
+                      userDoc={userDoc}
+                      user={user}
+                    />
+                  ))}
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <HistoryComponent user={user} />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </div>
       </div>
     </div>
