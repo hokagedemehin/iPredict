@@ -29,8 +29,8 @@ describe('check for the six sections', () => {
     cy.get(`.chakra-button`).contains('Register').click();
     cy.get(`button[data-cy-name='profileBtn']`).should('be.visible');
     cy.get(`button[data-cy-name='profileBtn']`).click();
-    cy.get(`button[data-cy-name='logOut']`).click();
-    cy.get(`button[data-cy-name='loginBtn']`).should('be.visible');
+    cy.get(`button[data-cy-name='logOut']`).should('be.visible');
+    // cy.get(`button[data-cy-name='loginBtn']`).should('be.visible');
   });
 
   it('should go to each section homepage when clicked', () => {
