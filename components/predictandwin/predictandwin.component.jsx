@@ -50,11 +50,16 @@ const PredictAndWinComponent = () => {
     async () => await selectedMacthesForPrediction()
   );
 
-  // console.log("isSuccess", isSuccess);
+  // console.log('data', Object?.keys(data).length);
+  // console.log('data', data);
   // console.log("dataUpdatedAt", dataUpdatedAt);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (
+      isSuccess &&
+      typeof (data !== null) &&
+      Object?.keys(data).length !== 0
+    ) {
       const newArr = [];
 
       data?.forEach((doc) => newArr.push(doc.data()));
@@ -140,7 +145,7 @@ const PredictAndWinComponent = () => {
   return (
     <div className='mx-2'>
       <div className='flex flex-col mt-5 max-w-2xl mx-auto shadow-md rounded-lg'>
-        {isLoadings && (
+        {matchSelect.length == 0 && isLoadings && (
           <Skeleton className='flex items-center justify-center mb-4 mt-2 h-28 w-full'>
             <p fontSize='lg' fontWeight='bold'>
               New matches are coming soon
@@ -159,7 +164,7 @@ const PredictAndWinComponent = () => {
             />
           ))}
 
-        {matchSelect.length == 0 && <NoMatchListComponent />}
+        {matchSelect.length == 0 && !isLoadings && <NoMatchListComponent />}
 
         {/* <MatchListComponent key={index} finalData={finalData} /> */}
       </div>
