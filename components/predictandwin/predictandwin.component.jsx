@@ -159,7 +159,9 @@ const PredictAndWinComponent = () => {
             />
           ))}
 
-        {matchSelect.length == 0 && isSuccess && <NoMatchListComponent />}
+        {matchSelect.length == 0 && Object.keys(data).length === 0 && (
+          <NoMatchListComponent />
+        )}
 
         {/* <MatchListComponent key={index} finalData={finalData} /> */}
       </div>
