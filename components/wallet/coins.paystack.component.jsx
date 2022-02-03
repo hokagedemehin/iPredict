@@ -19,7 +19,7 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
     // Implementation for whatever you want to do with reference and after success call.
     console.table('refrence', reference);
     if (reference.status === 'success') {
-      await UpdateUserWallet(data.coins, user?.uid);
+      await UpdateUserWallet(data.coins, user?.uid, userDoc);
     }
   };
 
