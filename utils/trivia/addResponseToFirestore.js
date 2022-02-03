@@ -28,7 +28,10 @@ const AddResponseToFirestore = async (
   const email = userDoc?.email;
   const firstName = userDoc?.firstName;
   const lastName = userDoc?.lastName;
-
+  const noOfQuestions = figures?.noOfQuestions;
+  const correctAnswers = figures?.correctAnswers;
+  const wrongAnswers = figures?.noOfQuestions - figures?.correctAnswers;
+  const winner = figures?.correctAnswers == 10 ? 'yes' : 'no';
   // console.log('firestore figures: ', figures);
   // console.log('finalResult firebase: ', finalResult);
   const nowDate = new Date();
@@ -66,10 +69,10 @@ const AddResponseToFirestore = async (
       {
         createdAt: nowDate,
         ID: docID,
-        noOfQuestions: figures?.noOfQuestions,
-        correctAnswers: figures?.correctAnswers,
-        wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
-        winner: figures?.correctAnswers == 10 ? 'yes' : 'no',
+        noOfQuestions: noOfQuestions,
+        correctAnswers: correctAnswers,
+        wrongAnswers: wrongAnswers,
+        winner: correctAnswers == 10 ? 'yes' : 'no',
         firstname: firstName,
         lastName: lastName,
         email: email,

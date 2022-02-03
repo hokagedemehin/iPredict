@@ -1,6 +1,6 @@
 import { Button, Heading, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import SendRewardToWallet from '../../../utils/wallet/sendRewardToWallet';
 
 const TenResponse = ({ figures, user }) => {
@@ -22,18 +22,22 @@ const TenResponse = ({ figures, user }) => {
   //   await SendRewardToWallet(reward, uid);
   // };
 
-  useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
-
   // * all responses are correct
-  // if (figures.noOfQuestions == 10 && figures.correctAnswers == 10) {
-  //   toast({
-  //     title: 'Reward Sent.',
-  //     description: 'Check your wallet to see cash reward',
-  //     status: 'success',
-  //     // duration: 9000,
-  //     isClosable: true,
-  //   });
-  // }
+
+  useEffect(() => {
+    if (figures.correctAnswers == 10) {
+      // useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
+      console.log('reward given');
+      SendRewardToWallet(reward, uid);
+      // toast({
+      //   title: 'Reward Sent.',
+      //   description: 'Check your wallet to see cash reward',
+      //   status: 'success',
+      //   // duration: 9000,
+      //   isClosable: true,
+      // });
+    }
+  }, [figures]);
 
   // * correct responses are greater than 6 but less than 10
   // if (
