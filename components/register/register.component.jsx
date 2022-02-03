@@ -85,6 +85,7 @@ const RegisterComponent = () => {
                       // required
                       type='text'
                       name='firstName'
+                      data-cy-name='firstName'
                       onChange={(e) => handleChange(e)}
                       className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
                     />
@@ -100,6 +101,7 @@ const RegisterComponent = () => {
                       // required
                       type='text'
                       name='lastName'
+                      data-cy-name='lastName'
                       onChange={(e) => handleChange(e)}
                       className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
                     />
@@ -115,6 +117,7 @@ const RegisterComponent = () => {
                   <input
                     // required
                     type='email'
+                    data-cy-name='email'
                     name='email'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
@@ -132,6 +135,7 @@ const RegisterComponent = () => {
                     // required
                     type='password'
                     name='password'
+                    data-cy-name='password'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
                   /> */}
@@ -140,6 +144,7 @@ const RegisterComponent = () => {
                       type={show ? 'text' : 'password'}
                       placeholder='Enter password'
                       name='password'
+                      data-cy-name='password'
                       onChange={(e) => handleChange(e)}
                       // className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
                     />

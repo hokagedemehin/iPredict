@@ -158,7 +158,6 @@ const ProfilePageComponent = ({ userDoc }) => {
           </div>
         </div>
       </div>
-      ;
     </div>
   );
 };

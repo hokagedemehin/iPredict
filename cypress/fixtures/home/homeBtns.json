@@ -1,0 +1,8 @@
+[
+  { "name": "Predict & Win", "link": "predictandwin" },
+  { "name": "News & Transfer", "link": "news" },
+  { "name": "Team Cards", "link": "teamcard" },
+  { "name": "Trivia Cards", "link": "triviagame" },
+  { "name": "Spin Match Virtual", "link": "spinmatch" },
+  { "name": "News Magazine", "link": "magazine" }
+]

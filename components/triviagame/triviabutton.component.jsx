@@ -26,7 +26,7 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
     'presido',
   ];
 
-  const price = ['200', '1500', '5000', '10,000', '20,000', '50,000'];
+  const price = ['200', '1500', '5000', '10000', '20000', '50000'];
   const coins = ['5', '20', '50', '80', '150', '300'];
   const color = [
     '#B25B90',
@@ -53,7 +53,7 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
     // setIsLoading(true);
     // console.log('works');
     if (userDoc?.coins >= coins[elem]) {
-      await TriviaCoins(setIsLoading, coins[elem], user, userDoc);
+      await TriviaCoins(setIsLoading, +coins[elem], user, userDoc);
       if (!isLoading) {
         router.push(
           `/triviagame/quiz/${10}/${name[elem]}/${price[elem]}/${coins[elem]}`
@@ -116,7 +116,7 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
             Start Game
           </AlertDialogHeader>
           <AlertDialogBody>
-            {`${coins[elem]} coins will be deducted from your wallet, do you want to preoceed?`}
+            {`${coins[elem]} coins will be deducted from your wallet, do you want to proceed?`}
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button

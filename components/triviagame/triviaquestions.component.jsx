@@ -21,7 +21,7 @@ import ResultComponent from './result/result.component';
 
 const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
   const router = useRouter();
-  const { userDoc } = useUser();
+  const { userDoc, user } = useUser();
   // const timer = timer
   const newArr = [];
   // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
@@ -227,6 +227,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           handleSubmit={handleSubmit}
           timeUp={timeUp}
           finalResult={finalResult}
+          user={user}
         />
       )}
     </div>
