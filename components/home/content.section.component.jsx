@@ -27,7 +27,7 @@ const ContentComponent = ({ userDoc }) => {
     <div className='pt-16'>
       <div className='grid sm:grid-cols-3 grid-cols-2 gap-4 mx-4'>
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/predictandwin')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700 '
         >
@@ -37,7 +37,7 @@ const ContentComponent = ({ userDoc }) => {
         </div>
 
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/news')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -46,7 +46,7 @@ const ContentComponent = ({ userDoc }) => {
         </div>
 
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/teamcard')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -54,7 +54,7 @@ const ContentComponent = ({ userDoc }) => {
           <p className='text-sm font-bold text-center'>Team Cards</p>
         </div>
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/triviagame')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -63,7 +63,7 @@ const ContentComponent = ({ userDoc }) => {
         </div>
 
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/spinmatch')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -71,7 +71,7 @@ const ContentComponent = ({ userDoc }) => {
           <p className='text-sm font-bold text-center'>Spin Match Virtual</p>
         </div>
         <div
-          data-cy-name='home'
+          data-cy-name='home-btns'
           onClick={() => router.push('/magazine')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >

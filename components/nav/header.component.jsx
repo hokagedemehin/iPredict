@@ -65,7 +65,7 @@ const NavHeader = () => {
             />
             <MenuList>
               <MenuItem
-                data-name='Home'
+                data-cy-name='Home'
                 icon={<AiOutlineHome />}
                 onClick={(e) => handleClick(e, '/')}
                 // className={`${
@@ -75,7 +75,7 @@ const NavHeader = () => {
                 Home
               </MenuItem>
               <MenuItem
-                data-name='Predict & Win'
+                data-cy-name='Predict & Win'
                 icon={<GiSoccerBall />}
                 onClick={(e) => handleClick(e, '/predictandwin')}
                 // className={`${
@@ -85,49 +85,49 @@ const NavHeader = () => {
                 Predict & Win
               </MenuItem>
               <MenuItem
-                data-name='My Predictions'
+                data-cy-name='My Predictions'
                 icon={<BsFileSpreadsheetFill />}
                 onClick={(e) => handleClick(e, '/showprediction')}
               >
                 My Predictions
               </MenuItem>
               <MenuItem
-                data-name='News & Transfers'
+                data-cy-name='News & Transfers'
                 icon={<GiNewspaper />}
                 onClick={(e) => handleClick(e, '/news')}
               >
                 News & Transfers
               </MenuItem>
               <MenuItem
-                data-name='Team Cards'
+                data-cy-name='Team Cards'
                 icon={<GiCardPlay />}
                 onClick={(e) => handleClick(e, '/teamcard')}
               >
                 Team Cards
               </MenuItem>
               <MenuItem
-                data-name='Trivia Game'
+                data-cy-name='Trivia Game'
                 icon={<MdOutlineQuiz />}
                 onClick={(e) => handleClick(e, '/triviagame')}
               >
                 Trivia Game
               </MenuItem>
               <MenuItem
-                data-name='Trivia Attempts'
+                data-cy-name='Trivia Attempts'
                 icon={<BsFileSpreadsheetFill />}
                 onClick={(e) => handleClick(e, '/triviaattempts')}
               >
                 Trivia Attempts
               </MenuItem>
               <MenuItem
-                data-name='Spin Match Virtual'
+                data-cy-name='Spin Match Virtual'
                 icon={<GiCartwheel />}
                 onClick={(e) => handleClick(e, '/spinmatch')}
               >
                 Spin Match Virtual
               </MenuItem>
               <MenuItem
-                data-name='News Magazine'
+                data-cy-name='News Magazine'
                 icon={<BsNewspaper />}
                 onClick={(e) => handleClick(e, '/magazine')}
               >
@@ -174,7 +174,7 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-name='Predict & Win'
+                      data-cy-name='Predict & Win'
                       icon={<GiSoccerBall />}
                       onClick={(e) => handleClick(e, '/predictandwin')}
                       // className={`${
@@ -184,7 +184,7 @@ const NavHeader = () => {
                       Predict & Win
                     </MenuItem>
                     <MenuItem
-                      data-name='My Predictions'
+                      data-cy-name='My Predictions'
                       icon={<BsFileSpreadsheetFill />}
                       onClick={(e) => handleClick(e, '/showprediction')}
                     >
@@ -207,14 +207,14 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-name='News & Transfers'
+                      data-cy-name='News & Transfers'
                       icon={<GiNewspaper />}
                       onClick={(e) => handleClick(e, '/news')}
                     >
                       News & Transfers
                     </MenuItem>
                     <MenuItem
-                      data-name='News Magazine'
+                      data-cy-name='News Magazine'
                       icon={<BsNewspaper />}
                       onClick={(e) => handleClick(e, '/magazine')}
                     >
@@ -237,21 +237,21 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-name='Trivia Game'
+                      data-cy-name='Trivia Game'
                       icon={<MdOutlineQuiz />}
                       onClick={(e) => handleClick(e, '/triviagame')}
                     >
                       Trivia Game
                     </MenuItem>
                     <MenuItem
-                      data-name='Trivia Attempts'
+                      data-cy-name='Trivia Attempts'
                       icon={<BsFileSpreadsheetFill />}
                       onClick={(e) => handleClick(e, '/triviaattempts')}
                     >
                       Trivia Attempts
                     </MenuItem>
                     <MenuItem
-                      data-name='Spin Match Virtual'
+                      data-cy-name='Spin Match Virtual'
                       icon={<GiCartwheel />}
                       onClick={(e) => handleClick(e, '/spinmatch')}
                     >
@@ -274,7 +274,7 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-name='Team Cards'
+                      data-cy-name='Team Cards'
                       icon={<GiCardPlay />}
                       onClick={(e) => handleClick(e, '/teamcard')}
                     >
@@ -305,6 +305,7 @@ const NavHeader = () => {
             <Menu>
               <MenuButton
                 cursor='pointer'
+                data-cy-name='profileBtn'
                 _hover={{
                   background: 'gray.200',
                 }}
@@ -314,6 +315,7 @@ const NavHeader = () => {
               >
                 <Image
                   className='h-8 w-8 rounded-full'
+                  data-cy-name='profile image'
                   src='https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100'
                   alt="user's profile"
                   fallbackSrc='https://via.placeholder.com/30?text=user'
@@ -323,20 +325,21 @@ const NavHeader = () => {
               </MenuButton>
               <MenuList>
                 {/* <MenuItem
-                  data-name='wallet'
+                  data-cy-name='wallet'
                   icon={<GiWallet />}
                   onClick={(e) => handleClick(e, '/wallet')}
                 >
                   wallet
                 </MenuItem> */}
                 <MenuItem
-                  data-name='profile'
+                  data-cy-name='profilePage'
                   icon={<FaUser />}
                   onClick={(e) => handleClick(e, '/profile')}
                 >
                   Profile
                 </MenuItem>
                 <MenuItem
+                  data-cy-name='logOut'
                   icon={<GoSignOut />}
                   onClick={() => {
                     handleLogout();
@@ -351,6 +354,7 @@ const NavHeader = () => {
           <Button
             rightIcon={<RiLoginCircleLine />}
             variant='ghost'
+            data-cy-name='loginBtn'
             // fontSize='20px'
             // size='sm'
             // colorScheme='blue'

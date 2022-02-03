@@ -7,14 +7,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SetNewUser } from '../../utils/auth/setNewUser';
 import { SignUpGoogleUser } from '../../utils/auth/signUpGoogleUser';
-import { Button } from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 // import { SignUpGoogleTailor } from "../../services/actions/signUpGoogleTailor";
 import { nanoid } from 'nanoid';
 
 const RegisterReferralComponent = ({ registerID }) => {
   const [formValue, setFormValue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const [show, setShow] = useState(false);
   const referralCode = nanoid(15);
 
   // console.log(formValue);
@@ -63,6 +63,8 @@ const RegisterReferralComponent = ({ registerID }) => {
     // console.log("final Data:", formValue);
   };
 
+  const handleShow = () => setShow(!show);
+
   return (
     <div>
       <div>
@@ -84,6 +86,7 @@ const RegisterReferralComponent = ({ registerID }) => {
                     </label>
                     <input
                       // required
+                      data-cy-name='firstName'
                       type='text'
                       name='firstName'
                       onChange={(e) => handleChange(e)}
@@ -99,6 +102,7 @@ const RegisterReferralComponent = ({ registerID }) => {
                     </label>
                     <input
                       // required
+                      data-cy-name='lastName'
                       type='text'
                       name='lastName'
                       onChange={(e) => handleChange(e)}
@@ -115,6 +119,7 @@ const RegisterReferralComponent = ({ registerID }) => {
                   </label>
                   <input
                     // required
+                    data-cy-name='email'
                     type='email'
                     name='email'
                     onChange={(e) => handleChange(e)}
@@ -129,13 +134,29 @@ const RegisterReferralComponent = ({ registerID }) => {
                   >
                     Password*
                   </label>
-                  <input
+                  {/* <input
                     // required
+                    data-cy-name='password'
                     type='password'
                     name='password'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
-                  />
+                  /> */}
+                  <InputGroup>
+                    <Input
+                      type={show ? 'text' : 'password'}
+                      data-cy-name='password'
+                      placeholder='Enter password'
+                      name='password'
+                      onChange={(e) => handleChange(e)}
+                      // className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
+                    />
+                    <InputRightElement>
+                      <Button size='sm' variant='ghost' onClick={handleShow}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </div>
 
                 <div>
@@ -150,7 +171,6 @@ const RegisterReferralComponent = ({ registerID }) => {
                     type='text'
                     name='referral'
                     disabled
-                    // onChange={(e) => handleChange(e)}
                     value={registerID}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
                   />

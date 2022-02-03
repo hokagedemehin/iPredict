@@ -4,7 +4,7 @@ const TriviaCoins = async (setIsLoading, coin, user) => {
   try {
     const uid = user?.uid;
     setIsLoading(true);
-    DeductCoinsFromWallet(coin, uid);
+    DeductCoinsFromWallet(+coin, uid);
   } catch (error) {
     console.error(error);
   } finally {

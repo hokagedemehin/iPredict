@@ -214,7 +214,7 @@ const PredictAndWinComponent = () => {
             </AlertDialogHeader>
             <AlertDialogBody>
               20 coins will be deducted from your wallet, do you want to
-              preoceed?
+              proceed?
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button
