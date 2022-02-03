@@ -25,7 +25,11 @@ const ShowPredictionComponent = () => {
   // console.log('data :>> ', data);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (
+      isSuccess &&
+      typeof (data !== null) &&
+      Object?.keys(data).length !== 0
+    ) {
       const newArr = [];
 
       data?.forEach((doc) => newArr.push(doc.data()));

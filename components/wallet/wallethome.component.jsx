@@ -40,7 +40,11 @@ const WalletHomePage = ({ userDoc, user }) => {
     { enabled: !!user }
   );
   useEffect(() => {
-    if (isSuccess) {
+    if (
+      isSuccess &&
+      typeof (data !== null) &&
+      Object?.keys(data).length !== 0
+    ) {
       // const newArr = [];
 
       // data?.forEach((doc) => newArr.push(doc.data()));

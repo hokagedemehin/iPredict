@@ -24,7 +24,11 @@ const TriviaHomePageComponent = () => {
 
   // console.log('start', start);
   useEffect(() => {
-    if (isSuccess) {
+    if (
+      isSuccess &&
+      typeof (data !== null) &&
+      Object?.keys(data).length !== 0
+    ) {
       let newArr = [];
       // const ques = parseInt(router.query.quiz[0]);
 
