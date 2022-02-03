@@ -4,13 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SetNewUser } from '../../utils/auth/setNewUser';
 import { SignUpGoogleUser } from '../../utils/auth/signUpGoogleUser';
-import { Button } from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 
 import { nanoid } from 'nanoid';
 
 const RegisterComponent = () => {
   const [formValue, setFormValue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
   const referralCode = nanoid(15);
 
@@ -59,6 +60,7 @@ const RegisterComponent = () => {
     router.push('/login');
     // console.log("final Data:", formValue);
   };
+  const handleShow = () => setShow(!show);
 
   return (
     <div>
@@ -126,13 +128,27 @@ const RegisterComponent = () => {
                   >
                     Password*
                   </label>
-                  <input
+                  {/* <input
                     // required
                     type='password'
                     name='password'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
-                  />
+                  /> */}
+                  <InputGroup>
+                    <Input
+                      type={show ? 'text' : 'password'}
+                      placeholder='Enter password'
+                      name='password'
+                      onChange={(e) => handleChange(e)}
+                      // className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
+                    />
+                    <InputRightElement>
+                      <Button size='sm' variant='ghost' onClick={handleShow}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </div>
 
                 <div className='flex my-5'>

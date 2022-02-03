@@ -7,7 +7,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "next"],
+  "extends": ["eslint:recommended", "next", "plugin:cypress/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

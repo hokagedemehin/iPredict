@@ -14,13 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { useUser } from "../../utils/auth/userContext";
 import { auth } from '../../utils/firebase/firebase';
 import { SignInGoogleUser } from '../../utils/auth/signInGoogleUser';
-import { Button } from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 
 const LoginComponent = () => {
   const [formValue, setFormValue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const [show, setShow] = useState(false);
   // const { user } = useUser();
   const router = useRouter();
 
@@ -44,7 +44,7 @@ const LoginComponent = () => {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       toast.error('💥Incorrect Email or Password! 😪😥💥');
-      // console.error(error.message, "error is caught");
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -55,16 +55,13 @@ const LoginComponent = () => {
     await SignInGoogleUser(referralCode);
   };
 
-  // const handleReset = async (e) => {
-  //   e.preventDefault();
-  //   await SetResetPassword(e, user);
-  // };
-
   const handleClick = (e, href) => {
     e.preventDefault();
     router.push(href);
     // console.log("final Data:", formValue);
   };
+
+  const handleShow = () => setShow(!show);
 
   return (
     <div>
@@ -89,6 +86,7 @@ const LoginComponent = () => {
                     name='email'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
+                    placeholder='Enter email'
                   />
                 </div>
 
@@ -99,12 +97,26 @@ const LoginComponent = () => {
                   >
                     Password
                   </label>
-                  <input
+                  {/* <input
                     type='password'
                     name='password'
                     onChange={(e) => handleChange(e)}
                     className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
-                  />
+                  /> */}
+                  <InputGroup>
+                    <Input
+                      type={show ? 'text' : 'password'}
+                      placeholder='Enter password'
+                      name='password'
+                      onChange={(e) => handleChange(e)}
+                      // className='w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2'
+                    />
+                    <InputRightElement>
+                      <Button size='sm' variant='ghost' onClick={handleShow}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </div>
 
                 {/* <button
