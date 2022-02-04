@@ -47,6 +47,7 @@
     "nanoid": "^3.2.0",
     "postcss": "^8.4.5",
     "react-copy-to-clipboard": "^5.0.4",
+    "react-paginate": "^8.1.0",
     "react-paystack": "^3.0.5",
     "start-server-and-test": "^1.14.0"
   }
