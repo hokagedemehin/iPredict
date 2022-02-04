@@ -17,6 +17,7 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DeductCoinsFromWallet from '../wallet/deductCoinsFromWallet';
+import SetUserHistory from '../wallet/setUserHistory';
 
 const addPredictionToFirestore = async (
   matchSelect,
@@ -124,6 +125,13 @@ const addPredictionToFirestore = async (
       progress: undefined,
     });
     await DeductCoinsFromWallet(20, user?.uid);
+    const newData = {
+      coins: 20,
+      money: 0,
+      activity: '',
+      type: 'Match Prediction',
+    };
+    await SetUserHistory(userDoc, newData);
     // setFormValue([]);
   } catch (error) {
     console.error('error - addMatchToFirestore', error);

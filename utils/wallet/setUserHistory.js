@@ -7,7 +7,7 @@ const SetUserHistory = async (userDoc, data) => {
   const userData = await addDoc(userRef, {
     createdAt: serverTimestamp(),
     email: userDoc?.email,
-    fullName: `${userDoc?.fullName} ${userDoc?.lastName}`,
+    fullName: `${userDoc?.firstName} ${userDoc?.lastName}`,
     coins: data?.coins,
     money: data?.money,
     activity: data?.activity,

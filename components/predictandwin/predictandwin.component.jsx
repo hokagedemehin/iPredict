@@ -72,6 +72,19 @@ const PredictAndWinComponent = () => {
   // console.log("form Value: ", Object.keys(formValue).length);
   // console.log("match Select:", matchSelect.length);
   // console.log(Object.keys(formValue).length / matchSelect.length);
+
+  const handleClick = (e) => {
+    const checkVal = Object.keys(formValue).length / matchSelect.length;
+    e.preventDefault();
+    if (userDoc?.coins < 20) {
+      toast.error('💰 Insufficient coins balance');
+    } else if (checkVal !== 2) {
+      toast.error('❌ All predictions are required');
+    } else {
+      setIsOpen(true);
+    }
+  };
+
   const handleSubmission = async () => {
     const checkVal = Object.keys(formValue).length / matchSelect.length;
     if (checkVal !== 2) {
@@ -111,30 +124,8 @@ const PredictAndWinComponent = () => {
     onClose();
     // setIsLoading(false);
   };
-  // value?.docs?.map((doc) => console.log(doc.data()));
-  // const d = new Date();
-  // let day = d.getDay();
-  // const da = moment("2022-01-15T12:30:00+00:00").format("h:mm:ss a");
-  // const da1 = moment("2022-01-15T17:30:00+00:00").format("h:mm:ss a");
-  // const dc1 = new Date("2022-01-15T15:00:00+00:00");
-  // const dc2 = new Date("2022-01-15T15:00:00+00:00");
-  // const dc3 = new Date("2022-01-15T17:30:00+00:00");
-  // const dc4 = new Date("2022-01-15T12:30:00+00:00");
-
-  // console.log(dc1.getTime());
-  // console.log(dc2.getTime());
-  // console.log(dc3.getTime());
-  // console.log(dc4.getTime());
-  // console.log(da);
-  // console.log(da1);
-  // console.log(da < da1);
 
   const val = matchSelect.sort((a, b) => {
-    // const da = new Date(a.matchDate);
-    // const db1 = new Date(b.matchDate);
-    // console.log(da);
-    // console.log(db1);
-    // return db1.getTime() - da.getTime();
     return new Date(a.matchDate) - new Date(b.matchDate);
   });
   // console.log(val[0]);
@@ -191,7 +182,9 @@ const PredictAndWinComponent = () => {
               isFullWidth
               fontSize='xl'
               // onClick={handleSubmission}
-              onClick={() => setIsOpen(true)}
+              onClick={(e) => {
+                handleClick(e);
+              }}
               isLoading={isOpen}
               loadingText='Loading'
               spinnerPlacement='end'
@@ -245,3 +238,27 @@ const PredictAndWinComponent = () => {
 };
 
 export default PredictAndWinComponent;
+
+// const da = new Date(a.matchDate);
+// const db1 = new Date(b.matchDate);
+// console.log(da);
+// console.log(db1);
+// return db1.getTime() - da.getTime();
+
+// value?.docs?.map((doc) => console.log(doc.data()));
+// const d = new Date();
+// let day = d.getDay();
+// const da = moment("2022-01-15T12:30:00+00:00").format("h:mm:ss a");
+// const da1 = moment("2022-01-15T17:30:00+00:00").format("h:mm:ss a");
+// const dc1 = new Date("2022-01-15T15:00:00+00:00");
+// const dc2 = new Date("2022-01-15T15:00:00+00:00");
+// const dc3 = new Date("2022-01-15T17:30:00+00:00");
+// const dc4 = new Date("2022-01-15T12:30:00+00:00");
+
+// console.log(dc1.getTime());
+// console.log(dc2.getTime());
+// console.log(dc3.getTime());
+// console.log(dc4.getTime());
+// console.log(da);
+// console.log(da1);
+// console.log(da < da1);

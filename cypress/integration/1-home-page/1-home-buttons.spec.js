@@ -3,8 +3,8 @@
 describe('check for the six sections', () => {
   let data1;
   let data2;
-  before(() => {
-    cy.visit('http://localhost:3000');
+  beforeEach(() => {
+    cy.visit('/');
     cy.fixture('home/homeBtns').then(function (data) {
       data1 = data;
       return data1;
@@ -30,31 +30,33 @@ describe('check for the six sections', () => {
     cy.get(`button[data-cy-name='profileBtn']`).should('be.visible');
     cy.get(`button[data-cy-name='profileBtn']`).click();
     cy.get(`button[data-cy-name='logOut']`).should('be.visible');
-    // cy.get(`button[data-cy-name='loginBtn']`).should('be.visible');
+    cy.get(`button[data-cy-name='logOut']`).click({ force: true });
+    // cy.get(`button[data-cy-name='logOut']`).click();
+    cy.get(`button[data-cy-name='loginBtn']`).should('be.visible');
   });
 
-  it('should go to each section homepage when clicked', () => {
-    // cy.get(`div[data-cy-name="home-btns"]`).each((el, index) => {
-    // cy.log(data1[index].link);
-    // cy.get(`div[data-cy-name="home-btns"]`)
-    //   .contains(data1[index].name)
-    //   .click();
-    // cy.url().should('have.text', data1[index].link);
-    // cy.get(`button[data-cy-name='Home']`).click();
-    // });
-    // this.data.forEach(function (elem) {
-    //   cy.get(`div[data-cy-name="home"]`).contains(elem.name).click();
-    //   expect(cy.url()).to.have.text(elem.link);
-    // });
-  });
+  // it('should go to each section homepage when clicked', () => {
+  //   // cy.get(`div[data-cy-name="home-btns"]`).each((el, index) => {
+  //   // cy.log(data1[index].link);
+  //   // cy.get(`div[data-cy-name="home-btns"]`)
+  //   //   .contains(data1[index].name)
+  //   //   .click();
+  //   // cy.url().should('have.text', data1[index].link);
+  //   // cy.get(`button[data-cy-name='Home']`).click();
+  //   // });
+  //   // this.data.forEach(function (elem) {
+  //   //   cy.get(`div[data-cy-name="home"]`).contains(elem.name).click();
+  //   //   expect(cy.url()).to.have.text(elem.link);
+  //   // });
+  // });
 
-  it('should login user and change the login button to avater image', () => {});
+  // it('should login user and change the login button to avater image', () => {});
 
-  it('should show referral component for logged in user', () => {});
+  // it('should show referral component for logged in user', () => {});
 
-  it('should show free coins component for logged in user', () => {});
+  // it('should show free coins component for logged in user', () => {});
 
-  it('should not show free coins when it is collected by user', () => {});
+  // it('should not show free coins when it is collected by user', () => {});
 
-  it('should logout the user and the referral component should not be visible', () => {});
+  // it('should logout the user and the referral component should not be visible', () => {});
 });

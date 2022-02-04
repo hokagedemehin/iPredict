@@ -54,7 +54,53 @@ const HistoryComponent = ({ user }) => {
                     className='flex ring-1 ring-white p-2 rounded-md '
                   >
                     <Text className='text-white font-semibold'>
-                      You Claimed your free {history?.coins} coins on{' '}
+                      You claimed your free {history?.coins} coins on{' '}
+                      {moment(history?.createdAt.toDate()).format(
+                        'MMMM Do YYYY, h:mm:ss a'
+                      )}
+                    </Text>
+                  </div>
+                );
+              }
+              if (history.type == 'Match Prediction') {
+                return (
+                  <div
+                    key={index}
+                    className='flex ring-1 ring-white p-2 rounded-md '
+                  >
+                    <Text className='text-white font-semibold'>
+                      You spent {history?.coins} coins to predict matches on{' '}
+                      {moment(history?.createdAt.toDate()).format(
+                        'MMMM Do YYYY, h:mm:ss a'
+                      )}
+                    </Text>
+                  </div>
+                );
+              }
+              if (history.type == 'Start Trivia Quiz') {
+                return (
+                  <div
+                    key={index}
+                    className='flex ring-1 ring-white p-2 rounded-md '
+                  >
+                    <Text className='text-white font-semibold'>
+                      You spent {history?.coins} coins to play a trivia game on{' '}
+                      {moment(history?.createdAt.toDate()).format(
+                        'MMMM Do YYYY, h:mm:ss a'
+                      )}
+                    </Text>
+                  </div>
+                );
+              }
+              if (history.type == 'Trivia Game Reward') {
+                return (
+                  <div
+                    key={index}
+                    className='flex ring-1 ring-white p-2 rounded-md '
+                  >
+                    <Text className='text-white font-semibold'>
+                      You won &#8358;{history?.money} from a trivia game you
+                      played on{' '}
                       {moment(history?.createdAt.toDate()).format(
                         'MMMM Do YYYY, h:mm:ss a'
                       )}

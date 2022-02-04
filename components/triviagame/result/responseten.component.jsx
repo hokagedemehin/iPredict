@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import SendRewardToWallet from '../../../utils/wallet/sendRewardToWallet';
 
-const TenResponse = ({ figures, user }) => {
+const TenResponse = ({ figures, user, userDoc }) => {
   // const [greeting, setgreeting] = useState('');
   // const [caption, setcaption] = useState('');
   // const [money, setmoney] = useState('');
@@ -28,7 +28,7 @@ const TenResponse = ({ figures, user }) => {
     if (figures.correctAnswers == 10) {
       // useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
       console.log('reward given');
-      SendRewardToWallet(reward, uid);
+      SendRewardToWallet(reward, uid, userDoc);
       // toast({
       //   title: 'Reward Sent.',
       //   description: 'Check your wallet to see cash reward',
@@ -37,7 +37,7 @@ const TenResponse = ({ figures, user }) => {
       //   isClosable: true,
       // });
     }
-  }, [figures]);
+  }, []);
 
   // * correct responses are greater than 6 but less than 10
   // if (
