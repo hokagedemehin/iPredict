@@ -5,6 +5,8 @@ import { useQuery } from 'react-query';
 import GetUserHistory from '../../utils/wallet/getUserHistory';
 import ReactPaginate from 'react-paginate';
 
+/**This is a comment */
+
 const HistoryComponent = ({ user }) => {
   const [userHistory, setUserHistory] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
