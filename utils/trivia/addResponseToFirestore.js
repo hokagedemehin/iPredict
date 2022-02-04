@@ -72,7 +72,7 @@ const AddResponseToFirestore = async (
         noOfQuestions: noOfQuestions,
         correctAnswers: correctAnswers,
         wrongAnswers: wrongAnswers,
-        winner: correctAnswers == 10 ? 'yes' : 'no',
+        winner: winner,
         firstname: firstName,
         lastName: lastName,
         email: email,
@@ -87,10 +87,14 @@ const AddResponseToFirestore = async (
     const newID = await addDoc(triviaAttemptsRef, {
       createdAt: nowDate,
       attemptID: docID,
-      noOfQuestions: figures?.noOfQuestions,
-      correctAnswers: figures?.correctAnswers,
-      wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
-      winner: figures?.correctAnswers == 10 ? 'yes' : 'no',
+      // noOfQuestions: figures?.noOfQuestions,
+      // correctAnswers: figures?.correctAnswers,
+      // wrongAnswers: figures?.noOfQuestions - figures?.correctAnswers,
+      // winner: figures?.correctAnswers == 10 ? 'yes' : 'no',
+      noOfQuestions: noOfQuestions,
+      correctAnswers: correctAnswers,
+      wrongAnswers: wrongAnswers,
+      winner: winner,
       fullName: `${firstName} ${lastName}`,
       // firstname: firstName,
       // lastName: lastName,
@@ -109,6 +113,7 @@ const AddResponseToFirestore = async (
     // DeductCoinsFromWallet(coins, uid);
 
     toast.success('✅ Added successfully');
+
     // console.log("data added successfully");
   } catch (err) {
     console.error('error - addResponseToFirestore', err);

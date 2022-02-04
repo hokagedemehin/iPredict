@@ -54,6 +54,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
       setFinalResult(data);
       setCalc(figures);
       await AddResponseToFirestore(finalResult, userDoc, calc, type);
+
       // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
       // }
       // _.debounce(() => {
@@ -126,6 +127,8 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           handleSubmit={handleSubmit}
           timeUp={timeUp}
           finalResult={finalResult}
+          userDoc={userDoc}
+          user={user}
         />
       );
     }
@@ -227,6 +230,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           handleSubmit={handleSubmit}
           timeUp={timeUp}
           finalResult={finalResult}
+          userDoc={userDoc}
           user={user}
         />
       )}
