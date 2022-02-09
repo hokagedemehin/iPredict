@@ -24,7 +24,7 @@ const TriviaAttemptsPageComponent = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [itemsPerPage] = useState(8);
 
-  console.log('currentItems', currentItems);
+  // console.log('currentItems', currentItems);
   // const [currentPage, setCurrentPage] = useState(1);
   // const [clientPerPage] = useState(8);
 

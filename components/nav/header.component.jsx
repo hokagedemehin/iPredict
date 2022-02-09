@@ -158,7 +158,11 @@ const NavHeader = () => {
         </div>
         <div className='hidden sm:flex w-full max-w-2xl'>
           <nav className='flex justify-around w-full items-center'>
-            <Button variant='ghost' onClick={(e) => handleClick(e, '/')}>
+            <Button
+              data-cy-name='Home - large'
+              variant='ghost'
+              onClick={(e) => handleClick(e, '/')}
+            >
               Home
             </Button>
             <Menu>
@@ -174,7 +178,7 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-cy-name='Predict & Win'
+                      data-cy-name='Predict & Win - large'
                       icon={<GiSoccerBall />}
                       onClick={(e) => handleClick(e, '/predictandwin')}
                       // className={`${
@@ -184,7 +188,7 @@ const NavHeader = () => {
                       Predict & Win
                     </MenuItem>
                     <MenuItem
-                      data-cy-name='My Predictions'
+                      data-cy-name='My Predictions - large'
                       icon={<BsFileSpreadsheetFill />}
                       onClick={(e) => handleClick(e, '/showprediction')}
                     >
@@ -207,7 +211,7 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-cy-name='News & Transfers'
+                      data-cy-name='News & Transfers - large'
                       icon={<GiNewspaper />}
                       onClick={(e) => handleClick(e, '/news')}
                     >
@@ -237,21 +241,21 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-cy-name='Trivia Game'
+                      data-cy-name='Trivia Game - large'
                       icon={<MdOutlineQuiz />}
                       onClick={(e) => handleClick(e, '/triviagame')}
                     >
                       Trivia Game
                     </MenuItem>
                     <MenuItem
-                      data-cy-name='Trivia Attempts'
+                      data-cy-name='Trivia Attempts - large'
                       icon={<BsFileSpreadsheetFill />}
                       onClick={(e) => handleClick(e, '/triviaattempts')}
                     >
                       Trivia Attempts
                     </MenuItem>
                     <MenuItem
-                      data-cy-name='Spin Match Virtual'
+                      data-cy-name='Spin Match Virtual - large'
                       icon={<GiCartwheel />}
                       onClick={(e) => handleClick(e, '/spinmatch')}
                     >
@@ -274,7 +278,7 @@ const NavHeader = () => {
                   </MenuButton>
                   <MenuList>
                     <MenuItem
-                      data-cy-name='Team Cards'
+                      data-cy-name='Team Cards - large'
                       icon={<GiCardPlay />}
                       onClick={(e) => handleClick(e, '/teamcard')}
                     >
@@ -299,6 +303,7 @@ const NavHeader = () => {
                 icon={<GiWallet />}
                 onClick={(e) => handleClick(e, '/wallet')}
                 fontSize='lg'
+                data-cy-name='wallet'
               />
             </div>
             {/* profile */}
