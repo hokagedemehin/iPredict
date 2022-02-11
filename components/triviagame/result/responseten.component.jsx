@@ -27,7 +27,7 @@ const TenResponse = ({ figures, user, userDoc }) => {
   useEffect(() => {
     if (figures.correctAnswers == 10) {
       // useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
-      console.log('reward given');
+      // console.log('reward given');
       SendRewardToWallet(reward, uid, userDoc);
       // toast({
       //   title: 'Reward Sent.',
