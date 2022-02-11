@@ -314,7 +314,7 @@ const NavHeader = () => {
                 _hover={{
                   background: 'gray.200',
                 }}
-                p='2'
+                // p='2'
                 rounded='full'
                 as='button'
               >
