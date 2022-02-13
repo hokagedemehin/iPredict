@@ -7,6 +7,7 @@ import UpdateUserWallet from '../../utils/wallet/updateUserWallet';
 const CoinsComponentPayStack = ({ data, userDoc, user }) => {
   // const router = useRouter();
   // console.log(process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY);
+  // updated to live key now
   const config = {
     reference: new Date().getTime().toString(),
     email: userDoc?.email,
