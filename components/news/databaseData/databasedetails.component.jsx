@@ -20,6 +20,7 @@ const DatabaseFeedDetailsComponent = ({ isLoading, details }) => {
           <Button
             variant='link'
             leftIcon={<ArrowBackIcon />}
+            // onClick={() => router.back()}
             onClick={() => router.push('/news')}
           >
             Back

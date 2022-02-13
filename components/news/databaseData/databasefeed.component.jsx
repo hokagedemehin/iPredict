@@ -10,11 +10,12 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import NewsTransferEmptyComponent from '../../emptypages/newsandtransfer.empty';
+import ReactPaginate from 'react-paginate';
 
 const DatabaseFeedComponent = ({
   isSuccess,
@@ -27,16 +28,68 @@ const DatabaseFeedComponent = ({
   // console.log('Football :>> ', footballNews);
   // console.log('Transfer :>> ', transferNews);
   // console.log('UEFA :>> ', uefaNews);
+  const [footballCount, setFootballCount] = useState(0);
+  const [transferCount, setTransferCount] = useState(0);
+  const [uefaCount, setUefaCount] = useState(0);
 
+  const [footballOffset, setFootballOffset] = useState(0);
+  const [transferOffset, setTransferOffset] = useState(0);
+  const [uefaOffset, setUefaOffset] = useState(0);
+
+  const [footballItems, setFootballItems] = useState([]);
+  const [transferItems, setTransferItems] = useState([]);
+  const [uefaItems, setUefaItems] = useState([]);
+
+  const [itemsPerPage] = useState(4);
   const handleClick = (e, section, id) => {
     e.preventDefault();
     router.push(`/news/${section}/${id}`);
   };
 
-  // const timeofNews = moment(elem?.created_at).fromNow();
+  useEffect(() => {
+    // if (trivia.length !== 0) {
+    const footballEndOffset = footballOffset + itemsPerPage;
+    setFootballItems(footballNews.slice(footballOffset, footballEndOffset));
 
-  // console.log(moment('2022-02-10T16:15:00+00:00').fromNow());
-  // console.log(moment().format());
+    setFootballCount(Math.ceil(footballNews.length / itemsPerPage));
+
+    // }
+  }, [footballOffset, itemsPerPage, footballNews]);
+  const handlePageClickFootball = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % footballNews.length;
+    setFootballOffset(newOffset);
+  };
+
+  useEffect(() => {
+    // if (trivia.length !== 0) {
+    const transferEndOffset = transferOffset + itemsPerPage;
+
+    setTransferItems(transferNews.slice(transferOffset, transferEndOffset));
+
+    setTransferCount(Math.ceil(transferNews.length / itemsPerPage));
+
+    // }
+  }, [transferOffset, itemsPerPage, transferNews]);
+
+  const handlePageClickTransfer = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % transferNews.length;
+    setTransferOffset(newOffset);
+  };
+
+  useEffect(() => {
+    // if (trivia.length !== 0) {
+    const uefaEndOffset = uefaOffset + itemsPerPage;
+
+    setUefaItems(uefaNews.slice(uefaOffset, uefaEndOffset));
+
+    setUefaCount(Math.ceil(uefaNews.length / itemsPerPage));
+    // }
+  }, [uefaOffset, itemsPerPage, uefaNews]);
+
+  const handlePageClickUefa = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % uefaNews.length;
+    setUefaOffset(newOffset);
+  };
 
   const MotionDiv = motion(Box);
 
@@ -68,7 +121,8 @@ const DatabaseFeedComponent = ({
           <TabPanel>
             <div className=' space-y-3'>
               {footballNews.length !== 0 &&
-                footballNews.map((football, index) => (
+                footballItems.length !== 0 &&
+                footballItems.map((football, index) => (
                   <MotionDiv
                     key={index}
                     whileHover={{ scale: 1.04 }}
@@ -123,12 +177,34 @@ const DatabaseFeedComponent = ({
                   </Skeleton>
                 ))}
             </div>
+            <div className=' pt-5 max-w-xs sm:max-w-sm mx-auto w-full'>
+              {footballNews.length !== 0 && footballItems.length !== 0 && (
+                <ReactPaginate
+                  className='flex max-w-sm mx-auto w-full justify-center items-center space-x-4 ring-1 ring-gray-300 shadow-md py-2 px-4 rounded-lg'
+                  breakLabel='...'
+                  breakClassName='text-xl sm:text-3xl font-bold'
+                  nextLabel='▶'
+                  previousLabel='◀'
+                  marginPagesDisplayed={1}
+                  onPageChange={handlePageClickFootball}
+                  pageRangeDisplayed={1}
+                  pageCount={footballCount}
+                  renderOnZeroPageCount={null}
+                  pageClassName=' px-2 font-semibold sm:text-2xl ring-1 ring-white rounded-md'
+                  activeClassName='bg-gray-200 text-black'
+                  previousClassName='text-xl sm:text-2xl'
+                  nextClassName='text-xl sm:text-2xl'
+                  // disabledClassName='disabled:opacity-50'
+                />
+              )}
+            </div>
           </TabPanel>
           {/* transfers */}
           <TabPanel>
             <div className='space-y-4'>
               {transferNews.length !== 0 &&
-                transferNews.map((transfer, index) => (
+                transferItems.length !== 0 &&
+                transferItems.map((transfer, index) => (
                   <MotionDiv
                     key={index}
                     whileHover={{ scale: 1.04 }}
@@ -183,12 +259,34 @@ const DatabaseFeedComponent = ({
                   </Skeleton>
                 ))}
             </div>
+            <div className=' pt-5 max-w-xs sm:max-w-sm mx-auto w-full'>
+              {transferNews.length !== 0 && transferItems.length !== 0 && (
+                <ReactPaginate
+                  className='flex max-w-sm mx-auto w-full justify-center items-center space-x-4 ring-1 ring-gray-300 shadow-md py-2 px-4 rounded-lg'
+                  breakLabel='...'
+                  breakClassName='text-xl sm:text-3xl font-bold'
+                  nextLabel='▶'
+                  previousLabel='◀'
+                  marginPagesDisplayed={1}
+                  onPageChange={handlePageClickTransfer}
+                  pageRangeDisplayed={1}
+                  pageCount={transferCount}
+                  renderOnZeroPageCount={null}
+                  pageClassName=' px-2 font-semibold sm:text-2xl ring-1 ring-white rounded-md'
+                  activeClassName='bg-gray-200 text-black'
+                  previousClassName='text-xl sm:text-2xl'
+                  nextClassName='text-xl sm:text-2xl'
+                  // disabledClassName='disabled:opacity-50'
+                />
+              )}
+            </div>
           </TabPanel>
           {/* uefa */}
           <TabPanel>
             <div className='space-y-3'>
               {uefaNews.length !== 0 &&
-                uefaNews.map((uefa, index) => (
+                uefaItems.length !== 0 &&
+                uefaItems.map((uefa, index) => (
                   <MotionDiv
                     key={index}
                     whileHover={{ scale: 1.04 }}
@@ -240,6 +338,28 @@ const DatabaseFeedComponent = ({
                     {elem}
                   </Skeleton>
                 ))}
+            </div>
+
+            <div className=' pt-5 max-w-xs sm:max-w-sm mx-auto w-full'>
+              {uefaNews.length !== 0 && uefaItems.length !== 0 && (
+                <ReactPaginate
+                  className='flex max-w-sm mx-auto w-full justify-center items-center space-x-4 ring-1 ring-gray-300 shadow-md py-2 px-4 rounded-lg'
+                  breakLabel='...'
+                  breakClassName='text-xl sm:text-3xl font-bold'
+                  nextLabel='▶'
+                  previousLabel='◀'
+                  marginPagesDisplayed={1}
+                  onPageChange={handlePageClickUefa}
+                  pageRangeDisplayed={1}
+                  pageCount={uefaCount}
+                  renderOnZeroPageCount={null}
+                  pageClassName=' px-2 font-semibold sm:text-2xl ring-1 ring-white rounded-md'
+                  activeClassName='bg-gray-200 text-black'
+                  previousClassName='text-xl sm:text-2xl'
+                  nextClassName='text-xl sm:text-2xl'
+                  // disabledClassName='disabled:opacity-50'
+                />
+              )}
             </div>
           </TabPanel>
         </TabPanels>
