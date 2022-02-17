@@ -30,12 +30,16 @@ const addPredictionToFirestore = async (
   try {
     // console.log("add Pred:", matchSelect);
     const nowDate = new Date();
-    const docID = Date.now().toString();
+    // const docID = Date.now().toString();
     const email = user?.email;
     const firstName = userDoc?.firstName;
     const lastName = userDoc?.lastName;
     let collectionID = '';
     let collectionDate = '';
+
+    // *******************************************************************
+    // * get the match that is current, get the Id and date it was created
+    // *******************************************************************
     const predictCollectionRef = collection(db, 'MatchesSelected');
     const collectionQuery = query(
       predictCollectionRef,
@@ -47,14 +51,25 @@ const addPredictionToFirestore = async (
       collectionDate = doc.data().createdAt;
     });
 
+    // ***************************************************************
+    // * create a new reference for the new collection document and subcollection in that new document
+    // ***************************************************************
     const collectionRef = doc(db, `${user?.email}-matches`, collectionID);
+
+    const newID = doc(collection(db, `${user?.email}-matches`));
+
+    console.log(newID.id);
 
     const subCollectionRef = collection(
       db,
       `${user?.email}-matches`,
       collectionID,
-      docID
+      newID.id
     );
+
+    // ***************************************************************
+    // * reference the user predictions and get the last one that is current and set it to false
+    // ***************************************************************
 
     const allRef = collection(db, `${user?.email}-matches`);
     const q = query(allRef, where('current', '==', true));
@@ -65,11 +80,15 @@ const addPredictionToFirestore = async (
         current: false,
       })
     );
+
+    // *****************************************************************
+    // * Inside the new collection document set the below details
+    // ****************************************************************
     await setDoc(
       collectionRef,
       {
         predictDates: arrayUnion(nowDate),
-        predictID: arrayUnion(docID),
+        predictID: arrayUnion(newID.id),
         matchID: collectionID,
         createdAt: collectionDate,
         current: true,
@@ -77,6 +96,9 @@ const addPredictionToFirestore = async (
       { merge: true }
     );
 
+    // *************************************
+    // * Inside the sub collections create new docuemnt for each math predictions
+    // **************************************************************
     matchSelect.forEach(
       async (match) =>
         await addDoc(subCollectionRef, {
@@ -102,19 +124,27 @@ const addPredictionToFirestore = async (
           firstName: firstName,
         })
     );
+
+    // ********************************************************************
+    // * get the predicted match dollection document and update the predict info
+    // *******************************************************************
     const MatchDocRef = doc(db, 'PredictedMatches', collectionID);
     await setDoc(
       MatchDocRef,
       {
-        predictInfo: {
-          // [email]: {
-          //   [docID]: email,
-          // },
-          [email]: arrayUnion(docID),
+        // predictInfo: {
+        //   // [email]: {
+        //   //   [newID.id]: email,
+        //   // },
+        //   [email]: arrayUnion(newID.id),
+        // },
+        predictInfo1: {
+          [newID.id]: email,
         },
       },
       { merge: true }
     );
+
     toast.success('✅Saved successfully', {
       position: 'top-right',
       autoClose: 5000,
@@ -124,6 +154,10 @@ const addPredictionToFirestore = async (
       draggable: true,
       progress: undefined,
     });
+
+    // **********************************************************
+    // * Deduct coins from wallet and also update the user transaction history
+    // **************************************************************
     await DeductCoinsFromWallet(20, user?.uid);
     const newData = {
       coins: 20,
