@@ -3,7 +3,7 @@ import { db } from '../firebase/firebase';
 
 const GetEachMatch = async (user, oneDate, matchID) => {
   const matchRef = collection(db, `${user?.email}-matches`, matchID, oneDate);
-  const q = query(matchRef, orderBy('createdAt', 'asc'));
+  const q = query(matchRef, orderBy('createdAt', 'desc'));
   const querySnapshot = await getDocs(q);
   return querySnapshot;
   // const newArr = [];
