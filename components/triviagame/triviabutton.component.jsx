@@ -65,7 +65,7 @@ const TriviaHomeButton = ({ elem, user, userDoc }) => {
   return (
     <div>
       <div
-        className={`flex flex-col shadow-md shadow-[${color[elem]}] rounded-xl ring-1 p-1 cursor-pointer`}
+        className={`flex flex-col shadow-md shadow-[${color[elem]}] rounded-xl ring-1 ring-gray-200 p-1 cursor-pointer`}
         onClick={(e) => {
           handleClick(e);
         }}
