@@ -1,4 +1,14 @@
-import { Button, Icon, Skeleton, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Icon,
+  Skeleton,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsCoin } from 'react-icons/bs';
 import { GiMoneyStack } from 'react-icons/gi';
@@ -7,15 +17,30 @@ import GetUserInfo from '../../utils/auth/getUserInfo';
 
 // import CoinsComponent from './coins.component';
 import CoinsComponentPayStack from './coins.paystack.component';
+import HistoryComponent from './history.component';
 
 const WalletHomePage = ({ userDoc, user }) => {
+  // const [userData, setUserData] = useState([]);
+  // console.log('userData', userData);
   const walletData = [
-    { id: 1, coins: 10, amount: 50 },
-    { id: 2, coins: 25, amount: 100 },
-    { id: 3, coins: 60, amount: 200 },
-    { id: 4, coins: 150, amount: 500 },
-    { id: 5, coins: 350, amount: 1000 },
-    { id: 6, coins: 1800, amount: 5000 },
+    { id: 1, coins: 10, amount: 50, discount: '0', badge: 'discount1.png' },
+    { id: 2, coins: 25, amount: 100, discount: '125', badge: 'discount1.png' },
+    { id: 3, coins: 60, amount: 200, discount: '300', badge: 'discount1.png' },
+    { id: 4, coins: 150, amount: 500, discount: '750', badge: 'discount1.png' },
+    {
+      id: 5,
+      coins: 350,
+      amount: 1000,
+      discount: '1750',
+      badge: 'discount1.png',
+    },
+    {
+      id: 6,
+      coins: 1800,
+      amount: 5000,
+      discount: '9000',
+      badge: 'special1.png',
+    },
   ];
 
   const [userInfo, setUserInfo] = useState([]);
@@ -26,7 +51,11 @@ const WalletHomePage = ({ userDoc, user }) => {
     { enabled: !!user }
   );
   useEffect(() => {
-    if (isSuccess) {
+    if (
+      isSuccess &&
+      typeof (data !== null) &&
+      Object?.keys(data).length !== 0
+    ) {
       // const newArr = [];
 
       // data?.forEach((doc) => newArr.push(doc.data()));
@@ -68,7 +97,7 @@ const WalletHomePage = ({ userDoc, user }) => {
                 </div>
                 <div className='flex items-center gap-1 font-bold'>
                   <Icon as={GiMoneyStack} className='' />
-
+                  &#x20A6;
                   {isLoading ? (
                     <Skeleton>money</Skeleton>
                   ) : isSuccess && userInfo.length !== 0 ? (
@@ -89,17 +118,40 @@ const WalletHomePage = ({ userDoc, user }) => {
             </div>
           </div>
         </div>
-        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5'>
-          <div className='flex flex-wrap gap-4 justify-center items-center'>
-            {walletData.map((data, index) => (
-              <CoinsComponentPayStack
-                key={index}
-                data={data}
-                userDoc={userDoc}
-                user={user}
-              />
-            ))}
-          </div>
+        <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 px-2 '>
+          <Tabs isFitted variant='unstyled' colorScheme='teal'>
+            <TabList mb='1rem'>
+              <Tab
+                _selected={{ color: 'white', bg: 'purple.700' }}
+                className='text-white rounded-full font-bold'
+              >
+                Buy Coins
+              </Tab>
+              <Tab
+                _selected={{ color: 'white', bg: 'purple.700' }}
+                className='text-white rounded-full font-bold'
+              >
+                History
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <div className='flex flex-wrap gap-4 justify-center items-center'>
+                  {walletData.map((data, index) => (
+                    <CoinsComponentPayStack
+                      key={index}
+                      data={data}
+                      userDoc={userDoc}
+                      user={user}
+                    />
+                  ))}
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <HistoryComponent user={user} />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </div>
       </div>
     </div>

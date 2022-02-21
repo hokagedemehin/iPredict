@@ -21,7 +21,7 @@ import ResultComponent from './result/result.component';
 
 const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
   const router = useRouter();
-  const { userDoc } = useUser();
+  const { userDoc, user } = useUser();
   // const timer = timer
   const newArr = [];
   // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
@@ -53,7 +53,8 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
     if (res.length == 0) {
       setFinalResult(data);
       setCalc(figures);
-      await AddResponseToFirestore(finalResult, userDoc, calc);
+      await AddResponseToFirestore(finalResult, userDoc, calc, type);
+
       // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
       // }
       // _.debounce(() => {
@@ -126,6 +127,8 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           handleSubmit={handleSubmit}
           timeUp={timeUp}
           finalResult={finalResult}
+          userDoc={userDoc}
+          user={user}
         />
       );
     }
@@ -149,7 +152,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
             >
               Back
             </Button>
-            {!result && (
+            {/* {!result && (
               <div className='flex'>
                 <Button
                   onClick={() => handleSubmit()}
@@ -160,7 +163,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
                   Submit
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
           {!result && (
             <div className='flex flex-col'>
@@ -173,7 +176,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
                   duration={timer}
                   colors={['#004777', '#F7B801', '#A30000']}
                   colorsTime={[60, 30, 0]}
-                  onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                  // onComplete={() => ({ shouldRepeat: true, delay: 1 })}
                 >
                   {renderTime}
 
@@ -207,6 +210,19 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           </Button> */}
         </div>
       )}
+      {!result && (
+        <div className=' mt-10'>
+          <Button
+            onClick={() => handleSubmit()}
+            colorScheme='teal'
+            isFullWidth={true}
+            rightIcon={<ArrowForwardIcon />}
+            fontSize='xl'
+          >
+            Submit
+          </Button>
+        </div>
+      )}
       <ToastContainer />
       {result && (
         <ResultComponent
@@ -214,6 +230,8 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           handleSubmit={handleSubmit}
           timeUp={timeUp}
           finalResult={finalResult}
+          userDoc={userDoc}
+          user={user}
         />
       )}
     </div>

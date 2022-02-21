@@ -109,6 +109,7 @@ const TriviaGamesPageQuiz = () => {
             price={router?.query?.quiz[2]}
             timer={timer}
             type={router?.query.quiz[1]}
+            // coins={router?.query.quiz[3]}
           />
         )}
       </div>

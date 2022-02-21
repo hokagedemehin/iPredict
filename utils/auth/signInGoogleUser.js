@@ -10,7 +10,7 @@ import {
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const SignInGoogleUser = async () => {
+export const SignInGoogleUser = async (referralCode) => {
   // TODO: create a firestore document with the firstname, lastname, email and Password
   // console.log(uid, displayName, email);
 
@@ -18,7 +18,7 @@ export const SignInGoogleUser = async () => {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     const { uid, displayName, email } = result.user;
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, 'Users', uid);
 
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {
@@ -30,14 +30,17 @@ export const SignInGoogleUser = async () => {
           firstName: names[0],
           lastName: names[1],
           email: email,
-
+          phoneNo: '',
+          birthDay: '1 Jan',
           image:
             'https://avatars.dicebear.com/api/micah/:child.svg?mouth[]=laughing&mouth[]=smile&glassesProbability=100',
-          createdTimestamp: serverTimestamp(),
+          createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
           role: 'user',
           coins: 0,
-          wallet: 0,
+          money: 0,
+          referralCode: referralCode,
+          referralPoints: 0,
         },
         { merge: true }
       );

@@ -1,8 +1,9 @@
 import { Button, Heading, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
+import SendRewardToWallet from '../../../utils/wallet/sendRewardToWallet';
 
-const TenResponse = ({ figures }) => {
+const TenResponse = ({ figures, user, userDoc }) => {
   // const [greeting, setgreeting] = useState('');
   // const [caption, setcaption] = useState('');
   // const [money, setmoney] = useState('');
@@ -13,14 +14,30 @@ const TenResponse = ({ figures }) => {
     e.preventDefault();
     router.push(href);
   };
+  // const toast = useToast();
+  const reward = +figures.price;
+  const uid = user?.uid;
+  // const handlePayWallet = async () => {
+
+  //   await SendRewardToWallet(reward, uid);
+  // };
 
   // * all responses are correct
-  // if (figures.noOfQuestions == 10 && figures.correctAnswers == 10) {
-  //   setgreeting('Congratulations 🎉🎉');
-  //   setcaption('You Won !!!');
-  //   setmoney(figures.price);
-  //   setbtnName('Win Again');
-  // }
+
+  useEffect(() => {
+    if (figures.correctAnswers == 10) {
+      // useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
+      // console.log('reward given');
+      SendRewardToWallet(reward, uid, userDoc);
+      // toast({
+      //   title: 'Reward Sent.',
+      //   description: 'Check your wallet to see cash reward',
+      //   status: 'success',
+      //   // duration: 9000,
+      //   isClosable: true,
+      // });
+    }
+  }, []);
 
   // * correct responses are greater than 6 but less than 10
   // if (
@@ -65,7 +82,7 @@ const TenResponse = ({ figures }) => {
           <Text className='text-center text-xl font-bold mt-4'>
             You Won !!!
           </Text>
-          <Heading className='text-center'>N {figures.price}</Heading>
+          <Heading className='text-center'>&#x20A6;{figures.price}</Heading>
           <Button
             fontSize='lg'
             variant='outline'

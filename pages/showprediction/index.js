@@ -10,7 +10,7 @@ import { useUser } from '../../utils/auth/userContext';
 const ShowPrediction = () => {
   const router = useRouter();
   const { user } = useUser();
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     if (!user) {
       router.push('/login');

@@ -14,7 +14,7 @@ const NewsTransferEmptyComponent = () => {
           fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
         />
         <Text fontSize='lg' fontWeight='bold'>
-          📰 No News or transfer updates 📰
+          No news in the database yet 📰
         </Text>
       </div>
     </div>

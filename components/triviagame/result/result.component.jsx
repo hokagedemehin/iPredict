@@ -3,7 +3,7 @@ import { Heading } from '@chakra-ui/react';
 // import { useRouter } from 'next/router';
 import TenResponse from './responseten.component';
 import FifteenResponse from './responsefifteen.component';
-const ResultComponent = ({ figures, handleSubmit }) => {
+const ResultComponent = ({ figures, handleSubmit, userDoc, user }) => {
   // console.log('results sent: ', figures);
 
   // console.log('result figures: ', figures.correctAnswers);
@@ -22,7 +22,9 @@ const ResultComponent = ({ figures, handleSubmit }) => {
             {' '}
             {figures?.correctAnswers} out of {figures?.noOfQuestions}
           </Heading>
-          {figures?.noOfQuestions == 10 && <TenResponse figures={figures} />}
+          {figures?.noOfQuestions == 10 && (
+            <TenResponse figures={figures} user={user} userDoc={userDoc} />
+          )}
           {figures?.noOfQuestions == 15 && (
             <FifteenResponse figures={figures} />
           )}
