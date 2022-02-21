@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 import { Heading, Icon, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+=======
+import { Heading, Skeleton } from '@chakra-ui/react';
+// import { useRouter } from 'next/router';
+>>>>>>> Stashed changes
 import React, { useEffect, useState } from 'react';
 import { BsCoin } from 'react-icons/bs';
 import { useQuery } from 'react-query';
@@ -10,11 +15,19 @@ const TriviaHomePageComponent = () => {
   const router = useRouter();
   const [start, setStart] = useState([]);
 
+<<<<<<< Updated upstream
   const handleClick = (e, href) => {
     e.preventDefault();
     router.push(href);
   };
   const { data, isSuccess } = useQuery(
+=======
+  // const handleClick = (e, href) => {
+  //   e.preventDefault();
+  //   router.push(href);
+  // };
+  const { data, isLoading, isSuccess } = useQuery(
+>>>>>>> Stashed changes
     'viewquestions',
     async () => await GetUserQuestionsFromFirebase()
   );
@@ -51,6 +64,19 @@ const TriviaHomePageComponent = () => {
         <div className='text-center'>
           <Heading size='lg'>Convert your skill to cash</Heading>
         </div>
+        {isLoading && (
+          <div className='flex flex-wrap justify-center items-center gap-6'>
+            {/* Each card */}
+
+            {[0, 1, 2, 3, 4, 5].map((elem, index) => (
+              <div key={index} elem={elem}>
+                <Skeleton className=' py-20'>
+                  Trivia content is loading
+                </Skeleton>
+              </div>
+            ))}
+          </div>
+        )}
         {isSuccess && start.length === 0 && <TriviaQUizEmptyComponent />}
         {isSuccess && start.length !== 0 && (
           <div className='flex flex-wrap justify-center items-center gap-6'>
