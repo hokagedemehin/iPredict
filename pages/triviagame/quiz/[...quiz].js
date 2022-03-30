@@ -12,6 +12,7 @@ const TriviaGamesPageQuiz = () => {
   const [start, setStart] = useState([]);
   const [startQuiz, setStartQuiz] = useState(false);
   const router = useRouter();
+  // console.log('start', start);
   // console.log('router: ', router);
   // const { user } = useUser();
   const timer = 60;
@@ -23,6 +24,7 @@ const TriviaGamesPageQuiz = () => {
     'viewquestions',
     async () => await GetUserQuestionsFromFirebase()
   );
+  // console.log('data :>> ', data);
   // if (router?.components) {
   //   // console.log("router: ", Object?.keys(router?.components).length);
   //   // console.log('router: ', router);
