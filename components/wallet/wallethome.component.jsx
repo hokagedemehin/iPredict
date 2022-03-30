@@ -1,6 +1,16 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
   Button,
+  FormLabel,
   Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Skeleton,
   Tab,
   TabList,
@@ -8,7 +18,10 @@ import {
   TabPanels,
   Tabs,
   Text,
+  useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
+import { FormControl } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { BsCoin } from 'react-icons/bs';
 import { GiMoneyStack } from 'react-icons/gi';
@@ -18,8 +31,12 @@ import GetUserInfo from '../../utils/auth/getUserInfo';
 // import CoinsComponent from './coins.component';
 import CoinsComponentPayStack from './coins.paystack.component';
 import HistoryComponent from './history.component';
+import { AiOutlineBank, AiOutlineUser } from 'react-icons/ai';
+import { MdAccountBalanceWallet, MdPhoneIphone } from 'react-icons/md';
+import withdrawalrequest from '../../utils/wallet/withdrawalrequest';
 
 const WalletHomePage = ({ userDoc, user }) => {
+  const toast = useToast();
   // const [userData, setUserData] = useState([]);
   // console.log('userData', userData);
   const walletData = [
@@ -65,6 +82,45 @@ const WalletHomePage = ({ userDoc, user }) => {
     }
   }, [isSuccess, dataUpdatedAt]);
 
+  // ********************************************************
+  // withdraw Logic
+  // **********************************************************
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
+  const [formValue, setFormValue] = useState({
+    fullname: '',
+    accountnumber: '',
+    bankname: '',
+    phonenumber: '',
+  });
+  const [withdrawLoading, setWithdrawLoading] = useState(false);
+  const handleWithdraw = async () => {
+    if (
+      formValue?.fullname.length !== 0 ||
+      formValue?.accountnumber.length !== 0 ||
+      formValue?.bankname.length !== 0 ||
+      formValue?.phonenumber.length !== 0
+    ) {
+      await withdrawalrequest(setWithdrawLoading, formValue, user?.uid);
+      onClose();
+    } else {
+      toast({
+        title: 'Missing Details',
+        description: 'Please fill all fields',
+        status: 'error',
+        variant: 'solid',
+        position: 'top',
+        // duration: 9000,
+        isClosable: true,
+      });
+    }
+  };
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    // setAddressInfo({ ...addressInfo, [name]: value });
+    setFormValue({ ...formValue, [name]: value });
+  };
   return (
     <div className=''>
       <div className='flex flex-col space-y-10 mb-5'>
@@ -111,11 +167,32 @@ const WalletHomePage = ({ userDoc, user }) => {
                 <Button
                   isDisabled={userInfo?.money < 1000}
                   className='transform transition duration-200 ease-in hover:scale-105'
+                  onClick={onOpen}
                 >
                   Withdraw
                 </Button>
               </div>
             </div>
+            {userInfo?.request > 0 && (
+              <div className='request w-full flex items-center justify-center space-x-3'>
+                <div className='flex flex-col justify-center items-center text-white text-lg sm:text-2xl'>
+                  <div>
+                    <Text>Request</Text>
+                  </div>
+                  <div className='flex items-center gap-1 font-bold'>
+                    <Icon as={GiMoneyStack} className='' />
+                    &#x20A6;
+                    {isLoading ? (
+                      <Skeleton>money</Skeleton>
+                    ) : isSuccess && userInfo.length !== 0 ? (
+                      userInfo?.request
+                    ) : (
+                      0
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className='buy w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 px-2 '>
@@ -154,6 +231,123 @@ const WalletHomePage = ({ userDoc, user }) => {
           </Tabs>
         </div>
       </div>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Withdraw Request
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              <div className='flex flex-col'>
+                {/* full name */}
+                <div className='flex'>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='fullname'>Full Name</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents='none'
+                        children={<AiOutlineUser />}
+                      />
+                      <Input
+                        name='fullname'
+                        id='fullname'
+                        type='text'
+                        placeholder='Full name'
+                        // value={formValue?.firstName}
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </div>
+
+                {/* account number */}
+                <div className='flex'>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='accountnumber'>
+                      Account Number
+                    </FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents='none'
+                        children={<MdAccountBalanceWallet />}
+                      />
+                      <Input
+                        name='accountnumber'
+                        id='accountnumber'
+                        type='text'
+                        placeholder='Account Number'
+                        // value={formValue?.firstName}
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </div>
+
+                {/* bank name */}
+                <div className='flex'>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='bankname'>Bank Name</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents='none'
+                        children={<AiOutlineBank />}
+                      />
+                      <Input
+                        name='bankname'
+                        id='bankname'
+                        type='text'
+                        placeholder='Bank Name'
+                        // value={formValue?.firstName}
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </div>
+
+                {/* phone number */}
+                <div className='flex'>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='phonenumber'>Phone Number</FormLabel>
+                    <InputGroup>
+                      <InputLeftElement
+                        pointerEvents='none'
+                        children={<MdPhoneIphone />}
+                      />
+                      <Input
+                        name='phonenumber'
+                        id='phonenumber'
+                        type='text'
+                        placeholder='Phone number'
+                        // value={formValue?.firstName}
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </div>
+              </div>
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button
+                isLoading={withdrawLoading}
+                colorScheme='teal'
+                onClick={async () => await handleWithdraw()}
+                ml={3}
+              >
+                Confirm
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
     </div>
   );
 };
