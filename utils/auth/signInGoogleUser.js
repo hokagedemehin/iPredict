@@ -39,6 +39,7 @@ export const SignInGoogleUser = async (referralCode) => {
           role: 'user',
           coins: 0,
           money: 0,
+          request: 0,
           referralCode: referralCode,
           referralPoints: 0,
         },

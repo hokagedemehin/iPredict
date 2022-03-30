@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open",
@@ -45,6 +46,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "flutterwave-react-v3": "^1.2.0",
     "nanoid": "^3.2.0",
+    "next-sitemap": "^2.5.15",
     "postcss": "^8.4.5",
     "react-copy-to-clipboard": "^5.0.4",
     "react-paginate": "^8.1.0",

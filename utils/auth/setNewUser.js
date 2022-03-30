@@ -56,6 +56,7 @@ export const SetNewUser = async (
         role: 'user',
         coins: 0,
         money: 0,
+        request: 0,
         referralCode: referralCode,
         referralPoints: 0,
       },
@@ -72,7 +73,7 @@ export const SetNewUser = async (
     referralDoc.forEach(async (docu) => {
       const referralUserRef = doc(db, 'Users', docu.id);
       const userCoins = docu.data().coins;
-      const newCoins = userCoins + 5;
+      const newCoins = userCoins + 2;
       await updateDoc(referralUserRef, {
         coins: +newCoins,
         updatedAt: serverTimestamp(),

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ipredict.vercel.app
+
+# Sitemaps
+Sitemap: https://ipredict.vercel.app/sitemap.xml
