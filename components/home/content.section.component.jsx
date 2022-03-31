@@ -83,7 +83,7 @@ const ContentComponent = ({ userDoc }) => {
         {userDoc && userDoc?.referralCode ? (
           <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
             <Heading fontSize={['xs', 'md', '2xl']}>
-              Share your referral code and earn 2 coins NOW!
+              Share your referral code and earn 1 coin NOW!
             </Heading>
 
             <CopyToClipboard
