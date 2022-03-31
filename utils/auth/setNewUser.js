@@ -73,7 +73,7 @@ export const SetNewUser = async (
     referralDoc.forEach(async (docu) => {
       const referralUserRef = doc(db, 'Users', docu.id);
       const userCoins = docu.data().coins;
-      const newCoins = userCoins + 2;
+      const newCoins = userCoins + 1;
       await updateDoc(referralUserRef, {
         coins: +newCoins,
         updatedAt: serverTimestamp(),
