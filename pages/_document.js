@@ -13,6 +13,10 @@ class MyDocument extends Document {
             name='google-site-verification'
             content='wp3A-ezGXoPfSCif3ObQc4BSJrx_fvFYvamsIYP27gk'
           />
+          <meta
+            name='google-site-verification'
+            content='Qh45eH_MihjCjbdSPAlndRgQhlJ4R2EjNT5O6oXgJsM'
+          />
         </Head>
         <body>
           <Main />
