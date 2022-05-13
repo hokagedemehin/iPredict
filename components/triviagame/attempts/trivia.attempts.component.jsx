@@ -21,32 +21,24 @@ const TriviaAttemptsPageComponent = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [itemsPerPage] = useState(8);
-  const { isLoading, data, isSuccess } = useQuery(
+
+  // console.log('trivia: ', trivia);
+  const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
     ['trivia-attempts', email],
     async () => await GetAllTriviaAttempts(email),
     { enabled: !!user }
   );
 
   useEffect(() => {
-    if (
-      isSuccess &&
-      typeof (data !== null) &&
-      Object?.keys(data).length !== 0
-    ) {
-      const newArr = [];
-
-      data?.forEach((doc) => newArr.push(doc.data()));
-
-      setTrivia(newArr);
+    if (isSuccess && data) {
+      setTrivia(data);
     }
-  }, [isSuccess]);
+  }, [isSuccess, dataUpdatedAt]);
 
   useEffect(() => {
-    // if (trivia.length !== 0) {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(trivia.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(trivia.length / itemsPerPage));
-    // }
   }, [itemOffset, itemsPerPage, trivia]);
 
   const handlePageClick = (event) => {

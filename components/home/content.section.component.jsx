@@ -23,6 +23,8 @@ const ContentComponent = ({ userDoc }) => {
       isClosable: true,
     });
   };
+
+  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   return (
     <div className='pt-16'>
       <div className='grid sm:grid-cols-3 grid-cols-2 gap-4 mx-4'>
@@ -87,12 +89,13 @@ const ContentComponent = ({ userDoc }) => {
             </Heading>
 
             <CopyToClipboard
-              text={`https://ipredict.vercel.app/register/${userDoc?.referralCode}`}
+              text={`${baseUrl}/${userDoc?.referralCode}`}
               onCopy={() => handleCopy()}
             >
               <div className=' bg-white text-black shadow-black rounded-lg w-fit mx-auto px-2 py-2 flex space-x-3 items-center justify-center'>
                 <Text fontSize={['xs', 'sm', 'xl']} className='font-semibold'>
-                  https://ipredict.vercel.app/register/{userDoc?.referralCode}
+                  {/* {baseUrl / userDoc?.referralCode} */}
+                  {`${baseUrl}/register/${userDoc?.referralCode}`}
                 </Text>
               </div>
             </CopyToClipboard>
@@ -101,6 +104,14 @@ const ContentComponent = ({ userDoc }) => {
           ''
         )}
       </div>
+      {/* <div className='pt-10 mx-4 pb-5 flex justify-center'>
+        <div
+          onClick={() => router.push('/tutorials')}
+          className='flex justify-center items-center text-center transition ease-in-out duration-500 px-6 py-4 border border-gray-400 rounded-md cursor-pointer w-fit text-white font-bold text-xl hover:border-white hover:bg-black'
+        >
+          Short tutorials on how to play and win
+        </div>
+      </div> */}
     </div>
   );
 };

@@ -11,11 +11,12 @@ import { Button, Heading } from '@chakra-ui/react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
-import AddResponseToFirestore from '../../utils/trivia/addResponseToFirestore';
+// import AddResponseToFirestore from '../../utils/trivia/addResponseToFirestore';
 import { useUser } from '../../utils/auth/userContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResultComponent from './result/result.component';
+import AddResponseToFirestore1 from '../../utils/trivia/addResponseToFirestore1';
 // import { useEffect } from 'react';
 // import { useMemo } from 'react';
 
@@ -29,7 +30,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [questionPerPage] = useState(1);
-  const [res, setRes] = useState([]);
+  const [res, setRes] = useState({});
   const [result, setResult] = useState(false);
   const [finalResult, setFinalResult] = useState([]);
   const [calc, setCalc] = useState({});
@@ -43,17 +44,24 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
   };
 
   const handleSubmit = async () => {
+    // console.log('submit quiz');
     const figures = {
       correctAnswers: 0,
       wrongAnswers: 0,
       noOfQuestions: ques,
       price: price,
     };
-    setResult(true);
-    if (res.length == 0) {
-      setFinalResult(data);
+
+    if (Object.keys(res).length === 0) {
+      // console.log('empty response');
+      let newArr = [];
+      data.forEach((elem) => newArr.push(elem?.attributes));
+      setFinalResult(newArr);
       setCalc(figures);
-      await AddResponseToFirestore(finalResult, userDoc, calc, type);
+      // console.log('finalResult', finalResult);
+      // console.log('calc', calc);
+      // await AddResponseToFirestore(finalResult, userDoc, calc, type);
+      await AddResponseToFirestore1(finalResult, userDoc, figures, type);
 
       // if (Object.entries(calc).length !== 0 && finalResult.length !== 0) {
       // }
@@ -62,42 +70,38 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
       //   console.log('debounce here');
       // }, 500);
     } else {
+      // console.log('there was activity');
+      let newArr1 = [];
+      data.forEach((elem) => newArr1.push(elem?.attributes));
+      // console.log('newArr1 :>> ', newArr1);
       for (const [key, value] of Object.entries(res)) {
-        const ans = data.filter((val) => val.ID === key);
-        ans[0].response = value;
+        const ans = newArr1.filter((val) => val.quesId == key);
+        let ans1 = ans[0];
+        // console.log(ans);
+        ans1.response = value;
         // console.log('ans: ', ans);
-        if (
-          ans[0].rightAnswer.toLowerCase().trim() == value.toLowerCase().trim()
-        ) {
+        if (ans1.answer.toLowerCase().trim() == value.toLowerCase().trim()) {
           figures.correctAnswers = figures.correctAnswers + 1;
         } else {
           figures.wrongAnswers = figures.wrongAnswers + 1;
         }
-        newArr.push(...ans);
+        // console.log(ans1);
+        newArr.push(ans1);
+        setFinalResult(...finalResult, ans1);
+        setCalc(figures);
       }
-      setCalc(figures);
-      setFinalResult(newArr);
-      await AddResponseToFirestore(finalResult, userDoc, calc, type);
+      // console.log('newArr :>> ', newArr);
+      // console.log('figures', figures);
+      // setCalc(figures);
+      // setFinalResult(newArr);
+      // console.log('finalResult :>> ', finalResult);
+      // console.log('calc', calc);
+
+      // await AddResponseToFirestore(finalResult, userDoc, calc, type);
+      await AddResponseToFirestore1(newArr, userDoc, figures, type);
     }
-    // if (finalResult.length !== 0) {
-    //   await AddResponseToFirestore(finalResult, user?.email, calc);
-    // }
-    // console.log('figures: ', figures);
-    // console.log('newArr: ', newArr);
+    setResult(true);
   };
-
-  // useEffect(() => {
-  //   if (finalResult.length !== 0 && calc.length !== 0) {
-  //     AddResponseToFirestore(finalResult, user?.email, calc);
-  //   }
-
-  //   return () => {};
-  // }, [finalResult]);
-
-  // useMemo(
-  //   async () => await AddResponseToFirestore(finalResult, user?.email, calc),
-  //   [calc]
-  // );
 
   const indexOfLastQuestion = currentPage * questionPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionPerPage;
@@ -106,10 +110,12 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
     indexOfLastQuestion
   );
 
+  // console.log('currentQuestions :>> ', currentQuestions);
+
   const updateQuestion = (value) => {
     // get the question that is being answered
-    currentQuestions[0].response = value;
-    const id = currentQuestions[0].ID;
+    currentQuestions[0].attributes.response = value;
+    const id = currentQuestions[0]?.attributes.quesId;
     const values = { [id]: value };
     setRes({ ...res, ...values });
   };
@@ -118,19 +124,21 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
-      // handleSubmit();
+      // await handleSubmit();
       setResult(true);
       setTimeUp(true);
-      return (
-        <ResultComponent
-          figures={calc}
-          handleSubmit={handleSubmit}
-          timeUp={timeUp}
-          finalResult={finalResult}
-          userDoc={userDoc}
-          user={user}
-        />
-      );
+      // console.log('time up');
+      return null;
+      // return (
+      //   <ResultComponent
+      //     figures={calc}
+      //     handleSubmit={handleSubmit}
+      //     timeUp={timeUp}
+      //     finalResult={finalResult}
+      //     userDoc={userDoc}
+      //     user={user}
+      //   />
+      // );
     }
 
     return (

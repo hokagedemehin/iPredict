@@ -4,16 +4,16 @@ import moment from 'moment';
 import { MdOutlineClose } from 'react-icons/md';
 import { CheckIcon, QuestionOutlineIcon } from '@chakra-ui/icons';
 import { BsFillPatchCheckFill } from 'react-icons/bs';
+// import { useRouter } from 'next/router';
 
 const SingleTriviaAttemptComponent = ({ attempt, userDoc }) => {
   // console.log(userDoc);
-  const dateAttempt = moment(attempt?.createdAt.toDate()).format(
-    'MMM Do YY, h:mm:ss a'
-  );
+  // const router = useRouter();
+  const dateAttempt = moment(attempt?.createdAt).format('MMM Do YY, h:mm:ss a');
   // const dateAttempt = moment(attempt?.createdAt.toDate()).fromNow();
   return (
     <div>
-      <div className='flex w-full'>
+      <div className='flex w-full '>
         <div className='w-full h-fit px-2 py-4 ring-1 ring-gray-200 shadow-md mx-2 my-2 space-y-2 rounded-lg'>
           {/* Name of User */}
           <div className='name flex justify-between items-center'>

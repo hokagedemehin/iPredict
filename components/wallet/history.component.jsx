@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import GetUserHistory from '../../utils/wallet/getUserHistory';
 import ReactPaginate from 'react-paginate';
+import HistoryEmptyComponent from '../emptypages/history.empty';
 
 /**This is a comment */
 
@@ -13,21 +14,20 @@ const HistoryComponent = ({ user }) => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [itemsPerPage] = useState(3);
+
   const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
     ['userHistory', user],
     async () => await GetUserHistory(user),
     { enabled: !!user }
   );
+  // console.log('data :>> ', data);
+  // console.log('userHistory :>> ', userHistory);
 
   useEffect(() => {
-    if (
-      isSuccess &&
-      typeof (data !== null) &&
-      Object?.keys(data).length !== 0
-    ) {
+    if (isSuccess) {
       const newArr = [];
 
-      data?.forEach((doc) => newArr.push(doc.data()));
+      data?.forEach((doc) => newArr.push(doc?.attributes));
       // if (newArr.length !== 0) {
       setUserHistory(newArr);
       // }
@@ -62,7 +62,7 @@ const HistoryComponent = ({ user }) => {
                     >
                       <Text className='text-white font-semibold'>
                         You bought {history?.coins} coins on{' '}
-                        {moment(history?.createdAt.toDate()).format(
+                        {moment(history?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
@@ -77,7 +77,7 @@ const HistoryComponent = ({ user }) => {
                     >
                       <Text className='text-white font-semibold'>
                         You claimed your free {history?.coins} coins on{' '}
-                        {moment(history?.createdAt.toDate()).format(
+                        {moment(history?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
@@ -92,7 +92,7 @@ const HistoryComponent = ({ user }) => {
                     >
                       <Text className='text-white font-semibold'>
                         You spent {history?.coins} coins to predict matches on{' '}
-                        {moment(history?.createdAt.toDate()).format(
+                        {moment(history?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
@@ -108,7 +108,7 @@ const HistoryComponent = ({ user }) => {
                       <Text className='text-white font-semibold'>
                         You spent {history?.coins} coins to play a trivia game
                         on{' '}
-                        {moment(history?.createdAt.toDate()).format(
+                        {moment(history?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
@@ -124,7 +124,7 @@ const HistoryComponent = ({ user }) => {
                       <Text className='text-white font-semibold'>
                         You won &#8358;{history?.money} from a trivia game you
                         played on{' '}
-                        {moment(history?.createdAt.toDate()).format(
+                        {moment(history?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
@@ -164,6 +164,11 @@ const HistoryComponent = ({ user }) => {
               </div>
             ))}
         </div>
+        {isSuccess && userHistory.length === 0 && (
+          <div className='flex'>
+            <HistoryEmptyComponent />
+          </div>
+        )}
       </div>
     </div>
   );

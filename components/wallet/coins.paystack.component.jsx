@@ -4,7 +4,7 @@ import { usePaystackPayment } from 'react-paystack';
 import UpdateUserWallet from '../../utils/wallet/updateUserWallet';
 // import { useRouter } from 'next/router';
 
-const CoinsComponentPayStack = ({ data, userDoc, user }) => {
+const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
   // const router = useRouter();
   // console.log(process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY);
   // updated to live key now
@@ -18,9 +18,9 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
   // you can call this function anything
   const onSuccess = async (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.table('refrence', reference);
-    if (reference.status === 'success') {
-      await UpdateUserWallet(data.coins, user?.uid, userDoc);
+    // console.log('refrence', reference);
+    if (reference.status == 'success') {
+      await UpdateUserWallet(data.coins, user?.uid, userDoc, setUserDoc);
     }
   };
 
@@ -35,17 +35,6 @@ const CoinsComponentPayStack = ({ data, userDoc, user }) => {
   const handleClick = (e) => {
     e.preventDefault();
     initializePayment(onSuccess, onClose);
-    // handleFlutterPayment({
-    //   callback: async (response) => {
-    //     if (response.status === 'successful') {
-    //       await UpdateUserWallet(data.coins, user);
-    //       closePaymentModal;
-    //     }
-    //   },
-    //   onClose: () => {
-    //     // router.push('/wallet');
-    //   },
-    // });
   };
 
   return (

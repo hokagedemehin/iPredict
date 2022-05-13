@@ -58,7 +58,7 @@ const addPredictionToFirestore = async (
 
     const newID = doc(collection(db, `${user?.email}-matches`));
 
-    console.log(newID.id);
+    // console.log(newID.id);
 
     const subCollectionRef = collection(
       db,

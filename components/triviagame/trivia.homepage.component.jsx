@@ -7,9 +7,9 @@ import GetUserQuestionsFromFirebase from '../../utils/trivia/getQuestions';
 import TriviaQUizEmptyComponent from '../emptypages/triviaquiz.empty';
 import TriviaHomeButton from './triviabutton.component';
 
-const TriviaHomePageComponent = () => {
+const TriviaHomePageComponent = ({ data: buttonsData }) => {
   // const router = useRouter();
-  const { user, userDoc } = useUser();
+  const { user, userDoc, setUserDoc } = useUser();
   const [start, setStart] = useState([]);
 
   const { data, isLoading, isSuccess } = useQuery(
@@ -60,7 +60,7 @@ const TriviaHomePageComponent = () => {
     <div>
       <div className='flex flex-col space-y-4 m-4'>
         <div className='text-center'>
-          <Heading size='lg'>Convert your skill to cash</Heading>
+          <Heading size='lg'>CONVERT YOUR SKILL TO CASH</Heading>
         </div>
         {isLoading && (
           <div className='flex flex-wrap justify-center items-center gap-6'>
@@ -80,12 +80,13 @@ const TriviaHomePageComponent = () => {
           <div className='flex flex-wrap justify-center items-center gap-6'>
             {/* Each card */}
 
-            {[0, 1, 2, 3, 4, 5].map((elem, index) => (
+            {buttonsData.map((elem, index) => (
               <TriviaHomeButton
                 key={index}
                 elem={elem}
                 user={user}
                 userDoc={userDoc}
+                setUserDoc={setUserDoc}
               />
               // <div
               //   key={index}

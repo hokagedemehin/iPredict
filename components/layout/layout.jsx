@@ -12,7 +12,7 @@ const Layout = ({ children, name, desc }) => {
         <title>I-Predict - {name}</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <meta name='description' content={desc} />
-        <link rel='icon' href='/logo/ipredict.png' />
+        <link rel='icon' href='/logo/Ipredict_logo_small_size.png' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='preconnect' href='https://fonts.gstatic.com' />
         <link

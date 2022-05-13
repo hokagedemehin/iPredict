@@ -1,11 +1,11 @@
 import DeductCoinsFromWallet from './deductCoinsFromWallet';
 import SetUserHistory from './setUserHistory';
 
-const TriviaCoins = async (setIsLoading, coin, user, userDoc) => {
+const TriviaCoins = async (setIsLoading, coin, user, userDoc, setUserDoc) => {
   try {
-    const uid = user?.uid;
+    // const email = userDoc?.email;
     setIsLoading(true);
-    DeductCoinsFromWallet(+coin, uid);
+    DeductCoinsFromWallet(+coin, userDoc, setUserDoc);
     const newData = {
       coins: +coin,
       money: 0,
@@ -13,6 +13,7 @@ const TriviaCoins = async (setIsLoading, coin, user, userDoc) => {
       type: 'Start Trivia Quiz',
     };
     await SetUserHistory(userDoc, newData);
+    // setUserDoc({...userDoc, coins});
   } catch (error) {
     console.error(error);
   } finally {

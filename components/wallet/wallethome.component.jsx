@@ -35,7 +35,7 @@ import { AiOutlineBank, AiOutlineUser } from 'react-icons/ai';
 import { MdAccountBalanceWallet, MdPhoneIphone } from 'react-icons/md';
 import withdrawalrequest from '../../utils/wallet/withdrawalrequest';
 
-const WalletHomePage = ({ userDoc, user }) => {
+const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
   const toast = useToast();
   // const [userData, setUserData] = useState([]);
   // console.log('userData', userData);
@@ -63,22 +63,13 @@ const WalletHomePage = ({ userDoc, user }) => {
   const [userInfo, setUserInfo] = useState([]);
 
   const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
-    ['userInfo', user],
-    async () => await GetUserInfo(user),
-    { enabled: !!user }
+    ['userInfo', userDoc],
+    async () => await GetUserInfo(userDoc),
+    { enabled: !!userDoc }
   );
   useEffect(() => {
-    if (
-      isSuccess &&
-      typeof (data !== null) &&
-      Object?.keys(data).length !== 0
-    ) {
-      // const newArr = [];
-
-      // data?.forEach((doc) => newArr.push(doc.data()));
-      // if (newArr.length !== 0) {
-      setUserInfo(data.data());
-      // }
+    if (isSuccess) {
+      setUserInfo(data);
     }
   }, [isSuccess, dataUpdatedAt]);
 
@@ -101,7 +92,12 @@ const WalletHomePage = ({ userDoc, user }) => {
       formValue?.bankname.length !== 0 ||
       formValue?.phonenumber.length !== 0
     ) {
-      await withdrawalrequest(setWithdrawLoading, formValue, user?.uid);
+      await withdrawalrequest(
+        setWithdrawLoading,
+        formValue,
+        userDoc,
+        setUserDoc
+      );
       onClose();
     } else {
       toast({
@@ -118,7 +114,6 @@ const WalletHomePage = ({ userDoc, user }) => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    // setAddressInfo({ ...addressInfo, [name]: value });
     setFormValue({ ...formValue, [name]: value });
   };
   return (
@@ -168,6 +163,8 @@ const WalletHomePage = ({ userDoc, user }) => {
                   isDisabled={userInfo?.money < 1000}
                   className='transform transition duration-200 ease-in hover:scale-105'
                   onClick={onOpen}
+                  colorScheme='gray'
+                  variant='solid'
                 >
                   Withdraw
                 </Button>
@@ -220,12 +217,13 @@ const WalletHomePage = ({ userDoc, user }) => {
                       data={data}
                       userDoc={userDoc}
                       user={user}
+                      setUserDoc={setUserDoc}
                     />
                   ))}
                 </div>
               </TabPanel>
               <TabPanel>
-                <HistoryComponent user={user} />
+                <HistoryComponent user={userDoc} />
               </TabPanel>
             </TabPanels>
           </Tabs>
@@ -339,6 +337,7 @@ const WalletHomePage = ({ userDoc, user }) => {
               <Button
                 isLoading={withdrawLoading}
                 colorScheme='teal'
+                variant='outline'
                 onClick={async () => await handleWithdraw()}
                 ml={3}
               >

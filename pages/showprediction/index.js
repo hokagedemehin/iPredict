@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
+import NewShowPredictionComponent from '../../components/showpredictions/new.showpredictions.component';
 // import { useUser } from "../../utils/auth/userContext";
-import ShowPredictionComponent from '../../components/showpredictions/showpredictions.component';
+// import ShowPredictionComponent from '../../components/showpredictions/showpredictions.component';
 import { useUser } from '../../utils/auth/userContext';
 const ShowPrediction = () => {
   const router = useRouter();
@@ -23,8 +24,7 @@ const ShowPrediction = () => {
         <div className='text text-center my-5'>
           <Heading>All Predictions</Heading>
         </div>
-        {/* <ContentComponent /> */}
-        <ShowPredictionComponent />
+        <NewShowPredictionComponent />
       </div>
     </Layout>
   );

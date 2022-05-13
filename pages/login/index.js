@@ -8,7 +8,7 @@ import { useUser } from '../../utils/auth/userContext';
 
 const LoginPage = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, setUserDoc } = useUser();
   useEffect(() => {
     // Prefetch the dashboard page
     router.prefetch('/');
@@ -23,7 +23,7 @@ const LoginPage = () => {
 
   return (
     <Layout name='Login' desc='Users can Login with thier credentials'>
-      <LoginComponent />
+      <LoginComponent setUserDoc={setUserDoc} />
     </Layout>
   );
 };

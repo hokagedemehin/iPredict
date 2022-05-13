@@ -2,6 +2,7 @@
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 // import { Heading } from "@chakra-ui/react";
+// import { useState } from 'react';
 import ContentComponent from '../components/home/content.section.component';
 import HeroComponent from '../components/home/hero.component';
 import NewUserFreeCoins from '../components/home/newusercoins.component';
@@ -11,7 +12,9 @@ import NavHeader from '../components/nav/header.component';
 import { useUser } from '../utils/auth/userContext';
 
 export default function Home() {
-  const { user, userDoc } = useUser();
+  const { userDoc, setUserDoc } = useUser();
+
+  // const [freeClaimShow, setFreeClaimShow] = useState(userDoc.freeClaim);
 
   return (
     <Layout name='home' desc='Predict and win always'>
@@ -29,7 +32,11 @@ export default function Home() {
 
         {userDoc && !userDoc?.freeClaim ? (
           <div className='pt-16 pb-3 mx-4 '>
-            <NewUserFreeCoins user={user} userDoc={userDoc} />
+            <NewUserFreeCoins
+              userDoc={userDoc}
+              setUserDoc={setUserDoc}
+              // setFreeClaimShow={setFreeClaimShow}
+            />
           </div>
         ) : (
           ''

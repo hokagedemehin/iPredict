@@ -68,8 +68,10 @@ const ProfilePageComponent = ({ userDoc }) => {
                 </div>
                 <div className='text-gray-700'>
                   <div className='grid md:grid-cols-2 text-sm sm:text-lg'>
-                    <div className='grid grid-cols-2'>
-                      <div className=' py-2 font-semibold'>First Name</div>
+                    <div className='grid grid-cols-6'>
+                      <div className=' py-2 font-semibold col-span-2'>
+                        First Name:
+                      </div>
                       {!userDoc ? (
                         <div className='my-2'>
                           <Skeleton>
@@ -77,11 +79,13 @@ const ProfilePageComponent = ({ userDoc }) => {
                           </Skeleton>
                         </div>
                       ) : (
-                        <div className=' py-2'>{firstName}</div>
+                        <div className=' py-2 col-span-3'>{firstName}</div>
                       )}
                     </div>
-                    <div className='grid grid-cols-2'>
-                      <div className=' py-2 font-semibold'>Last Name</div>
+                    <div className='grid grid-cols-6'>
+                      <div className=' py-2 font-semibold col-span-2'>
+                        Last Name:
+                      </div>
                       {!userDoc ? (
                         <div className='my-2'>
                           <Skeleton>
@@ -89,12 +93,14 @@ const ProfilePageComponent = ({ userDoc }) => {
                           </Skeleton>
                         </div>
                       ) : (
-                        <div className=' py-2'>{lastName}</div>
+                        <div className=' py-2 col-span-4'>{lastName}</div>
                       )}
                     </div>
 
-                    <div className='grid grid-cols-2'>
-                      <div className=' py-2 font-semibold'>Phone No.</div>
+                    <div className='grid grid-cols-6'>
+                      <div className=' py-2 font-semibold col-span-2'>
+                        Phone No:
+                      </div>
                       {!userDoc ? (
                         <div className='my-2'>
                           <Skeleton>
@@ -102,14 +108,16 @@ const ProfilePageComponent = ({ userDoc }) => {
                           </Skeleton>
                         </div>
                       ) : (
-                        <div className=' py-2'>
+                        <div className=' py-2 col-span-4'>
                           {!phoneNo ? '+11 998001001' : phoneNo}
                         </div>
                       )}
                     </div>
 
-                    <div className='grid grid-cols-2'>
-                      <div className=' py-2 font-semibold'>Email.</div>
+                    <div className='grid grid-cols-10 grid-flow-row'>
+                      <div className=' py-2 font-semibold w-fit col-span-2'>
+                        Email:
+                      </div>
                       {!userDoc ? (
                         <div className='my-2'>
                           <Skeleton>
@@ -117,19 +125,21 @@ const ProfilePageComponent = ({ userDoc }) => {
                           </Skeleton>
                         </div>
                       ) : (
-                        <div className=' py-2'>{email}</div>
+                        <div className=' py-2 w-full col-span-8'>{email}</div>
                       )}
                     </div>
-                    <div className='grid grid-cols-2'>
-                      <div className=' py-2 font-semibold'>Birthday</div>
+                    <div className='grid grid-cols-7'>
+                      <div className=' py-2 font-semibold col-span-2'>
+                        Birthday:
+                      </div>
                       {!userDoc ? (
                         <div className='my-2'>
                           <Skeleton>
-                            <div className='py-2'>{birthDay}</div>
+                            <div className='py-2 '>{birthDay}</div>
                           </Skeleton>
                         </div>
                       ) : (
-                        <div className=' py-2'>
+                        <div className=' py-2 col-span-5'>
                           {!birthDay ? '1 Jan' : birthDay}
                         </div>
                       )}

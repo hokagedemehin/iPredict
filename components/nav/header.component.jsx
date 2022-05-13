@@ -35,14 +35,23 @@ import { auth } from '../../utils/firebase/firebase';
 import { useUser } from '../../utils/auth/userContext';
 import { RiLoginCircleLine } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
+import SetUserHistory from '../../utils/wallet/setUserHistory';
 
 const NavHeader = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, userDoc } = useUser();
   // const [navName, setNavName] = useState('');
   // console.log('navname', navName);
   const handleLogout = async () => {
     // e.preventDefault();
+    const newData = {
+      coins: 0,
+      money: 0,
+      activity: '',
+      type: 'User Logout',
+    };
+
+    await SetUserHistory(userDoc, newData);
     await signOut(auth);
     router.push('/');
   };
