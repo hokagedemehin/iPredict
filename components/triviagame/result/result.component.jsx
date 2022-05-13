@@ -3,15 +3,15 @@ import { Heading } from '@chakra-ui/react';
 // import { useRouter } from 'next/router';
 import TenResponse from './responseten.component';
 import FifteenResponse from './responsefifteen.component';
-const ResultComponent = ({ figures, handleSubmit, userDoc, user }) => {
+const ResultComponent = ({ figures, handleSubmit, userDoc, user, timeUp }) => {
   // console.log('results sent: ', figures);
 
   // console.log('result figures: ', figures.correctAnswers);
-  useEffect(() => {
-    // if (timeUp) {
-    //   handleSubmit();
-    // }
-    handleSubmit();
+  useEffect(async () => {
+    if (timeUp) {
+      await handleSubmit();
+    }
+    // handleSubmit();
   }, []);
 
   return (

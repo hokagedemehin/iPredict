@@ -8,7 +8,7 @@ const UsersImageComponent = ({ userDoc }) => {
   const joinedDate = !userDoc
     ? ''
     : // : moment(createdTimestamp.toDate()).calendar();
-      moment(createdAt.toDate()).fromNow();
+      moment(createdAt).fromNow();
   return (
     <div>
       <div className='bg-white p-3 border-t-4 border-indigo-400 rounded-lg shadow-md w-fit mx-auto'>

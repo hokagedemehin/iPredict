@@ -2,7 +2,7 @@ import React from 'react';
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 const OneQuestion = ({ currentQuestions, updateQuestion }) => {
   // const [value, setValue] = useState(null);
-  const ques = currentQuestions;
+  const ques = currentQuestions?.attributes;
   // console.log('ques: ', ques);
 
   // useEffect(() => {}, [value]);
@@ -17,7 +17,7 @@ const OneQuestion = ({ currentQuestions, updateQuestion }) => {
         {/* OPtions */}
         <div className='flex flex-col space-y-1'>
           <RadioGroup
-            name={ques?.ID}
+            name={ques?.quesId}
             onChange={updateQuestion}
             value={ques?.response}
           >
@@ -60,7 +60,7 @@ const OneQuestion = ({ currentQuestions, updateQuestion }) => {
           {/* ANswer */}
           {/* <div className='flex space-x-2 font'>
             <p>Answer :</p>
-            <p>{ques?.rightAnswer}</p>
+            <p>{ques?.answer}</p>
           </div> */}
         </div>
       </div>

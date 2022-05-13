@@ -17,78 +17,34 @@ const TriviaAttemptsPageComponent = () => {
   const { user, userDoc } = useUser();
   const email = user?.email;
   const [trivia, setTrivia] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [newData, setNewData] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [itemsPerPage] = useState(8);
 
-  // console.log('currentItems', currentItems);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [clientPerPage] = useState(8);
-
   // console.log('trivia: ', trivia);
-  const { isLoading, data, isSuccess } = useQuery(
+  const { isLoading, data, isSuccess, dataUpdatedAt } = useQuery(
     ['trivia-attempts', email],
     async () => await GetAllTriviaAttempts(email),
     { enabled: !!user }
   );
 
   useEffect(() => {
-    if (
-      isSuccess &&
-      typeof (data !== null) &&
-      Object?.keys(data).length !== 0
-    ) {
-      const newArr = [];
-
-      data?.forEach((doc) => newArr.push(doc.data()));
-
-      setTrivia(newArr);
+    if (isSuccess && data) {
+      setTrivia(data);
     }
-  }, [isSuccess]);
-
-  // let trivia = [];
-
-  // if (trivia.length !== 0) {
-  //   trivia = trivia.filter((val) => {
-  //     if (searchTerm == '' || searchTerm.length === 0) {
-  //       return val;
-  //     } else if (
-  //       val?.createdAt &&
-  //       moment(val?.createdAt.toDate())
-  //         .format('MMM Do YY h:mm:ss a')
-  //         .toLowerCase()
-  //         .includes(searchTerm.toLowerCase())
-  //     ) {
-  //       return val;
-  //     } else if (val?.winner && val?.winner.includes(searchTerm)) {
-  //       // console.log("phone no works");
-  //       return val;
-  //     }
-  //   });
-  // }
-
-  // const endOffset = itemOffset + itemsPerPage;
-  // setCurrentItems(trivia.slice(itemOffset, endOffset));
-  // setPageCount(Math.ceil(trivia.length / itemsPerPage));
+  }, [isSuccess, dataUpdatedAt]);
 
   useEffect(() => {
-    // if (trivia.length !== 0) {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(trivia.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(trivia.length / itemsPerPage));
-    // }
   }, [itemOffset, itemsPerPage, trivia]);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % trivia.length;
     setItemOffset(newOffset);
   };
-
-  // console.log('trivia', trivia);
-  // console.log('trivia', trivia);
   return (
     <div className='flex flex-col space-y-4'>
       <div className='flex flex-wrap w-full justify-center max-w-2xl mx-auto'>
@@ -96,11 +52,6 @@ const TriviaAttemptsPageComponent = () => {
           [0, 1, 2, 3, 4, 5].map((value, index) => (
             <TriviaSkeletonAttempts key={index} value={value} />
           ))}
-        {/* {isSuccess && trivia.length !== 0 && (
-          <div className='my-2 w-full mx-6 text-base'>
-            <SearchAllAttempts setSearchTerm={setSearchTerm} />
-          </div>
-        )} */}
 
         {isSuccess &&
           trivia.length !== 0 &&

@@ -26,16 +26,7 @@ const TenResponse = ({ figures, user, userDoc }) => {
 
   useEffect(() => {
     if (figures.correctAnswers == 10) {
-      // useMemo(() => SendRewardToWallet(reward, uid), [reward, uid]);
-      // console.log('reward given');
       SendRewardToWallet(reward, uid, userDoc);
-      // toast({
-      //   title: 'Reward Sent.',
-      //   description: 'Check your wallet to see cash reward',
-      //   status: 'success',
-      //   // duration: 9000,
-      //   isClosable: true,
-      // });
     }
   }, []);
 

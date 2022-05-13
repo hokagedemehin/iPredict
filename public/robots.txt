@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://ipredict.vercel.app
+Host: https://www.ipredictgame.com/
 
 # Sitemaps
-Sitemap: https://ipredict.vercel.app/sitemap.xml
+Sitemap: https://www.ipredictgame.com/sitemap.xml

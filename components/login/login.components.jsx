@@ -16,8 +16,11 @@ import { auth } from '../../utils/firebase/firebase';
 import { SignInGoogleUser } from '../../utils/auth/signInGoogleUser';
 import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
+import SetUserHistory from '../../utils/wallet/setUserHistory';
+const qs = require('qs');
+import axios from 'axios';
 
-const LoginComponent = () => {
+const LoginComponent = ({ setUserDoc }) => {
   const [formValue, setFormValue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -41,7 +44,33 @@ const LoginComponent = () => {
       const email = formValue.email;
       const password = formValue.password;
 
-      await signInWithEmailAndPassword(auth, email, password);
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+      if (user) {
+        const query = qs.stringify({
+          filters: {
+            email: {
+              $eq: user?.email,
+            },
+          },
+        });
+
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user-profiles?${query}`
+        );
+
+        const existingUser = data?.data[0]?.attributes;
+
+        setUserDoc(existingUser);
+        const newData = {
+          coins: 0,
+          money: 0,
+          activity: '',
+          type: 'User Login',
+        };
+
+        await SetUserHistory(existingUser, newData);
+      }
     } catch (error) {
       toast.error('💥Incorrect Email or Password! 😪😥💥');
       console.error(error);

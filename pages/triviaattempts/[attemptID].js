@@ -9,6 +9,7 @@ import AttemptedQuestionsPageComponent from '../../components/triviagame/attempt
 import { useQuery } from 'react-query';
 import GetOneAttemptQuestions from '../../utils/trivia/attempts/getOneAttempt';
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import TriviaAttemptsEmptyComponent from '../../components/emptypages/triviaattempts.empty';
 
 const TriviaGamesPage = () => {
   const router = useRouter();
@@ -29,12 +30,9 @@ const TriviaGamesPage = () => {
     }
   }, [user]);
   useEffect(() => {
-    if (isSuccess) {
-      const newArr = [];
-
-      data?.forEach((doc) => newArr.push(doc.data()));
-
-      setQuestion(newArr);
+    if (isSuccess && data.length != 0) {
+      // console.log(data);
+      setQuestion(data);
     }
   }, [isSuccess]);
 
@@ -76,6 +74,9 @@ const TriviaGamesPage = () => {
                 index={index}
               />
             ))}
+          {isSuccess && question.length == 0 && (
+            <TriviaAttemptsEmptyComponent />
+          )}
         </div>
       </div>
     </Layout>

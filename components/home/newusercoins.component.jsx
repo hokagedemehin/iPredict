@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import {} from '@chakra-ui/react';
 import ClaimFreeCoins from '../../utils/user/claimFreeCoins';
 
-const NewUserFreeCoins = ({ user, userDoc }) => {
+const NewUserFreeCoins = ({ userDoc, setUserDoc }) => {
   // const { isOpen, onClose } = useDisclosure();
   const [isLoad, setIsLoad] = useState(false);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    await ClaimFreeCoins(user, setIsLoad, userDoc);
+    await ClaimFreeCoins(setIsLoad, userDoc, setUserDoc);
   };
 
   return (

@@ -29,7 +29,7 @@ const AttemptedQuestionsPageComponent = ({ ques, index }) => {
           {ques?.question}
         </Text>
         {ques?.response.toLowerCase().trim() ==
-        ques?.rightAnswer.toLowerCase().trim() ? (
+        ques?.answer.toLowerCase().trim() ? (
           <CheckIcon color='green.500' boxSize={5} />
         ) : (
           <Icon as={MdOutlineClose} color='red.500' boxSize={7} />
