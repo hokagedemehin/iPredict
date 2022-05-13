@@ -67,9 +67,6 @@ const TriviaAttemptsPageComponent = () => {
           <NoSearchResult />
         )}
         {trivia.length === 0 && isSuccess && <TriviaAttemptsEmptyComponent />}
-        {/* <div>
-            <PaginationComp count={count} handleChange={handleChange} />
-          </div> */}
       </div>
       {isSuccess && trivia.length !== 0 && trivia.length !== 0 && (
         <div className='pb-7 max-w-xs sm:max-w-sm mx-auto w-full'>
