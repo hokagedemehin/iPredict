@@ -1,41 +1,41 @@
-import { Heading, Skeleton } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import { Heading } from '@chakra-ui/react';
+import React from 'react';
 // import { BsCoin } from 'react-icons/bs';
-import { useQuery } from 'react-query';
+// import { useQuery } from 'react-query';
 import { useUser } from '../../utils/auth/userContext';
-import GetUserQuestionsFromFirebase from '../../utils/trivia/getQuestions';
-import TriviaQUizEmptyComponent from '../emptypages/triviaquiz.empty';
+// import GetUserQuestionsFromFirebase from '../../utils/trivia/getQuestions';
+// import TriviaQUizEmptyComponent from '../emptypages/triviaquiz.empty';
 import TriviaHomeButton from './triviabutton.component';
 
 const TriviaHomePageComponent = ({ data: buttonsData }) => {
   // const router = useRouter();
   const { user, userDoc, setUserDoc } = useUser();
-  const [start, setStart] = useState([]);
+  // const [start, setStart] = useState([]);
 
-  const { data, isLoading, isSuccess } = useQuery(
-    'viewquestions',
-    async () => await GetUserQuestionsFromFirebase()
-  );
+  // const { data, isLoading, isSuccess } = useQuery(
+  //   'viewquestions',
+  //   async () => await GetUserQuestionsFromFirebase()
+  // );
 
   // console.log('start', start);
-  useEffect(() => {
-    if (
-      isSuccess &&
-      typeof (data !== null) &&
-      Object?.keys(data).length !== 0
-    ) {
-      let newArr = [];
-      // const ques = parseInt(router.query.quiz[0]);
+  // useEffect(() => {
+  //   if (
+  //     isSuccess &&
+  //     typeof (data !== null) &&
+  //     Object?.keys(data).length !== 0
+  //   ) {
+  //     let newArr = [];
+  //     // const ques = parseInt(router.query.quiz[0]);
 
-      data.forEach((doc) => newArr.push(doc.data()));
-      // if (newArr.length !== 0) {
+  //     data.forEach((doc) => newArr.push(doc.data()));
+  //     // if (newArr.length !== 0) {
 
-      // newArr = shuffle(newArr).slice(0, ques);
+  //     // newArr = shuffle(newArr).slice(0, ques);
 
-      setStart(newArr);
-      // }
-    }
-  }, [isSuccess]);
+  //     setStart(newArr);
+  //     // }
+  //   }
+  // }, [isSuccess]);
   // const name = [
   //   'easyway',
   //   'confam',
@@ -62,9 +62,9 @@ const TriviaHomePageComponent = ({ data: buttonsData }) => {
         <div className='text-center'>
           <Heading size='lg'>CONVERT YOUR SKILL TO CASH</Heading>
         </div>
-        {isLoading && (
+        {/* {isLoading && (
           <div className='flex flex-wrap justify-center items-center gap-6'>
-            {/* Each card */}
+            
 
             {[0, 1, 2, 3, 4, 5].map((elem, index) => (
               <div key={index} elem={elem}>
@@ -74,72 +74,71 @@ const TriviaHomePageComponent = ({ data: buttonsData }) => {
               </div>
             ))}
           </div>
-        )}
-        {isSuccess && start.length === 0 && <TriviaQUizEmptyComponent />}
-        {isSuccess && start.length !== 0 && (
-          <div className='flex flex-wrap justify-center items-center gap-6'>
-            {/* Each card */}
+        )} */}
+        {/* {isSuccess && start.length === 0 && <TriviaQUizEmptyComponent />} */}
 
-            {buttonsData.map((elem, index) => (
-              <TriviaHomeButton
-                key={index}
-                elem={elem}
-                user={user}
-                userDoc={userDoc}
-                setUserDoc={setUserDoc}
-              />
-              // <div
-              //   key={index}
-              //   className={`flex flex-col shadow-md shadow-[${color[elem]}] rounded-xl ring-1 p-1 cursor-pointer`}
-              //   onClick={(e) => {
-              //     handleClick(
-              //       e,
-              //       `/triviagame/quiz/${10}/${name[elem]}/${price[elem]}/${
-              //         coins[elem]
-              //       }`
-              //     );
-              //   }}
-              // >
-              //   <div
-              //     className={`px-5 py-3 text-sm text-center font-bold bg-[${color[elem]}]  rounded-xl text-white`}
-              //   >
-              //     {name[elem].toUpperCase()}
-              //   </div>
-              //   <div className='flex flex-col mb-3'>
-              //     <Text className='font-bold text-xl text-center -mb-2'>
-              //       WIN
-              //     </Text>
-              //     <Text className='font-bold text-xl text-center tracking-wider -mb-2'>
-              //       N{price[elem]}
-              //     </Text>
-              //     <Text
-              //       fontSize='xs'
-              //       className='font-bold text-xl text-center -mb-4'
-              //     >
-              //       10 Questions
-              //     </Text>
-              //     <Text fontSize='xs' className='font-bold text-xl text-center'>
-              //       Time: 60sec
-              //     </Text>
-              //     <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
-              //       <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
-              //         <Icon
-              //           as={BsCoin}
-              //           className='bg-yellow-500 rounded-full'
-              //         />
-              //         <Text fontSize='xs' className='font-semibold'>
-              //           {coins[elem]}
-              //         </Text>
-              //       </div>
-              //       <Text className='text-[10px] text-white text-center flex items-center justify-center'>
-              //         PLAY
-              //       </Text>
-              //     </div>
-              //   </div>
-              // </div>
-            ))}
-          </div>
-        )}
+        <div className='flex flex-wrap justify-center items-center gap-6'>
+          {/* Each card */}
+
+          {buttonsData.map((elem, index) => (
+            <TriviaHomeButton
+              key={index}
+              elem={elem}
+              user={user}
+              userDoc={userDoc}
+              setUserDoc={setUserDoc}
+            />
+            // <div
+            //   key={index}
+            //   className={`flex flex-col shadow-md shadow-[${color[elem]}] rounded-xl ring-1 p-1 cursor-pointer`}
+            //   onClick={(e) => {
+            //     handleClick(
+            //       e,
+            //       `/triviagame/quiz/${10}/${name[elem]}/${price[elem]}/${
+            //         coins[elem]
+            //       }`
+            //     );
+            //   }}
+            // >
+            //   <div
+            //     className={`px-5 py-3 text-sm text-center font-bold bg-[${color[elem]}]  rounded-xl text-white`}
+            //   >
+            //     {name[elem].toUpperCase()}
+            //   </div>
+            //   <div className='flex flex-col mb-3'>
+            //     <Text className='font-bold text-xl text-center -mb-2'>
+            //       WIN
+            //     </Text>
+            //     <Text className='font-bold text-xl text-center tracking-wider -mb-2'>
+            //       N{price[elem]}
+            //     </Text>
+            //     <Text
+            //       fontSize='xs'
+            //       className='font-bold text-xl text-center -mb-4'
+            //     >
+            //       10 Questions
+            //     </Text>
+            //     <Text fontSize='xs' className='font-bold text-xl text-center'>
+            //       Time: 60sec
+            //     </Text>
+            //     <div className='flex bg-green-500 rounded-xl space-x-3 mx-1'>
+            //       <div className='flex justify-center items-center space-x-1 bg-[#12036B] text-white px-1 rounded-xl'>
+            //         <Icon
+            //           as={BsCoin}
+            //           className='bg-yellow-500 rounded-full'
+            //         />
+            //         <Text fontSize='xs' className='font-semibold'>
+            //           {coins[elem]}
+            //         </Text>
+            //       </div>
+            //       <Text className='text-[10px] text-white text-center flex items-center justify-center'>
+            //         PLAY
+            //       </Text>
+            //     </div>
+            //   </div>
+            // </div>
+          ))}
+        </div>
       </div>
     </div>
   );
