@@ -10,6 +10,11 @@ import NewUserFreeCoins from '../components/home/newusercoins.component';
 import Layout from '../components/layout/layout';
 import NavHeader from '../components/nav/header.component';
 import { useUser } from '../utils/auth/userContext';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
+if (process.env.NODE_ENV === 'production') {
+  disableReactDevTools();
+}
 
 export default function Home() {
   const { userDoc, setUserDoc } = useUser();

@@ -89,7 +89,7 @@ const ContentComponent = ({ userDoc }) => {
             </Heading>
 
             <CopyToClipboard
-              text={`${baseUrl}/${userDoc?.referralCode}`}
+              text={`${baseUrl}/register/${userDoc?.referralCode}`}
               onCopy={() => handleCopy()}
             >
               <div className=' bg-white text-black shadow-black rounded-lg w-fit mx-auto px-2 py-2 flex space-x-3 items-center justify-center'>
