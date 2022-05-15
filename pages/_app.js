@@ -5,6 +5,11 @@ import Router from 'next/router';
 import UserProvider from '../utils/auth/userContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { DefaultSeo } from 'next-seo';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
+if (process.env.NODE_ENV === 'production') {
+  disableReactDevTools();
+}
 
 const progress = new ProgressBar({
   size: 4,
