@@ -14,7 +14,7 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 export default function Home() {
   const { userDoc, setUserDoc } = useUser();
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV == 'production') {
     disableReactDevTools();
   }
   // const [freeClaimShow, setFreeClaimShow] = useState(userDoc.freeClaim);
