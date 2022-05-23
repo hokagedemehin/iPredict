@@ -3,6 +3,7 @@
 // import styles from '../styles/Home.module.css'
 // import { Heading } from "@chakra-ui/react";
 // import { useState } from 'react';
+import CampaignComponent from '../components/home/campaign.component';
 import ContentComponent from '../components/home/content.section.component';
 import HeroComponent from '../components/home/hero.component';
 import NewUserFreeCoins from '../components/home/newusercoins.component';
@@ -10,9 +11,13 @@ import NewUserFreeCoins from '../components/home/newusercoins.component';
 import Layout from '../components/layout/layout';
 import NavHeader from '../components/nav/header.component';
 import { useUser } from '../utils/auth/userContext';
+const qs = require('qs');
+
+import axios from 'axios';
+
 // import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-export default function Home() {
+export default function Home({ campaign }) {
   const { userDoc, setUserDoc } = useUser();
   // if (process.env.NODE_ENV == 'production') {
   //   disableReactDevTools();
@@ -26,6 +31,9 @@ export default function Home() {
           <NavHeader />
 
           <HeroComponent />
+        </div>
+        <div>
+          <CampaignComponent data={campaign} />
         </div>
         {/* <div className='bg-[#0D37CE]'> */}
         <div className='w-full'>
@@ -54,4 +62,26 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const queryPopulate = qs.stringify(
+    {
+      populate: '*',
+    },
+    {
+      encodeValuesOnly: true,
+    }
+  );
+
+  let campaign = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/campaigns?${queryPopulate}`
+  );
+
+  return {
+    props: {
+      campaign: campaign.data,
+    },
+    revalidate: 10,
+  };
 }
