@@ -27,50 +27,51 @@ const CampaignComponent = ({ data }) => {
           enabled: true,
         }}
       >
-        {data?.data.map((advert, index) => (
-          <SwiperSlide key={index}>
-            <div className='bg-white relative'>
-              {/* large screen image */}
-              <div className='hidden h-[15rem] w-full sm:relative sm:block sm:h-[30rem]'>
-                <Image
-                  src={advert?.attributes?.image}
-                  layout='fill'
-                  objectFit='contain'
-                  placeholder='blur'
-                  alt='Campaign Background'
-                  blurDataURL={advert?.attributes?.image}
-                />
-                <div className='absolute inset-0 h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
-              </div>
-              {/* small screen image */}
-              <div className='relative block h-[15rem] w-full sm:hidden sm:h-[30rem]'>
-                <Image
-                  src={advert?.attributes?.image}
-                  layout='fill'
-                  objectFit='cover'
-                  placeholder='blur'
-                  alt='Campaign Background'
-                  blurDataURL={advert?.attributes?.image}
-                />
-                <div className='inset absolute h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
-              </div>
-              {/* campaign link */}
-              <div className='absolute sm:bottom-4 bottom-3 right-2'>
-                <div className=''>
-                  <Link href={advert?.attributes?.link} passHref>
-                    <a
-                      target='_blank'
-                      rel='noreferrer'
-                      className='text-center text-white text-sm sm:text-xl font-bold px-4 py-1.5 sm:px-6 sm:py-2 bg-black rounded-full hover:bg-gray-800 transition duration-300 ease-in transform hover:scale-110'
-                    >
-                      {advert?.attributes?.buttonName}
-                    </a>
-                  </Link>
+        {data &&
+          data?.data.map((advert, index) => (
+            <SwiperSlide key={index}>
+              <div className='bg-white relative'>
+                {/* large screen image */}
+                <div className='hidden h-[15rem] w-full sm:relative sm:block sm:h-[30rem]'>
+                  <Image
+                    src={advert?.attributes?.image}
+                    layout='fill'
+                    objectFit='contain'
+                    placeholder='blur'
+                    alt='Campaign Background'
+                    blurDataURL={advert?.attributes?.image}
+                  />
+                  <div className='absolute inset-0 h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
+                </div>
+                {/* small screen image */}
+                <div className='relative block h-[15rem] w-full sm:hidden sm:h-[30rem]'>
+                  <Image
+                    src={advert?.attributes?.image}
+                    layout='fill'
+                    objectFit='cover'
+                    placeholder='blur'
+                    alt='Campaign Background'
+                    blurDataURL={advert?.attributes?.image}
+                  />
+                  <div className='inset absolute h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
+                </div>
+                {/* campaign link */}
+                <div className='absolute sm:bottom-4 bottom-3 right-2'>
+                  <div className=''>
+                    <Link href={advert?.attributes?.link} passHref>
+                      <a
+                        target='_blank'
+                        rel='noreferrer'
+                        className='text-center text-white text-sm sm:text-xl font-bold px-4 py-1.5 sm:px-6 sm:py-2 bg-black rounded-full hover:bg-gray-800 transition duration-300 ease-in transform hover:scale-110'
+                      >
+                        {advert?.attributes?.buttonName}
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
