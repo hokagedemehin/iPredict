@@ -5,6 +5,7 @@ import Router from 'next/router';
 import UserProvider from '../utils/auth/userContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { DefaultSeo } from 'next-seo';
+import Script from 'next/script';
 
 const progress = new ProgressBar({
   size: 4,
@@ -55,6 +56,19 @@ function MyApp({ Component, pageProps }) {
               cardType: 'summary_large_image',
             }}
           />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+            strategy='afterInteractive'
+          />
+          <Script id='google-analytics' strategy='afterInteractive'>
+            {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID});
+        `}
+          </Script>
           <Component {...pageProps} />
         </ChakraProvider>
       </UserProvider>
