@@ -184,7 +184,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               Prediction Closed
             </Button>
           </div>
-        ) : userDoc?.coins == 20 ? (
+        ) : userDoc?.coins >= 20 ? (
           <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
