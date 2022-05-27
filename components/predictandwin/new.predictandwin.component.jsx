@@ -184,7 +184,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               Prediction Closed
             </Button>
           </div>
-        ) : (
+        ) : userDoc?.coins == 20 ? (
           <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
@@ -202,6 +202,17 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
             >
               Submit Prediction (20 coins)
             </Button>
+          </div>
+        ) : (
+          <div className='flex text-center'>
+            <div className='flex flex-col items-center justify-center mb-4 pt-2 h-28 w-full space-y-2'>
+              <p className='font-bold text-lg'>
+                You have insufficient coins balance
+              </p>
+              <Button colorScheme='teal' onClick={() => router.push('/wallet')}>
+                Buy Coins
+              </Button>
+            </div>
           </div>
         )}
       </div>
