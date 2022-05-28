@@ -11,8 +11,8 @@ import AllMagazines from '../../components/magazine/AllMagazines';
 const qs = require('qs');
 
 const MagazinePage = ({ featuredData, allMags }) => {
-  // console.log('data :>> ', featuredData);
-  // console.log('allMags :>> ', allMags);
+  console.log('data :>> ', featuredData);
+  console.log('allMags :>> ', allMags);
   const { user } = useUser();
   const router = useRouter();
   // console.log(allDocs);
@@ -49,7 +49,7 @@ export async function getStaticProps() {
           $eq: true,
         },
       },
-      populate: '*',
+      // populate: '*',
     },
     {
       encodeValuesOnly: true,
@@ -58,7 +58,7 @@ export async function getStaticProps() {
   const queryMag = qs.stringify(
     {
       sort: ['id:desc'],
-      populate: '*',
+      // populate: '*',
     },
     {
       encodeValuesOnly: true,
