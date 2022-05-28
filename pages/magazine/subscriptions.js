@@ -38,7 +38,7 @@ const MagazinePage = () => {
         isClosable: true,
       });
     } else {
-      await DeductCoinsFromWallet(20, userDoc, setUserDoc);
+      await DeductCoinsFromWallet(coins, userDoc, setUserDoc);
       const newData = {
         coins: coins,
         money: 0,
