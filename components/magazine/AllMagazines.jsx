@@ -99,7 +99,7 @@ const AllMagazines = ({ data }) => {
   let data1 = [];
   const handleSearch = (e) => {
     let searchValue = e.target.value;
-    data1 = data.filter((val) => {
+    data1 = subs.filter((val) => {
       if (searchValue == '' || searchValue.length === 0) {
         return val;
       } else if (
