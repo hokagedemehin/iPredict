@@ -41,19 +41,19 @@ const CampaignComponent = ({ data }) => {
                     alt='Campaign Background'
                     blurDataURL={advert?.attributes?.image}
                   />
-                  <div className='absolute inset-0 h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
+                  <div className='absolute inset-0 h-[15rem] w-full bg-black opacity-20 sm:h-[30rem]'></div>
                 </div>
                 {/* small screen image */}
                 <div className='relative block h-[15rem] w-full sm:hidden sm:h-[30rem]'>
                   <Image
                     src={advert?.attributes?.image}
                     layout='fill'
-                    objectFit='cover'
+                    objectFit='contain'
                     placeholder='blur'
                     alt='Campaign Background'
                     blurDataURL={advert?.attributes?.image}
                   />
-                  <div className='inset absolute h-[15rem] w-full bg-white opacity-10 sm:h-[30rem]'></div>
+                  <div className='inset absolute h-[15rem] w-full bg-black opacity-20 sm:h-[30rem]'></div>
                 </div>
                 {/* campaign link */}
                 <div className='absolute sm:bottom-4 bottom-3 right-2'>

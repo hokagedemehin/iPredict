@@ -158,17 +158,19 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
                   )}
                 </div>
               </div>
-              <div>
-                <Button
-                  isDisabled={userInfo?.money < 1000}
-                  className='transform transition duration-200 ease-in hover:scale-105'
-                  onClick={onOpen}
-                  colorScheme='gray'
-                  variant='solid'
-                >
-                  Withdraw
-                </Button>
-              </div>
+              {userInfo?.money >= 1000 && (
+                <div>
+                  <Button
+                    // isDisabled={userInfo?.money < 1000}
+                    className='transform transition duration-200 ease-in hover:scale-105'
+                    onClick={onOpen}
+                    colorScheme='gray'
+                    variant='solid'
+                  >
+                    Withdraw
+                  </Button>
+                </div>
+              )}
             </div>
             {userInfo?.request > 0 && (
               <div className='request w-full flex items-center justify-center space-x-3'>

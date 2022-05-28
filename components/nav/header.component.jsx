@@ -64,6 +64,7 @@ const NavHeader = () => {
   return (
     <div className='relative'>
       <Flex px='4' py='2' className=' '>
+        {/* mobile */}
         <div className='sm:hidden'>
           <Menu>
             <MenuButton
@@ -165,6 +166,7 @@ const NavHeader = () => {
             </MenuList>
           </Menu>
         </div>
+        {/* desktop */}
         <div className='hidden sm:flex w-full max-w-2xl'>
           <nav className='flex justify-around w-full items-center'>
             <Button
