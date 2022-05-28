@@ -49,7 +49,7 @@ export async function getStaticProps() {
           $eq: true,
         },
       },
-      // populate: '*',
+      populate: '*',
     },
     {
       encodeValuesOnly: true,
@@ -58,7 +58,7 @@ export async function getStaticProps() {
   const queryMag = qs.stringify(
     {
       sort: ['id:desc'],
-      // populate: '*',
+      populate: '*',
     },
     {
       encodeValuesOnly: true,
