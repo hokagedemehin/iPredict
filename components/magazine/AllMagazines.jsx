@@ -66,7 +66,7 @@ const AllMagazines = ({ data }) => {
   if (subs) {
     // console.log('expired: ', getNow > subs[0]?.attributes?.duration);
   }
-  // console.log('newData', newData);
+  console.log('newData', newData);
   // console.log('previewData :>> ', previewData);
 
   useEffect(async () => {
