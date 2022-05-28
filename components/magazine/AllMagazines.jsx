@@ -28,7 +28,7 @@ const AllMagazines = ({ data }) => {
   const [newData, setNewData] = useState(data);
   const [previewData, setPreviewData] = useState([]);
   const [active, setActive] = useState(false);
-  console.log('active', active);
+  // console.log('active', active);
   // * Get Subscriptions
   const {
     data: subs,
@@ -60,17 +60,17 @@ const AllMagazines = ({ data }) => {
     },
     { enabled: !!userDoc?.email }
   );
-  console.log('subs :>> ', subs);
+  // console.log('subs :>> ', subs);
   const getNow = moment().format();
   // console.log('getNow :>> ', getNow);
   if (subs) {
-    console.log('expired: ', getNow > subs[0]?.attributes?.duration);
+    // console.log('expired: ', getNow > subs[0]?.attributes?.duration);
   }
   // console.log('newData', newData);
   // console.log('previewData :>> ', previewData);
 
   useEffect(async () => {
-    console.log('fired');
+    // console.log('fired');
     if (
       isSuccess &&
       subs?.length > 0 &&

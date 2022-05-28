@@ -19,7 +19,7 @@ const qs = require('qs');
 const AllMagazinePages = ({ data: allMags }) => {
   const router = useRouter();
   const { user, userDoc } = useUser();
-  console.log('router :>> ', router);
+  // console.log('router :>> ', router);
   // console.log('allMags :>> ', allMags);
 
   useEffect(() => {
