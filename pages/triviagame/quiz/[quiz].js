@@ -178,5 +178,6 @@ export async function getStaticProps({ params }) {
       quizType: quizType?.data,
       quizzes: quizzes?.data,
     },
+    revalidate: 5,
   };
 }
