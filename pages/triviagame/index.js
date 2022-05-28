@@ -39,5 +39,6 @@ export async function getStaticProps() {
     props: {
       data: data?.data,
     }, // will be passed to the page component as props
+    revalidate: 5,
   };
 }

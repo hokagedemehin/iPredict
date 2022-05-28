@@ -38,7 +38,7 @@ const MagazinePage = () => {
         isClosable: true,
       });
     } else {
-      await DeductCoinsFromWallet(20, userDoc, setUserDoc);
+      await DeductCoinsFromWallet(coins, userDoc, setUserDoc);
       const newData = {
         coins: coins,
         money: 0,
@@ -123,7 +123,7 @@ const MagazinePage = () => {
             <div className='border shadow-md pt-14 px-6 rounded-2xl bg-gray-100 md:-mr-2'>
               <Text className='font-bold text-xl text-gray-400'>1 Month</Text>
               <Text className='font-bold text-3xl pb-6 text-gray-500'>
-                20 coins
+                60 coins
               </Text>
               <div className='space-y-2 pb-10 text-gray-400'>
                 <Text>- Access to all magazine</Text>
@@ -131,7 +131,7 @@ const MagazinePage = () => {
               </div>
 
               <div
-                onClick={() => handleSubmit(1, 20)}
+                onClick={() => handleSubmit(1, 60)}
                 className='flex justify-center items-center space-x-3 px-5 py-2 border border-emerald-500 hover:text-white rounded-md bg-white cursor-pointer hover:bg-emerald-500 transition duration-300 ease-in mb-6'
               >
                 <Text className='font-semibold'>Pay with wallet</Text>
@@ -140,14 +140,14 @@ const MagazinePage = () => {
             {/* 1 year */}
             <div className='border shadow-lg pt-14 pb-8 px-6 rounded-2xl text-white z-10 border-emerald-500 bg-blue-700'>
               <Text className='font-bold text-xl'>1 Year</Text>
-              <Text className='font-bold text-3xl pb-6'>40 coins</Text>
+              <Text className='font-bold text-3xl pb-6'>300 coins</Text>
               <div className='space-y-2 pb-10'>
                 <Text>- Access to all magazine</Text>
                 <Text>- Personal & commercial use</Text>
                 <Text>- Pay once for a year</Text>
               </div>
               <div
-                onClick={() => handleSubmit(12, 40)}
+                onClick={() => handleSubmit(12, 300)}
                 className='flex justify-center items-center space-x-3 px-5 py-2 border border-white text-white bg-emerald-600 rounded-md shadow-md cursor-pointer hover:bg-emerald-800 transition duration-300 ease-in mb-6'
               >
                 <Text className='font-semibold'>Pay with wallet</Text>
@@ -157,7 +157,7 @@ const MagazinePage = () => {
             <div className='border shadow-md pt-14 px-6 rounded-2xl bg-gray-100 md:-ml-2'>
               <Text className='font-bold text-xl text-gray-400'>6 Month</Text>
               <Text className='font-bold text-3xl pb-6 text-gray-500'>
-                30 coins
+                120 coins
               </Text>
               <div className=' pb-10 text-gray-400'>
                 <Text>- Access to all magazine</Text>
@@ -166,7 +166,7 @@ const MagazinePage = () => {
               </div>
 
               <div
-                onClick={() => handleSubmit(6, 30)}
+                onClick={() => handleSubmit(6, 120)}
                 className='flex justify-center items-center space-x-3 px-5 py-2 border border-emerald-500 hover:text-white rounded-md cursor-pointer hover:bg-emerald-500 transition duration-300 ease-in mb-6 bg-white'
               >
                 <Text className='font-semibold'>Pay with wallet</Text>
