@@ -131,6 +131,22 @@ const HistoryComponent = ({ user }) => {
                     </div>
                   );
                 }
+                if (history.type == 'Magazine Subscription') {
+                  return (
+                    <div
+                      key={index}
+                      className='flex ring-1 ring-white p-2 rounded-md '
+                    >
+                      <Text className='text-white font-semibold'>
+                        User subscribed for magazine with {history?.coins} coins
+                        on{' '}
+                        {moment(history?.createdAt).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </Text>
+                    </div>
+                  );
+                }
               })}
             </div>
             <div>
