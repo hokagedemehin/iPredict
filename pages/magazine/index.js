@@ -11,8 +11,8 @@ import AllMagazines from '../../components/magazine/AllMagazines';
 const qs = require('qs');
 
 const MagazinePage = ({ featuredData, allMags }) => {
-  console.log('data :>> ', featuredData);
-  console.log('allMags :>> ', allMags);
+  // console.log('data :>> ', featuredData);
+  // console.log('allMags :>> ', allMags);
   const { user } = useUser();
   const router = useRouter();
   // console.log(allDocs);
