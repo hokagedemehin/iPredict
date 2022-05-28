@@ -7,6 +7,7 @@ import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import BannerPredictAndWin from '../../components/predictandwin/banner.component';
 import NewPredictAndWinComponent from '../../components/predictandwin/new.predictandwin.component';
+// import New1PredictAndWinComponent from '../../components/predictandwin/new1.predictandwin.component';
 // import PredictAndWinComponent from '../../components/predictandwin/predictandwin.component';
 import { useUser } from '../../utils/auth/userContext';
 import GetPredictMatches from '../../utils/prediction/getPredictMatches';
@@ -51,6 +52,7 @@ const PredictAndWinPage = () => {
           {/* <Heading className='text-teal-600'>{data?.name}</Heading> */}
         </div>
         {isSuccess && <NewPredictAndWinComponent newMatches={data} />}
+        {/* {isSuccess && <New1PredictAndWinComponent newMatches={data} />} */}
       </div>
     </Layout>
   );

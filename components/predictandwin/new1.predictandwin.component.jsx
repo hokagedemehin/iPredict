@@ -1,25 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-// import selectedMacthesForPrediction from '../../utils/prediction/selectedMacthesForPrediction';
-// import MatchListComponent from './matchlist.component';
+import React, { useEffect, useState } from 'react';
 import NoMatchListComponent from './nomatchlist.component';
 import { Button, Skeleton } from '@chakra-ui/react';
 import { GiSoccerBall } from 'react-icons/gi';
 import { ImBlocked } from 'react-icons/im';
-// import addPredictionToFirestore from '../../utils/prediction/addPredictionToFirestore';
 import { useUser } from '../../utils/auth/userContext';
 import { ToastContainer } from 'react-toastify';
-// import moment from "moment";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useQuery } from 'react-query';
-import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-} from '@chakra-ui/react';
+// import {
+//   AlertDialog,
+//   AlertDialogBody,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogContent,
+//   AlertDialogOverlay,
+// } from '@chakra-ui/react';
 import NewMatchListComponent from './new.matchlist.component';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
@@ -27,16 +22,13 @@ import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 import { useRouter } from 'next/router';
 
-const NewPredictAndWinComponent = ({ newMatches }) => {
+const New1PredictAndWinComponent = ({ newMatches }) => {
   const router = useRouter();
-  // const [matchSelect, setMatchSelect] = useState([]);
-  // const [formValue, setFormValue] = useState([]);
   const [matches, setmatches] = useState([]);
   const [userPrediction, setUserPrediction] = useState([]);
   const newData = newMatches?.matches?.data;
 
   useEffect(() => {
-    // setmatches([]);
     if (matches.length == 0) {
       newData.forEach((doc) => {
         let newObj = {
@@ -55,30 +47,23 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
     }
   }, [newMatches]);
 
-  // console.log('newMatches', newMatches);
-  // console.log('newData :>> ', newData);
-  // console.log('matches :>> ', matches);
-  // console.log('userPrediction :>> ', userPrediction);
-  // console.log("matchselect UI: ", matchSelect);
-  // console.log("formValue: ", formValue);
   const [isLoading, setIsLoading] = useState(false);
   const { userDoc, setUserDoc } = useUser();
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
-  const cancelRef = useRef();
+  // const [isOpen, setIsOpen] = useState(false);
+  // const onClose = () => setIsOpen(false);
+  // const cancelRef = useRef();
 
-  const handleClick = (e) => {
-    // const checkVal = Object.keys(formValue).length / matchSelect.length;
-    const checkVal = matches.length == userPrediction.length;
-    e.preventDefault();
-    if (userDoc?.coins < 20) {
-      toast.error('💰 Insufficient coins balance');
-    } else if (!checkVal) {
-      toast.error('❌ All predictions are required');
-    } else {
-      setIsOpen(true);
-    }
-  };
+  // const handleClick = (e) => {
+  //   const checkVal = matches.length == userPrediction.length;
+  //   e.preventDefault();
+  //   if (userDoc?.coins < 20) {
+  //     toast.error('💰 Insufficient coins balance');
+  //   } else if (!checkVal) {
+  //     toast.error('❌ All predictions are required');
+  //   } else {
+  //     setIsOpen(true);
+  //   }
+  // };
 
   const handleSubmission = async () => {
     // const checkVal = Object.keys(formValue).length / matchSelect.length;
@@ -137,7 +122,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
       }
     }
 
-    onClose();
+    // onClose();
   };
 
   const val = matches.sort((a, b) => {
@@ -184,7 +169,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               Prediction Closed
             </Button>
           </div>
-        ) : userDoc?.coins >= 20 ? (
+        ) : (
           <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
@@ -193,30 +178,19 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               isFullWidth
               fontSize='xl'
               // onClick={handleSubmission}
-              onClick={(e) => {
-                handleClick(e);
+              onClick={() => {
+                handleSubmission();
               }}
-              isLoading={isOpen}
+              isLoading={isLoading}
               loadingText='Loading'
               spinnerPlacement='end'
             >
               Submit Prediction (20 coins)
             </Button>
           </div>
-        ) : (
-          <div className='flex text-center'>
-            <div className='flex flex-col items-center justify-center mb-4 pt-2 h-28 w-full space-y-2'>
-              <p className='font-bold text-lg'>
-                You have insufficient coins balance
-              </p>
-              <Button colorScheme='teal' onClick={() => router.push('/wallet')}>
-                Buy Coins
-              </Button>
-            </div>
-          </div>
         )}
       </div>
-      <div>
+      {/* <div>
         <AlertDialog
           isOpen={isOpen}
           leastDestructiveRef={cancelRef}
@@ -253,34 +227,10 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-      </div>
+      </div> */}
       <ToastContainer />
     </div>
   );
 };
 
-export default NewPredictAndWinComponent;
-
-// const da = new Date(a.matchDate);
-// const db1 = new Date(b.matchDate);
-// console.log(da);
-// console.log(db1);
-// return db1.getTime() - da.getTime();
-
-// value?.docs?.map((doc) => console.log(doc.data()));
-// const d = new Date();
-// let day = d.getDay();
-// const da = moment("2022-01-15T12:30:00+00:00").format("h:mm:ss a");
-// const da1 = moment("2022-01-15T17:30:00+00:00").format("h:mm:ss a");
-// const dc1 = new Date("2022-01-15T15:00:00+00:00");
-// const dc2 = new Date("2022-01-15T15:00:00+00:00");
-// const dc3 = new Date("2022-01-15T17:30:00+00:00");
-// const dc4 = new Date("2022-01-15T12:30:00+00:00");
-
-// console.log(dc1.getTime());
-// console.log(dc2.getTime());
-// console.log(dc3.getTime());
-// console.log(dc4.getTime());
-// console.log(da);
-// console.log(da1);
-// console.log(da < da1);
+export default New1PredictAndWinComponent;
