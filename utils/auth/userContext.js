@@ -39,7 +39,10 @@ export default function UserContextComp({ children }) {
 
   useEffect(() => {
     if (data?.data.data.length > 0) {
-      setUserDoc(data?.data?.data[0].attributes);
+      setUserDoc({
+        ...data?.data?.data[0].attributes,
+        id: data?.data?.data[0].id,
+      });
     }
   }, [isSuccess, data, user, dataUpdatedAt]);
 
