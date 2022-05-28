@@ -121,19 +121,23 @@ const AllMagazines = ({ data }) => {
   return (
     <div>
       {/* SUbscription button */}
-      {!active && (
-        <div className='flex justify-center'>
-          <div className='text-center font-black text-lg md:text-2xl m-4 p-4 shadow-md rounded-lg w-fit space-y-2 border'>
-            <Text>Unlimited Access to the titles available</Text>
-            <Button
-              onClick={() => router.push('/magazine/subscriptions')}
-              colorScheme='blue'
-              rightIcon={<GiTwoCoins />}
-              variant='solid'
-            >
-              View Subscription Plans
-            </Button>
-          </div>
+      {newData.length !== 0 && (
+        <div>
+          {!active && (
+            <div className='flex justify-center'>
+              <div className='text-center font-black text-lg md:text-2xl m-4 p-4 shadow-md rounded-lg w-fit space-y-2 border'>
+                <Text>Unlimited Access to the titles available</Text>
+                <Button
+                  onClick={() => router.push('/magazine/subscriptions')}
+                  colorScheme='blue'
+                  rightIcon={<GiTwoCoins />}
+                  variant='solid'
+                >
+                  View Subscription Plans
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       )}
       {/* search section */}
