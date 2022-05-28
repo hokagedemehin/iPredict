@@ -223,9 +223,7 @@ const AllMagazines = ({ data }) => {
                 className=''
               />
             </div>
-            <Text className='text-center text-xl font-bold'>
-              No Search Result
-            </Text>
+            <Text className='text-center text-xl font-bold'>No Magazine</Text>
           </div>
         )}
       </div>
