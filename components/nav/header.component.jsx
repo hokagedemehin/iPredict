@@ -65,7 +65,7 @@ const NavHeader = () => {
     <div className='relative'>
       <Flex px='4' py='2' className=' '>
         {/* mobile */}
-        <div className='sm:hidden'>
+        <div className='sm:hidden z-10'>
           <Menu>
             <MenuButton
               as={IconButton}
