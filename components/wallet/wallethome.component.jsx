@@ -84,19 +84,33 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
     bankname: '',
     phonenumber: '',
   });
+  console.log('formValue :>> ', formValue.fullname.length);
+  console.log('formValue :>> ', formValue);
   const [withdrawLoading, setWithdrawLoading] = useState(false);
+
+  const handleOpen = () => {
+    onOpen();
+    setFormValue({
+      fullname: '',
+      accountnumber: '',
+      bankname: '',
+      phonenumber: '',
+    });
+  };
+
   const handleWithdraw = async () => {
     if (
-      formValue?.fullname.length !== 0 ||
-      formValue?.accountnumber.length !== 0 ||
-      formValue?.bankname.length !== 0 ||
-      formValue?.phonenumber.length !== 0
+      formValue?.fullname.trim().length !== 0 &&
+      formValue?.accountnumber.trim().length !== 0 &&
+      formValue?.bankname.trim().length !== 0 &&
+      formValue?.phonenumber.trim().length !== 0
     ) {
       await withdrawalrequest(
         setWithdrawLoading,
         formValue,
         userDoc,
-        setUserDoc
+        setUserDoc,
+        setFormValue
       );
       onClose();
     } else {
@@ -163,9 +177,9 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
                   <Button
                     // isDisabled={userInfo?.money < 1000}
                     className='transform transition duration-200 ease-in hover:scale-105'
-                    onClick={onOpen}
-                    colorScheme='gray'
-                    variant='solid'
+                    onClick={handleOpen}
+                    colorScheme='blue'
+                    // variant='solid'
                   >
                     Withdraw
                   </Button>
