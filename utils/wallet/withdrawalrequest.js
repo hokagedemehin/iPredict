@@ -15,7 +15,8 @@ const withdrawalrequest = async (
   setWithdrawLoading,
   formValue,
   userDoc,
-  setUserDoc
+  setUserDoc,
+  setFormValue
 ) => {
   try {
     setWithdrawLoading(true);
@@ -97,6 +98,12 @@ const withdrawalrequest = async (
     await SetUserHistory(userDoc, newData);
 
     setUserDoc({ ...userDoc, request: userMoney, money: 0 });
+    setFormValue({
+      fullname: '',
+      accountnumber: '',
+      bankname: '',
+      phonenumber: '',
+    });
   } catch (error) {
     console.error(error);
   } finally {
