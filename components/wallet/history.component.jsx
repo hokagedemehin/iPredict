@@ -53,94 +53,143 @@ const HistoryComponent = ({ user }) => {
         {isSuccess && userHistory.length !== 0 && (
           <div className='flex flex-col space-y-4'>
             <div className='space-y-3'>
-              {currentItems.map((history, index) => {
-                if (history.type == 'Buy Coins') {
+              {currentItems.map((historyItem, index) => {
+                if (historyItem.type == 'Buy Coins') {
                   return (
                     <div
                       key={index}
                       className='flex ring-1 ring-white p-2 rounded-md '
                     >
                       <Text className='text-white font-semibold'>
-                        You bought {history?.coins} coins on{' '}
-                        {moment(history?.createdAt).format(
+                        You bought {historyItem?.coins} coins on{' '}
+                        {moment(historyItem?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
                     </div>
                   );
                 }
-                if (history.type == 'Claim Free Coins') {
+                if (historyItem.type == 'Claim Free Coins') {
                   return (
                     <div
                       key={index}
                       className='flex ring-1 ring-white p-2 rounded-md '
                     >
                       <Text className='text-white font-semibold'>
-                        You claimed your free {history?.coins} coins on{' '}
-                        {moment(history?.createdAt).format(
+                        You claimed your free {historyItem?.coins} coins on{' '}
+                        {moment(historyItem?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
                     </div>
                   );
                 }
-                if (history.type == 'Match Prediction') {
+                if (historyItem.type == 'Match Prediction') {
                   return (
                     <div
                       key={index}
                       className='flex ring-1 ring-white p-2 rounded-md '
                     >
                       <Text className='text-white font-semibold'>
-                        You spent {history?.coins} coins to predict matches on{' '}
-                        {moment(history?.createdAt).format(
-                          'MMMM Do YYYY, h:mm:ss a'
-                        )}
-                      </Text>
-                    </div>
-                  );
-                }
-                if (history.type == 'Start Trivia Quiz') {
-                  return (
-                    <div
-                      key={index}
-                      className='flex ring-1 ring-white p-2 rounded-md '
-                    >
-                      <Text className='text-white font-semibold'>
-                        You spent {history?.coins} coins to play a trivia game
+                        You spent {historyItem?.coins} coins to predict matches
                         on{' '}
-                        {moment(history?.createdAt).format(
+                        {moment(historyItem?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
                     </div>
                   );
                 }
-                if (history.type == 'Trivia Game Reward') {
+                if (historyItem.type == 'Start Trivia Quiz') {
                   return (
                     <div
                       key={index}
                       className='flex ring-1 ring-white p-2 rounded-md '
                     >
                       <Text className='text-white font-semibold'>
-                        You won &#8358;{history?.money} from a trivia game you
-                        played on{' '}
-                        {moment(history?.createdAt).format(
+                        You spent {historyItem?.coins} coins to play a trivia
+                        game on{' '}
+                        {moment(historyItem?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>
                     </div>
                   );
                 }
-                if (history.type == 'Magazine Subscription') {
+                if (historyItem.type == 'Trivia Game Reward') {
                   return (
                     <div
                       key={index}
                       className='flex ring-1 ring-white p-2 rounded-md '
                     >
                       <Text className='text-white font-semibold'>
-                        User subscribed for magazine with {history?.coins} coins
-                        on{' '}
-                        {moment(history?.createdAt).format(
+                        You won &#8358;{historyItem?.money} from a trivia game
+                        you played on{' '}
+                        {moment(historyItem?.createdAt).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </Text>
+                    </div>
+                  );
+                }
+                if (historyItem.type == 'Magazine Subscription') {
+                  return (
+                    <div
+                      key={index}
+                      className='flex ring-1 ring-white p-2 rounded-md '
+                    >
+                      <Text className='text-white font-semibold'>
+                        User subscribed for magazine with {historyItem?.coins}{' '}
+                        coins on{' '}
+                        {moment(historyItem?.createdAt).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </Text>
+                    </div>
+                  );
+                }
+                if (historyItem.type == 'Buy Card') {
+                  return (
+                    <div
+                      key={index}
+                      className='flex ring-1 ring-white p-2 rounded-md '
+                    >
+                      <Text className='text-white font-semibold'>
+                        User bought {historyItem?.activity} card with{' '}
+                        {historyItem?.coins} coins on{' '}
+                        {moment(historyItem?.createdAt).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </Text>
+                    </div>
+                  );
+                }
+                if (historyItem.type == 'User Card Reward') {
+                  return (
+                    <div
+                      key={index}
+                      className='flex ring-1 ring-white p-2 rounded-md '
+                    >
+                      <Text className='text-white font-semibold'>
+                        User sent his team card reward of {historyItem?.money}{' '}
+                        to his wallet on{' '}
+                        {moment(historyItem?.createdAt).format(
+                          'MMMM Do YYYY, h:mm:ss a'
+                        )}
+                      </Text>
+                    </div>
+                  );
+                }
+                if (historyItem.type == 'User Match Reward') {
+                  return (
+                    <div
+                      key={index}
+                      className='flex ring-1 ring-white p-2 rounded-md '
+                    >
+                      <Text className='text-white font-semibold'>
+                        User won {historyItem?.money} for playing a match on
+                        thier {historyItem?.activity} card on
+                        {moment(historyItem?.createdAt).format(
                           'MMMM Do YYYY, h:mm:ss a'
                         )}
                       </Text>

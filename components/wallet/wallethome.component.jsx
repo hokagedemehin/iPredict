@@ -84,8 +84,8 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
     bankname: '',
     phonenumber: '',
   });
-  console.log('formValue :>> ', formValue.fullname.length);
-  console.log('formValue :>> ', formValue);
+  // console.log('formValue :>> ', formValue.fullname.length);
+  // console.log('formValue :>> ', formValue);
   const [withdrawLoading, setWithdrawLoading] = useState(false);
 
   const handleOpen = () => {
