@@ -237,41 +237,197 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
           <Heading>Buy Team Cards</Heading>
         </div>
         {/* premium section */}
-        <div className='text-left py-4 px'>
-          <Text className='text-3xl font-black bg-gradient-to-r from-orange-600 via-yellow-400 to-amber-600 bg-clip-text  text-transparent'>
-            Premium Cards
-          </Text>
-        </div>
+
         {freshPremium && (
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            centeredSlides={true}
-            navigation={true}
-            freeMode={true}
-            keyboard={{
-              enabled: true,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-              },
-              // 768: {
-              //   slidesPerView: 3,
-              //   spaceBetween: 30,
-              // },
-            }}
-            modules={[Navigation, Keyboard, FreeMode]}
-            className='mySwiper '
-            // loop={true}
-          >
-            {freshPremium?.map((card) => (
-              <SwiperSlide key={card?.id} className='flex justify-center'>
-                <div className='relative w-[22rem] overflow-hidden rounded-md border shadow-md'>
-                  {/* backround image */}
-                  <div className='absolute -left-28 top-10 h-full w-full'>
-                    <div className='relative'>
+          <div>
+            <div className='text-left py-4 px'>
+              <Text className='text-3xl font-black bg-gradient-to-r from-orange-600 via-yellow-400 to-amber-600 bg-clip-text  text-transparent'>
+                Premium Cards
+              </Text>
+            </div>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={10}
+              centeredSlides={true}
+              navigation={true}
+              freeMode={true}
+              keyboard={{
+                enabled: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 40,
+                },
+                // 768: {
+                //   slidesPerView: 3,
+                //   spaceBetween: 30,
+                // },
+              }}
+              modules={[Navigation, Keyboard, FreeMode]}
+              className='mySwiper '
+              // loop={true}
+            >
+              {freshPremium?.map((card) => (
+                <SwiperSlide key={card?.id} className='flex justify-center'>
+                  <div className='relative w-[22rem] overflow-hidden rounded-md border shadow-md'>
+                    {/* backround image */}
+                    <div className='absolute -left-28 top-10 h-full w-full'>
+                      <div className='relative'>
+                        <Image
+                          layout='fill'
+                          objectFit='contain'
+                          src={card?.logo}
+                          alt={card?.name}
+                          className=' opacity-10 h-[15rem]'
+                        />
+                      </div>
+                    </div>
+                    {card?.type === 'premium' && (
+                      <div className='absolute top-0 right-0 rounded-bl-md bg-black px-2 py-0.5'>
+                        <div className=''>
+                          <Text className='bg-gradient-to-r from-amber-500 via-yellow-200 to-yellow-500 bg-clip-text text-base font-bold text-transparent'>
+                            Premium
+                          </Text>
+                        </div>
+                      </div>
+                    )}
+                    <div className='flex flex-col items-center px-4 pt-4'>
+                      <div className='relative h-20 w-20'>
+                        <Image
+                          layout='fill'
+                          objectFit='contain'
+                          src={card?.logo}
+                          alt={card?.name}
+                        />
+                      </div>
+                      <Text className='pb-3 text-2xl font-bold break-all'>
+                        {card?.name}{' '}
+                      </Text>
+                    </div>
+                    <div className='bg-gray-100 p-4  '>
+                      <div className='text-center text-lg font-medium'>
+                        <Text>{`Season's`}</Text>
+                        <Text className='-mt-1'>Cash out Worth</Text>
+                        <Text className='text-2xl font-bold'>
+                          &#8358;{thousands(card?.worth)}
+                        </Text>
+                      </div>
+                      {/* value | win | loss | reward */}
+                      <div className='flex justify-between'>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Value</Text>
+                          <Text className='-mt-2 text-xs'>(coins)</Text>
+                          <Text className='font-bold text-sm'>
+                            {thousands(card?.value)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Win</Text>
+                          <Text className='-mt-2 text-xs'>(coins/cash)</Text>
+                          <Text className='font-bold text-sm'>
+                            +{thousands(card?.winCoins)}/+
+                            {thousands(card?.winCash)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Loss</Text>
+                          <Text className='-mt-2 text-xs'>(coins)</Text>
+                          <Text className='font-bold text-sm'>
+                            -{thousands(card?.loss)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text className=''>Total Reward</Text>
+                          <Text className='-mt-2 text-xs'>(cash)</Text>
+
+                          <Text className='font-bold text-sm'>
+                            &#8358;{thousands(card?.worth)}
+                          </Text>
+                        </div>
+                      </div>
+                      {/* matches button */}
+                      <div className='flex flex-col'>
+                        <div className='flex items-center justify-center space-x-5 py-3'>
+                          {userDoc?.coins >= card?.price ? (
+                            <Button
+                              colorScheme='teal'
+                              onClick={async () => await handleBuyCard(card)}
+                              isLoading={submitLoading}
+                              loadingText='Buying Card...'
+                              spinnerPlacement='end'
+                            >
+                              Buy Card
+                            </Button>
+                          ) : (
+                            <Button
+                              colorScheme='messenger'
+                              onClick={() => router.push(`/wallet`)}
+                              textColor='black'
+                            >
+                              Get More Coins
+                            </Button>
+                          )}
+                          <Text className='rounded-lg bg-yellow-500 px-4 py-2 font-bold text-black'>
+                            {thousands(card?.price)} coins
+                          </Text>
+                        </div>
+                      </div>
+                    </div>
+                    <Text className='bg-slate-600 py-3 text-center text-xs text-white'>
+                      {`This card is valid for ${card?.season} season`}
+                    </Text>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+
+        {/* standard section */}
+
+        {freshStandard && (
+          <div>
+            <div className='text-left py-4 px'>
+              <Text className='text-3xl font-black bg-gradient-to-r from-blue-600  to-green-600 bg-clip-text text-transparent'>
+                Standard Cards
+              </Text>
+            </div>
+            <Swiper
+              // navigation={true}
+              // className='mySwiper'
+              // loop={true}
+              // keyboard={{
+              //   enabled: true,
+              // }}
+              slidesPerView={1}
+              spaceBetween={10}
+              centeredSlides={true}
+              navigation={true}
+              freeMode={true}
+              keyboard={{
+                enabled: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 40,
+                },
+                // 768: {
+                //   slidesPerView: 3,
+                //   spaceBetween: 30,
+                // },
+              }}
+              modules={[Navigation, Keyboard]}
+            >
+              {freshStandard?.map((card, index) => (
+                <SwiperSlide key={index} className='flex justify-center'>
+                  <div
+                    key={card?.id}
+                    className='relative w-[22rem] overflow-hidden rounded-md border shadow-md'
+                  >
+                    {/* backround image */}
+                    <div className='absolute -left-28 top-10 h-full w-full'>
                       <Image
                         layout='fill'
                         objectFit='contain'
@@ -280,256 +436,106 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
                         className=' opacity-10 h-[15rem]'
                       />
                     </div>
-                  </div>
-                  {card?.type === 'premium' && (
-                    <div className='absolute top-0 right-0 rounded-bl-md bg-black px-2 py-0.5'>
-                      <div className=''>
-                        <Text className='bg-gradient-to-r from-amber-500 via-yellow-200 to-yellow-500 bg-clip-text text-base font-bold text-transparent'>
-                          Premium
-                        </Text>
+                    {card?.type === 'premium' && (
+                      <div className='absolute top-0 right-0 rounded-bl-md bg-black px-2 py-0.5'>
+                        <div className=''>
+                          <Text className='bg-gradient-to-r from-amber-500 via-yellow-200 to-yellow-500 bg-clip-text text-base font-bold text-transparent'>
+                            Premium
+                          </Text>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div className='flex flex-col items-center px-4 pt-4'>
-                    <div className='relative h-20 w-20'>
-                      <Image
-                        layout='fill'
-                        objectFit='contain'
-                        src={card?.logo}
-                        alt={card?.name}
-                      />
-                    </div>
-                    <Text className='pb-3 text-2xl font-bold break-all'>
-                      {card?.name}{' '}
-                    </Text>
-                  </div>
-                  <div className='bg-gray-100 p-4  '>
-                    <div className='text-center text-lg font-medium'>
-                      <Text>{`Season's`}</Text>
-                      <Text className='-mt-1'>Cash out Worth</Text>
-                      <Text className='text-2xl font-bold'>
-                        &#8358;{thousands(card?.worth)}
+                    )}
+                    <div className='flex flex-col items-center px-4 pt-4'>
+                      <div className='relative h-20 w-20'>
+                        <Image
+                          layout='fill'
+                          objectFit='contain'
+                          src={card?.logo}
+                          alt={card?.name}
+                        />
+                      </div>
+                      <Text className='pb-3 text-2xl font-bold break-all'>
+                        {card?.name}
                       </Text>
                     </div>
-                    {/* value | win | loss | reward */}
-                    <div className='flex justify-between'>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Value</Text>
-                        <Text className='-mt-2 text-xs'>(coins)</Text>
-                        <Text className='font-bold text-sm'>
-                          {thousands(card?.value)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Win</Text>
-                        <Text className='-mt-2 text-xs'>(coins/cash)</Text>
-                        <Text className='font-bold text-sm'>
-                          +{thousands(card?.winCoins)}/+
-                          {thousands(card?.winCash)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Loss</Text>
-                        <Text className='-mt-2 text-xs'>(coins)</Text>
-                        <Text className='font-bold text-sm'>
-                          -{thousands(card?.loss)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text className=''>Total Reward</Text>
-                        <Text className='-mt-2 text-xs'>(cash)</Text>
-
-                        <Text className='font-bold text-sm'>
+                    <div className='bg-gray-100 p-4  '>
+                      <div className='text-center text-lg font-medium'>
+                        <Text>{`Season's`}</Text>
+                        <Text className='-mt-1'>Cash out Worth</Text>
+                        <Text className='text-2xl font-bold'>
                           &#8358;{thousands(card?.worth)}
                         </Text>
                       </div>
-                    </div>
-                    {/* matches button */}
-                    <div className='flex flex-col'>
-                      <div className='flex items-center justify-center space-x-5 py-3'>
-                        {userDoc?.coins >= card?.price ? (
-                          <Button
-                            colorScheme='teal'
-                            onClick={async () => await handleBuyCard(card)}
-                            isLoading={submitLoading}
-                            loadingText='Buying Card...'
-                            spinnerPlacement='end'
-                          >
-                            Buy Card
-                          </Button>
-                        ) : (
-                          <Button
-                            colorScheme='messenger'
-                            onClick={() => router.push(`/wallet`)}
-                            textColor='black'
-                          >
-                            Get More Coins
-                          </Button>
-                        )}
-                        <Text className='rounded-lg bg-yellow-500 px-4 py-2 font-bold text-black'>
-                          {thousands(card?.price)} coins
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <Text className='bg-slate-600 py-3 text-center text-xs text-white'>
-                    {`This card is valid for ${card?.season} season`}
-                  </Text>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+                      {/* value | win | loss | reward */}
+                      <div className='flex justify-between'>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Value</Text>
+                          <Text className='-mt-2 text-xs'>(coins)</Text>
+                          <Text className='font-bold text-sm'>
+                            {thousands(card?.value)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Win</Text>
+                          <Text className='-mt-2 text-xs'>(coins/cash)</Text>
+                          <Text className='font-bold text-sm'>
+                            +{thousands(card?.winCoins)}/+
+                            {thousands(card?.winCash)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text>Loss</Text>
+                          <Text className='-mt-2 text-xs'>(coins)</Text>
+                          <Text className='font-bold text-sm'>
+                            -{thousands(card?.loss)}
+                          </Text>
+                        </div>
+                        <div className='flex flex-col items-center justify-center'>
+                          <Text className=''>Total Reward</Text>
+                          <Text className='-mt-2 text-xs'>(cash)</Text>
 
-        {/* standard section */}
-        <div className='text-left py-4 px'>
-          <Text className='text-3xl font-black bg-gradient-to-r from-blue-600  to-green-600 bg-clip-text text-transparent'>
-            Standard Cards
-          </Text>
-        </div>
-        {freshStandard && (
-          <Swiper
-            // navigation={true}
-            // className='mySwiper'
-            // loop={true}
-            // keyboard={{
-            //   enabled: true,
-            // }}
-            slidesPerView={1}
-            spaceBetween={10}
-            centeredSlides={true}
-            navigation={true}
-            freeMode={true}
-            keyboard={{
-              enabled: true,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-              },
-              // 768: {
-              //   slidesPerView: 3,
-              //   spaceBetween: 30,
-              // },
-            }}
-            modules={[Navigation, Keyboard]}
-          >
-            {freshStandard?.map((card, index) => (
-              <SwiperSlide key={index} className='flex justify-center'>
-                <div
-                  key={card?.id}
-                  className='relative w-[22rem] overflow-hidden rounded-md border shadow-md'
-                >
-                  {/* backround image */}
-                  <div className='absolute -left-28 top-10 h-full w-full'>
-                    <Image
-                      layout='fill'
-                      objectFit='contain'
-                      src={card?.logo}
-                      alt={card?.name}
-                      className=' opacity-10 h-[15rem]'
-                    />
-                  </div>
-                  {card?.type === 'premium' && (
-                    <div className='absolute top-0 right-0 rounded-bl-md bg-black px-2 py-0.5'>
-                      <div className=''>
-                        <Text className='bg-gradient-to-r from-amber-500 via-yellow-200 to-yellow-500 bg-clip-text text-base font-bold text-transparent'>
-                          Premium
-                        </Text>
+                          <Text className='font-bold text-sm'>
+                            &#8358;{thousands(card?.worth)}
+                          </Text>
+                        </div>
+                      </div>
+                      {/* matches button */}
+                      <div className='flex flex-col'>
+                        <div className='flex items-center justify-center space-x-5 py-3'>
+                          {userDoc?.coins >= card?.price ? (
+                            <Button
+                              colorScheme='teal'
+                              onClick={async () => await handleBuyCard(card)}
+                              isLoading={submitLoading}
+                              loadingText='Buying Card...'
+                              spinnerPlacement='end'
+                              textColor='black'
+                            >
+                              Buy Card
+                            </Button>
+                          ) : (
+                            <Button
+                              colorScheme='messenger'
+                              onClick={() => router.push(`/wallet`)}
+                              textColor='black'
+                            >
+                              Get More Coins
+                            </Button>
+                          )}
+                          <Text className='rounded-lg bg-yellow-500 px-4 py-2 font-bold text-black'>
+                            {thousands(card?.price)} coins
+                          </Text>
+                        </div>
                       </div>
                     </div>
-                  )}
-                  <div className='flex flex-col items-center px-4 pt-4'>
-                    <div className='relative h-20 w-20'>
-                      <Image
-                        layout='fill'
-                        objectFit='contain'
-                        src={card?.logo}
-                        alt={card?.name}
-                      />
-                    </div>
-                    <Text className='pb-3 text-2xl font-bold break-all'>
-                      {card?.name}
+                    <Text className='bg-slate-600 py-3 text-center text-xs text-white'>
+                      {`This card is valid for ${card?.season} season`}
                     </Text>
                   </div>
-                  <div className='bg-gray-100 p-4  '>
-                    <div className='text-center text-lg font-medium'>
-                      <Text>{`Season's`}</Text>
-                      <Text className='-mt-1'>Cash out Worth</Text>
-                      <Text className='text-2xl font-bold'>
-                        &#8358;{thousands(card?.worth)}
-                      </Text>
-                    </div>
-                    {/* value | win | loss | reward */}
-                    <div className='flex justify-between'>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Value</Text>
-                        <Text className='-mt-2 text-xs'>(coins)</Text>
-                        <Text className='font-bold text-sm'>
-                          {thousands(card?.value)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Win</Text>
-                        <Text className='-mt-2 text-xs'>(coins/cash)</Text>
-                        <Text className='font-bold text-sm'>
-                          +{thousands(card?.winCoins)}/+
-                          {thousands(card?.winCash)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text>Loss</Text>
-                        <Text className='-mt-2 text-xs'>(coins)</Text>
-                        <Text className='font-bold text-sm'>
-                          -{thousands(card?.loss)}
-                        </Text>
-                      </div>
-                      <div className='flex flex-col items-center justify-center'>
-                        <Text className=''>Total Reward</Text>
-                        <Text className='-mt-2 text-xs'>(cash)</Text>
-
-                        <Text className='font-bold text-sm'>
-                          &#8358;{thousands(card?.worth)}
-                        </Text>
-                      </div>
-                    </div>
-                    {/* matches button */}
-                    <div className='flex flex-col'>
-                      <div className='flex items-center justify-center space-x-5 py-3'>
-                        {userDoc?.coins >= card?.price ? (
-                          <Button
-                            colorScheme='teal'
-                            onClick={async () => await handleBuyCard(card)}
-                            isLoading={submitLoading}
-                            loadingText='Buying Card...'
-                            spinnerPlacement='end'
-                            textColor='black'
-                          >
-                            Buy Card
-                          </Button>
-                        ) : (
-                          <Button
-                            colorScheme='messenger'
-                            onClick={() => router.push(`/wallet`)}
-                            textColor='black'
-                          >
-                            Get More Coins
-                          </Button>
-                        )}
-                        <Text className='rounded-lg bg-yellow-500 px-4 py-2 font-bold text-black'>
-                          {thousands(card?.price)} coins
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <Text className='bg-slate-600 py-3 text-center text-xs text-white'>
-                    {`This card is valid for ${card?.season} season`}
-                  </Text>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         )}
         {freshStandard?.length == 0 && freshPremium?.length == 0 && (
           <TeamCardEmptyComponent />
