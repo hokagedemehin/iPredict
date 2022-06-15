@@ -238,7 +238,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
         </div>
         {/* premium section */}
 
-        {freshPremium && (
+        {freshPremium?.length > 0 && (
           <div>
             <div className='text-left py-4 px'>
               <Text className='text-3xl font-black bg-gradient-to-r from-orange-600 via-yellow-400 to-amber-600 bg-clip-text  text-transparent'>
@@ -386,7 +386,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
 
         {/* standard section */}
 
-        {freshStandard && (
+        {freshStandard?.length > 0 && (
           <div>
             <div className='text-left py-4 px'>
               <Text className='text-3xl font-black bg-gradient-to-r from-blue-600  to-green-600 bg-clip-text text-transparent'>
