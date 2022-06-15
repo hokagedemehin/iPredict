@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import {
   GiSoccerBall,
   GiCardPlay,
+  GiCardRandom,
   GiWallet,
   GiNewspaper,
   GiCartwheel,
@@ -111,6 +112,13 @@ const NavHeader = () => {
               <MenuItem
                 data-cy-name='Team Cards'
                 icon={<GiCardPlay />}
+                onClick={(e) => handleClick(e, '/teamcard/buy')}
+              >
+                Buy Cards
+              </MenuItem>
+              <MenuItem
+                data-cy-name='Team Cards'
+                icon={<GiCardRandom />}
                 onClick={(e) => handleClick(e, '/teamcard')}
               >
                 Team Cards
@@ -167,7 +175,7 @@ const NavHeader = () => {
           </Menu>
         </div>
         {/* desktop */}
-        <div className='hidden sm:flex w-full max-w-2xl'>
+        <div className='hidden sm:flex w-full max-w-2xl z-10'>
           <nav className='flex justify-around w-full items-center'>
             <Button
               data-cy-name='Home - large'
@@ -291,9 +299,17 @@ const NavHeader = () => {
                     <MenuItem
                       data-cy-name='Team Cards - large'
                       icon={<GiCardPlay />}
+                      onClick={(e) => handleClick(e, '/teamcard/buy')}
+                    >
+                      Buy Cards
+                    </MenuItem>
+
+                    <MenuItem
+                      data-cy-name='Team Cards - large'
+                      icon={<GiCardRandom />}
                       onClick={(e) => handleClick(e, '/teamcard')}
                     >
-                      Team Cards
+                      My Team Cards
                     </MenuItem>
                   </MenuList>
                 </>

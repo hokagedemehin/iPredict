@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import SendRewardToWallet from '../../../utils/wallet/sendRewardToWallet';
 
-const TenResponse = ({ figures, user, userDoc }) => {
+const TenResponse = ({ figures, userDoc, setUserDoc }) => {
   // const [greeting, setgreeting] = useState('');
   // const [caption, setcaption] = useState('');
   // const [money, setmoney] = useState('');
@@ -16,7 +16,6 @@ const TenResponse = ({ figures, user, userDoc }) => {
   };
   // const toast = useToast();
   const reward = +figures.price;
-  const uid = user?.uid;
   // const handlePayWallet = async () => {
 
   //   await SendRewardToWallet(reward, uid);
@@ -26,7 +25,8 @@ const TenResponse = ({ figures, user, userDoc }) => {
 
   useEffect(() => {
     if (figures.correctAnswers == 10) {
-      SendRewardToWallet(reward, uid, userDoc);
+      const type = 'Trivia Game Reward';
+      SendRewardToWallet(reward, userDoc, setUserDoc, type);
     }
   }, []);
 

@@ -56,6 +56,7 @@ function MyApp({ Component, pageProps }) {
               cardType: 'summary_large_image',
             }}
           />
+          {/* google analytics */}
           {/* <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
             strategy='afterInteractive'
@@ -69,6 +70,19 @@ function MyApp({ Component, pageProps }) {
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
         `}
           </Script>
+
+          {/* Google adsense */}
+          {/* <script
+            async
+            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4908548968774542'
+            crossorigin='anonymous'
+          ></script> */}
+          <Script
+            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4908548968774542'
+            crossorigin='anonymous'
+            strategy='afterInteractive'
+          />
+
           <Component {...pageProps} />
         </ChakraProvider>
       </UserProvider>
