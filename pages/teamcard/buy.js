@@ -531,7 +531,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
             ))}
           </Swiper>
         )}
-        {freshStandard?.length === 0 && freshPremium?.length === 0 && (
+        {freshStandard?.length == 0 && freshPremium?.length == 0 && (
           <TeamCardEmptyComponent />
         )}
       </div>
