@@ -226,8 +226,8 @@ const TeamCardsPage = ({ data }) => {
           </Heading>
         </div>
         <div className='flex flex-wrap justify-center gap-3'>
-          {sortMatches.length !== 0 &&
-            sortMatches.map((card) => (
+          {sortMatches?.length !== 0 &&
+            sortMatches?.map((card) => (
               <div
                 key={card?.id}
                 className='relative w-[25rem] h-fit overflow-hidden rounded-md border shadow-md'
@@ -498,7 +498,7 @@ const TeamCardsPage = ({ data }) => {
               </div>
             ))}
         </div>
-        {data.length === 0 && <TeamCardEmptyComponent />}
+        {sortMatches?.length === 0 && <TeamCardEmptyComponent />}
       </div>
     </Layout>
   );

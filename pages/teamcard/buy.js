@@ -13,6 +13,7 @@ import moment from 'moment';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import { useQuery } from 'react-query';
+import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
 const qs = require('qs');
 
 const BuyTeamCardsPage = ({ premium, standard }) => {
@@ -241,31 +242,31 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
             Premium Cards
           </Text>
         </div>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
-          centeredSlides={true}
-          navigation={true}
-          freeMode={true}
-          keyboard={{
-            enabled: true,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 40,
-            },
-            // 768: {
-            //   slidesPerView: 3,
-            //   spaceBetween: 30,
-            // },
-          }}
-          modules={[Navigation, Keyboard, FreeMode]}
-          className='mySwiper '
-          // loop={true}
-        >
-          {freshPremium &&
-            freshPremium?.map((card) => (
+        {freshPremium && (
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            centeredSlides={true}
+            navigation={true}
+            freeMode={true}
+            keyboard={{
+              enabled: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              // 768: {
+              //   slidesPerView: 3,
+              //   spaceBetween: 30,
+              // },
+            }}
+            modules={[Navigation, Keyboard, FreeMode]}
+            className='mySwiper '
+            // loop={true}
+          >
+            {freshPremium?.map((card) => (
               <SwiperSlide key={card?.id} className='flex justify-center'>
                 <div className='relative w-[22rem] overflow-hidden rounded-md border shadow-md'>
                   {/* backround image */}
@@ -377,42 +378,44 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
                 </div>
               </SwiperSlide>
             ))}
-        </Swiper>
+          </Swiper>
+        )}
+
         {/* standard section */}
         <div className='text-left py-4 px'>
           <Text className='text-3xl font-black bg-gradient-to-r from-blue-600  to-green-600 bg-clip-text text-transparent'>
             Standard Cards
           </Text>
         </div>
-        <Swiper
-          // navigation={true}
-          // className='mySwiper'
-          // loop={true}
-          // keyboard={{
-          //   enabled: true,
-          // }}
-          slidesPerView={1}
-          spaceBetween={10}
-          centeredSlides={true}
-          navigation={true}
-          freeMode={true}
-          keyboard={{
-            enabled: true,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 40,
-            },
-            // 768: {
-            //   slidesPerView: 3,
-            //   spaceBetween: 30,
-            // },
-          }}
-          modules={[Navigation, Keyboard]}
-        >
-          {freshStandard &&
-            freshStandard?.map((card, index) => (
+        {freshStandard && (
+          <Swiper
+            // navigation={true}
+            // className='mySwiper'
+            // loop={true}
+            // keyboard={{
+            //   enabled: true,
+            // }}
+            slidesPerView={1}
+            spaceBetween={10}
+            centeredSlides={true}
+            navigation={true}
+            freeMode={true}
+            keyboard={{
+              enabled: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              },
+              // 768: {
+              //   slidesPerView: 3,
+              //   spaceBetween: 30,
+              // },
+            }}
+            modules={[Navigation, Keyboard]}
+          >
+            {freshStandard?.map((card, index) => (
               <SwiperSlide key={index} className='flex justify-center'>
                 <div
                   key={card?.id}
@@ -526,7 +529,11 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
                 </div>
               </SwiperSlide>
             ))}
-        </Swiper>
+          </Swiper>
+        )}
+        {freshStandard?.length === 0 && freshPremium?.length === 0 && (
+          <TeamCardEmptyComponent />
+        )}
       </div>
     </Layout>
   );
