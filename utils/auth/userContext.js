@@ -12,7 +12,7 @@ export default function UserContextComp({ children }) {
   const [user, setUser] = useState(null);
   const [userDoc, setUserDoc] = useState(null);
 
-  console.log('userDoc :>> ', userDoc);
+  // console.log('userDoc :>> ', userDoc);
   // console.log('user :>> ', user);
   // const [allDocs, setAllDocs] = useState(null);
   // const [loadingUser, setLoadingUser] = useState(true);

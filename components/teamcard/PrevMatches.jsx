@@ -14,7 +14,7 @@ import moment from 'moment';
 import { BiCheck, BiLoader } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
 const PrevMatchesComp = ({ isOpen, onClose, card }) => {
-  console.log(card);
+  // console.log(card);
   const userMatches = card?.user_card_matches?.data;
 
   const sortedCard = userMatches?.sort((a, b) => {

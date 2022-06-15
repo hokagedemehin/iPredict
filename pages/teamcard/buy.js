@@ -133,7 +133,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
     //     coins: newCoins,
     //   },
     // });
-    console.log('card: ', card);
+    // console.log('card: ', card);
     try {
       // *check if the user alreay has the card*
       const queryUser = qs.stringify(
@@ -222,7 +222,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
         router.push('/teamcard');
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setSubmitLoading(false);
     }

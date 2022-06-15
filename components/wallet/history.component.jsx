@@ -21,7 +21,7 @@ const HistoryComponent = ({ user }) => {
     { enabled: !!user }
   );
   // console.log('data :>> ', data);
-  console.log('userHistory :>> ', userHistory);
+  // console.log('userHistory :>> ', userHistory);
 
   useEffect(() => {
     if (isSuccess) {
