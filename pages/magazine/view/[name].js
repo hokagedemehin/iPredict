@@ -18,21 +18,23 @@ const qs = require('qs');
 
 const AllMagazinePages = ({ data: allMags }) => {
   const router = useRouter();
-  const { user, userDoc } = useUser();
+  const { userDoc } = useUser();
   // console.log('router :>> ', router);
   // console.log('allMags :>> ', allMags);
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+  // ****************RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
 
-  useEffect(() => {
-    if (router?.components['/magazine'] === undefined) {
-      router.push('/magazine');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (router?.components['/magazine'] === undefined) {
+  //     router.push('/magazine');
+  //   }
+  // }, []);
+  // ****************RESTORE*************************
 
   const {
     data: subs,

@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Layout from '../../../components/layout/layout';
 import NavHeader from '../../../components/nav/header.component';
 import { useUser } from '../../../utils/auth/userContext';
 import UsersProfileEditComponent from '../../../components/profile/users.edit.component';
 
 const ProfileEditPage = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const { user, userDoc } = useUser();
   // console.log(user);
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+
+  // ****************RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // ****************RESTORE*************************
+
   return (
     <Layout name='profile' desc='I-Predict User Profile'>
       <NavHeader />
