@@ -1,5 +1,5 @@
 // import { Heading } from "@chakra-ui/react";
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 // import { useUser } from '../../utils/auth/userContext';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
@@ -13,7 +13,7 @@ const qs = require('qs');
 const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
   const [start, setStart] = useState([]);
   const [startQuiz, setStartQuiz] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
   // console.log('quizType', quizType);
   // console.log('quizzes :>> ', quizzes);
 
@@ -64,12 +64,18 @@ const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
       </div>
     );
   };
-
-  useEffect(() => {
-    if (router?.components['/triviagame'] === undefined) {
-      router.push('/triviagame');
-    }
-  }, []);
+  // **********RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // useEffect(() => {
+  //   if (router?.components['/triviagame'] === undefined) {
+  //     router.push('/triviagame');
+  //   }
+  // }, []);
+  // **********RESTORE*************************
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {

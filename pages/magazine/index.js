@@ -1,9 +1,9 @@
 import { Heading } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
-import { useRouter } from 'next/router';
-import { useUser } from '../../utils/auth/userContext';
+// import { useRouter } from 'next/router';
+// import { useUser } from '../../utils/auth/userContext';
 // import MagazineEmptyComponent from '../../components/emptypages/magazine.empty';
 import FeaturedMagazine from '../../components/magazine/FeaturedMagazine';
 import axios from 'axios';
@@ -13,15 +13,19 @@ const qs = require('qs');
 const MagazinePage = ({ featuredData, allMags }) => {
   // console.log('data :>> ', featuredData);
   // console.log('allMags :>> ', allMags);
-  const { user } = useUser();
-  const router = useRouter();
+
+  // **********RESTORE*************************
+  // const { user } = useUser();
+  // const router = useRouter();
   // console.log(allDocs);
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // **********RESTORE*************************
+
   return (
     <Layout name='magazine' desc='I-predict Magazine'>
       <NavHeader />

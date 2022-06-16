@@ -1,21 +1,23 @@
 import { Heading } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 import NewsHomeComponents from '../../components/news/newsHomeComponents';
-import { useUser } from '../../utils/auth/userContext';
+// import { useUser } from '../../utils/auth/userContext';
 
 const NewsAndTransfersPage = () => {
-  const router = useRouter();
-  const { user } = useUser();
+  // const router = useRouter();
+  // const { user } = useUser();
   // console.log(user);
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+  // ****************RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // ****************RESTORE*************************
 
   return (
     <Layout name='news' desc='I-Predict news and transfers'>

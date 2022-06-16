@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 // import { toast } from 'react-toastify';
 import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
@@ -20,12 +20,13 @@ import { NotAllowedIcon } from '@chakra-ui/icons';
 import PrevMatchesComp from '../../components/teamcard/PrevMatches';
 import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import SendRewardToWallet from '../../utils/wallet/sendRewardToWallet';
+import SetUserHistory from '../../utils/wallet/setUserHistory';
 const qs = require('qs');
 
 const TeamCardsPage = ({ data }) => {
   const toast = useToast();
   const router = useRouter();
-  const { user, userDoc, setUserDoc } = useUser();
+  const { userDoc, setUserDoc } = useUser();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [previousMatches, setPreviousMatches] = useState({});
@@ -36,11 +37,13 @@ const TeamCardsPage = ({ data }) => {
     setPreviousMatches(card);
   };
   // console.log(data);
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+  // **********RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // **********RESTORE*************************
 
   const thousands = (num) => {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -188,6 +191,25 @@ const TeamCardsPage = ({ data }) => {
         },
       }
     );
+
+    // write new history
+
+    const newData = {
+      coins: coins,
+      money: 0,
+      activity: '',
+      type: 'Fund User Card',
+    };
+    await SetUserHistory(newData, userDoc);
+    // show success modal
+    toast({
+      title: 'Card Funded',
+      description: 'You have successfully funded this card',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+      position: 'top-right',
+    });
   };
 
   const handleSendReward = async (reward, id) => {

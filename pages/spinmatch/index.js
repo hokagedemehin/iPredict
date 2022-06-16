@@ -1,20 +1,24 @@
 import { Heading } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+// import { useRouter } from 'next/router';
+import React from 'react';
 import SpinMatchEmptyComponent from '../../components/emptypages/spinmatch.empty';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
-import { useUser } from '../../utils/auth/userContext';
+// import { useUser } from '../../utils/auth/userContext';
 
 const SpinMatchVirtualPage = () => {
-  const router = useRouter();
-  const { user } = useUser();
+  // const router = useRouter();
+  // const { user } = useUser();
   // console.log(user);
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+
+  // ****************RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // ****************RESTORE*************************
+
   return (
     <Layout name='spin' desc='I-Predict spin Match'>
       <NavHeader />

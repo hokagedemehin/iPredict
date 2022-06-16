@@ -1,6 +1,6 @@
 import { Button, Heading, Image, Text, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import { useUser } from '../../utils/auth/userContext';
@@ -19,7 +19,7 @@ const qs = require('qs');
 const BuyTeamCardsPage = ({ premium, standard }) => {
   const router = useRouter();
   const toast = useToast();
-  const { user, userDoc, setUserDoc } = useUser();
+  const { userDoc, setUserDoc } = useUser();
   const [submitLoading, setSubmitLoading] = useState(false);
 
   const { data: freshPremium } = useQuery(
@@ -111,11 +111,14 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
 
   // console.log(userDoc);
   // console.log('data: ', data);
-  useEffect(() => {
-    if (!user) {
-      router.push('/login');
-    }
-  }, [user]);
+
+  // **********RESTORE*************************
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/login');
+  //   }
+  // }, [user]);
+  // **********RESTORE*************************
 
   const thousands = (num) => {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
