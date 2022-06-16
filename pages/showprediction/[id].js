@@ -18,11 +18,11 @@ const ShowUserPredictions = ({ data }) => {
   // console.log('userMatches :>> ', userMatches);
 
   // **********RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // **********RESTORE*************************
   useEffect(() => {
     if (userMatches.length == 0) {

@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 // import { toast } from 'react-toastify';
 import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
@@ -26,7 +26,7 @@ const qs = require('qs');
 const TeamCardsPage = ({ data }) => {
   const toast = useToast();
   const router = useRouter();
-  const { userDoc, setUserDoc } = useUser();
+  const { userDoc, setUserDoc, user } = useUser();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
   const [previousMatches, setPreviousMatches] = useState({});
@@ -38,11 +38,11 @@ const TeamCardsPage = ({ data }) => {
   };
   // console.log(data);
   // **********RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // **********RESTORE*************************
 
   const thousands = (num) => {
@@ -158,6 +158,13 @@ const TeamCardsPage = ({ data }) => {
         isClosable: true,
         position: 'top-right',
       });
+      const newData = {
+        coins: 0,
+        money: 0,
+        activity: card?.name,
+        type: 'Play Match User Card',
+      };
+      await SetUserHistory(userDoc, newData);
     } else if (now >= new Date(opponentCard?.attributes?.matchDate).getTime()) {
       toast({
         title: 'Match kick off',
@@ -179,15 +186,15 @@ const TeamCardsPage = ({ data }) => {
     }
   };
 
-  const handleFundCard = async (id, coins, value) => {
+  const handleFundCard = async (card, coins) => {
     // deduct coins from wallet
     DeductCoinsFromWallet(coins, userDoc, setUserDoc);
     // update user card currentValue to card value
     await axios.put(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user-cards/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user-cards/${card?.id}`,
       {
         data: {
-          currentValue: value,
+          currentValue: card?.value,
         },
       }
     );
@@ -197,7 +204,7 @@ const TeamCardsPage = ({ data }) => {
     const newData = {
       coins: coins,
       money: 0,
-      activity: '',
+      activity: card?.name,
       type: 'Fund User Card',
     };
     await SetUserHistory(newData, userDoc);
@@ -353,9 +360,8 @@ const TeamCardsPage = ({ data }) => {
                           variant='solid'
                           onClick={() =>
                             handleFundCard(
-                              card?.id,
-                              card?.value - card?.currentValue,
-                              card?.value
+                              card,
+                              card?.value - card?.currentValue
                             )
                           }
                         >
@@ -453,9 +459,8 @@ const TeamCardsPage = ({ data }) => {
                               variant='solid'
                               onClick={() =>
                                 handleFundCard(
-                                  card?.id,
-                                  card?.value - card?.currentValue,
-                                  card?.value
+                                  card,
+                                  card?.value - card?.currentValue
                                 )
                               }
                             >

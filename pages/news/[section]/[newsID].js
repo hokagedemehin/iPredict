@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import DatabaseFeedDetailsComponent from '../../../components/news/databaseData/databasedetails.component';
 import { useQuery } from 'react-query';
 import GetNewsDetail from '../../../utils/news/getNewsDetail';
+import { useUser } from '../../../utils/auth/userContext';
 // import { useUser } from '../../../utils/auth/userContext';
 
 const NewsAndTransfersDetailsPage = () => {
@@ -14,14 +15,14 @@ const NewsAndTransfersDetailsPage = () => {
 
   const [details, setDetails] = useState([]);
 
-  // const { user } = useUser();
+  const { user } = useUser();
 
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // ****************RESTORE*************************
 
   // get the details of the news clicked on

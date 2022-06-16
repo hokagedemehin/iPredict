@@ -1,12 +1,14 @@
 import { Heading, Skeleton } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 // import axios from 'axios';
 // import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import BannerPredictAndWin from '../../components/predictandwin/banner.component';
 import NewPredictAndWinComponent from '../../components/predictandwin/new.predictandwin.component';
+import { useUser } from '../../utils/auth/userContext';
 // import New1PredictAndWinComponent from '../../components/predictandwin/new1.predictandwin.component';
 // import PredictAndWinComponent from '../../components/predictandwin/predictandwin.component';
 // import { useUser } from '../../utils/auth/userContext';
@@ -14,8 +16,8 @@ import GetPredictMatches from '../../utils/prediction/getPredictMatches';
 // const qs = require('qs');
 
 const PredictAndWinPage = () => {
-  // const { user } = useUser();
-  // const router = useRouter();
+  const { user } = useUser();
+  const router = useRouter();
 
   const { data, isLoading, isSuccess } = useQuery(
     ['predictionmatches'],
@@ -25,11 +27,11 @@ const PredictAndWinPage = () => {
   // console.log('data :>> ', data);
 
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // ****************RESTORE*************************
 
   return (

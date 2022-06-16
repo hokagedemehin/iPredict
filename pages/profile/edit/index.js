@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import { useRouter } from 'next/router';
 import Layout from '../../../components/layout/layout';
 import NavHeader from '../../../components/nav/header.component';
 import { useUser } from '../../../utils/auth/userContext';
 import UsersProfileEditComponent from '../../../components/profile/users.edit.component';
+import { useRouter } from 'next/router';
 
 const ProfileEditPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const { user, userDoc } = useUser();
   // console.log(user);
 
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // ****************RESTORE*************************
 
   return (

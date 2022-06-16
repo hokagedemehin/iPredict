@@ -1,21 +1,23 @@
 import { Heading } from '@chakra-ui/react';
 // import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { useUser } from '../../utils/auth/userContext';
 import NavHeader from '../../components/nav/header.component';
 import Layout from '../../components/layout/layout';
 import TriviaAttemptsPageComponent from '../../components/triviagame/attempts/trivia.attempts.component';
+import { useRouter } from 'next/router';
+import { useUser } from '../../utils/auth/userContext';
 
 const TriviaGamesPage = () => {
-  // const router = useRouter();
-  // const { user } = useUser();
+  const router = useRouter();
+  const { user } = useUser();
   // console.log(user);
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // ****************RESTORE*************************
   return (
     <Layout name='trivia-attempts' desc='I-Predict Trivia Attempts'>

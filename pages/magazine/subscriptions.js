@@ -1,6 +1,6 @@
 import { Heading, Text, useToast } from '@chakra-ui/react';
 // import React, { useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import { useRouter } from 'next/router';
@@ -11,23 +11,23 @@ const qs = require('qs');
 import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 const MagazinePage = () => {
-  const { userDoc, setUserDoc } = useUser();
+  const { user, userDoc, setUserDoc } = useUser();
   // const { user, userDoc, setUserDoc } = useUser();
   const toast = useToast();
   const router = useRouter();
 
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
 
-  // useEffect(() => {
-  //   if (router?.components['/magazine'] === undefined) {
-  //     router.push('/magazine');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (router?.components['/magazine'] === undefined) {
+      router.push('/magazine');
+    }
+  }, []);
   // ****************RESTORE*************************
 
   const handleSubmit = async (sub, coins) => {
