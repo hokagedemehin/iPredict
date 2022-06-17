@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 // import { useRouter } from 'next/router';
@@ -8,6 +8,8 @@ import NavHeader from '../../components/nav/header.component';
 import FeaturedMagazine from '../../components/magazine/FeaturedMagazine';
 import axios from 'axios';
 import AllMagazines from '../../components/magazine/AllMagazines';
+import { useUser } from '../../utils/auth/userContext';
+import { useRouter } from 'next/router';
 const qs = require('qs');
 
 const MagazinePage = ({ featuredData, allMags }) => {
@@ -15,15 +17,15 @@ const MagazinePage = ({ featuredData, allMags }) => {
   // console.log('allMags :>> ', allMags);
 
   // **********RESTORE*************************
-  // const { user } = useUser();
-  // const router = useRouter();
+  const { user } = useUser();
+  const router = useRouter();
   // console.log(allDocs);
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // **********RESTORE*************************
 
   return (

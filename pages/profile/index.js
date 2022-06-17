@@ -1,6 +1,7 @@
 // import { Heading } from '@chakra-ui/react';
 // import { useRouter } from 'next/router';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 // import NoUserEmptyComponent from '../../components/emptypages/nouser.empty';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
@@ -9,15 +10,15 @@ import { useUser } from '../../utils/auth/userContext';
 // import NavHeader from "../../components/nav/header.component original";
 
 const UserProfilePage = () => {
-  // const router = useRouter();
-  const { userDoc } = useUser();
+  const router = useRouter();
+  const { userDoc, user } = useUser();
   // console.log(user);
   // ****************RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   // ****************RESTORE*************************
   return (
     <Layout name='profile' desc='I-Predict User Profile'>

@@ -8,12 +8,15 @@ import Layout from '../../../components/layout/layout';
 // import GetUserQuestionsFromFirebase from '../../../utils/trivia/getQuestions';
 import TriviaQuizComponent from '../../../components/triviagame/triviaquestions.component';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useUser } from '../../../utils/auth/userContext';
 const qs = require('qs');
 
 const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
   const [start, setStart] = useState([]);
   const [startQuiz, setStartQuiz] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
+  const { user } = useUser();
   // console.log('quizType', quizType);
   // console.log('quizzes :>> ', quizzes);
 
@@ -65,16 +68,16 @@ const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
     );
   };
   // **********RESTORE*************************
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push('/login');
-  //   }
-  // }, [user]);
-  // useEffect(() => {
-  //   if (router?.components['/triviagame'] === undefined) {
-  //     router.push('/triviagame');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
+  useEffect(() => {
+    if (router?.components['/triviagame'] === undefined) {
+      router.push('/triviagame');
+    }
+  }, []);
   // **********RESTORE*************************
 
   function shuffle(array) {
