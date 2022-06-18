@@ -20,7 +20,7 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
     // Implementation for whatever you want to do with reference and after success call.
     // console.log('refrence', reference);
     if (reference.status == 'success') {
-      await UpdateUserWallet(data.coins, user?.uid, userDoc, setUserDoc);
+      await UpdateUserWallet(data?.coins, user?.uid, userDoc, setUserDoc);
     }
   };
 
@@ -35,6 +35,10 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
   const handleClick = (e) => {
     e.preventDefault();
     initializePayment(onSuccess, onClose);
+  };
+
+  const thousands = (num) => {
+    return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   return (
@@ -52,26 +56,40 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
           fallbackSrc='https://via.placeholder.com/30?text=user'
         />
         <Text className='text-white sm:text-xl font-semibold'>
-          {data.coins} Coins
+          {thousands(data?.coins)} Coins
         </Text>
         <div className='px-6 py-1 ring-1 bg-white font-bold rounded-lg sm:text-xl text-center flex flex-col - '>
-          &#x20A6;{data.amount}
-          {data.discount !== '0' && (
-            <s className='text-xs sm:text-sm -mt-2'>&#x20A6;{data.discount}</s>
+          &#x20A6;{thousands(data?.amount)}
+          {data?.discount !== '0' && (
+            <s className='text-xs sm:text-sm -mt-2'>
+              &#x20A6;{thousands(data?.discount)}
+            </s>
           )}
         </div>
         <div className='px-6 py-1 mt-4 text-white font-bold ring-1 ring-white rounded-lg'>
           Buy
         </div>
         <div className='absolute  top-0 right-0 mr-1 mt-1 '>
-          <Image
-            src={`wallet/${data.badge}`}
-            borderRadius='md'
-            boxSize='27px'
-            objectFit='cover'
-            alt='No search result'
-            fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
-          />
+          {data?.badge == 'discount' && (
+            <Image
+              src={`wallet/discount1.png`}
+              borderRadius='md'
+              boxSize='27px'
+              objectFit='cover'
+              alt='No search result'
+              fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
+            />
+          )}
+          {data?.badge == 'special' && (
+            <Image
+              src={`wallet/special1.png`}
+              borderRadius='md'
+              boxSize='27px'
+              objectFit='cover'
+              alt='No search result'
+              fallbackSrc='https://via.placeholder.com/250?text=I-Predict'
+            />
+          )}
         </div>
       </div>
     </div>
