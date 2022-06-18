@@ -35,30 +35,50 @@ import { AiOutlineBank, AiOutlineUser } from 'react-icons/ai';
 import { MdAccountBalanceWallet, MdPhoneIphone } from 'react-icons/md';
 import withdrawalrequest from '../../utils/wallet/withdrawalrequest';
 
-const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
+const WalletHomePage = ({ userDoc, user, setUserDoc, freshCoins }) => {
   const toast = useToast();
   // const [userData, setUserData] = useState([]);
   // console.log('userData', userData);
-  const walletData = [
-    { id: 1, coins: 10, amount: 50, discount: '0', badge: 'discount1.png' },
-    { id: 2, coins: 25, amount: 100, discount: '125', badge: 'discount1.png' },
-    { id: 3, coins: 60, amount: 200, discount: '300', badge: 'discount1.png' },
-    { id: 4, coins: 150, amount: 500, discount: '750', badge: 'discount1.png' },
-    {
-      id: 5,
-      coins: 350,
-      amount: 1000,
-      discount: '1750',
-      badge: 'discount1.png',
-    },
-    {
-      id: 6,
-      coins: 1800,
-      amount: 5000,
-      discount: '9000',
-      badge: 'special1.png',
-    },
-  ];
+  // const walletData = [
+  //   { id: 1, coins: 20, amount: 100, discount: '90', badge: 'discount1.png' },
+  //   { id: 2, coins: 100, amount: 500, discount: '450', badge: 'discount1.png' },
+  //   { id: 3, coins: 150, amount: 750, discount: '675', badge: 'discount1.png' },
+  //   {
+  //     id: 4,
+  //     coins: 300,
+  //     amount: 1500,
+  //     discount: '1350',
+  //     badge: 'discount1.png',
+  //   },
+  //   {
+  //     id: 5,
+  //     coins: 500,
+  //     amount: 2500,
+  //     discount: '2250',
+  //     badge: 'discount1.png',
+  //   },
+  //   {
+  //     id: 6,
+  //     coins: 1000,
+  //     amount: 5000,
+  //     discount: '4500',
+  //     badge: 'discount1.png',
+  //   },
+  //   {
+  //     id: 7,
+  //     coins: 1000,
+  //     amount: 5000,
+  //     discount: '4500',
+  //     badge: 'discount1.png',
+  //   },
+  //   {
+  //     id: 6,
+  //     coins: 1800,
+  //     amount: 5000,
+  //     discount: '9000',
+  //     badge: 'special1.png',
+  //   },
+  // ];
 
   const [userInfo, setUserInfo] = useState([]);
 
@@ -72,6 +92,10 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
       setUserInfo(data);
     }
   }, [isSuccess, dataUpdatedAt]);
+
+  const thousands = (num) => {
+    return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
   // ********************************************************
   // withdraw Logic
@@ -145,7 +169,7 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
                   {isLoading ? (
                     <Skeleton>coins</Skeleton>
                   ) : isSuccess && userInfo.length !== 0 ? (
-                    userInfo?.coins
+                    thousands(userInfo?.coins)
                   ) : (
                     0
                   )}
@@ -166,7 +190,7 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
                   {isLoading ? (
                     <Skeleton>money</Skeleton>
                   ) : isSuccess && userInfo.length !== 0 ? (
-                    userInfo?.money
+                    thousands(userInfo?.money)
                   ) : (
                     0
                   )}
@@ -198,7 +222,7 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
                     {isLoading ? (
                       <Skeleton>money</Skeleton>
                     ) : isSuccess && userInfo.length !== 0 ? (
-                      userInfo?.request
+                      thousands(userInfo?.request)
                     ) : (
                       0
                     )}
@@ -227,15 +251,16 @@ const WalletHomePage = ({ userDoc, user, setUserDoc }) => {
             <TabPanels>
               <TabPanel>
                 <div className='flex flex-wrap gap-4 justify-center items-center'>
-                  {walletData.map((data, index) => (
-                    <CoinsComponentPayStack
-                      key={index}
-                      data={data}
-                      userDoc={userDoc}
-                      user={user}
-                      setUserDoc={setUserDoc}
-                    />
-                  ))}
+                  {freshCoins &&
+                    freshCoins.map((data, index) => (
+                      <CoinsComponentPayStack
+                        key={index}
+                        data={data}
+                        userDoc={userDoc}
+                        user={user}
+                        setUserDoc={setUserDoc}
+                      />
+                    ))}
                 </div>
               </TabPanel>
               <TabPanel>
