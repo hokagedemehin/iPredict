@@ -13,7 +13,8 @@ import moment from 'moment';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import { useQuery } from 'react-query';
-import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
+// import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
+import NoBuyTeamCardEmptyComponent from '../../components/emptypages/nobuyteamcard.empty';
 const qs = require('qs');
 
 const BuyTeamCardsPage = ({ premium, standard }) => {
@@ -327,10 +328,9 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
                         </div>
                         <div className='flex flex-col items-center justify-center'>
                           <Text>Win</Text>
-                          <Text className='-mt-2 text-xs'>(coins/cash)</Text>
+                          <Text className='-mt-2 text-xs'>(cash)</Text>
                           <Text className='font-bold text-sm'>
-                            +{thousands(card?.winCoins)}/+
-                            {thousands(card?.winCash)}
+                            +{thousands(card?.winCash)}
                           </Text>
                         </div>
                         <div className='flex flex-col items-center justify-center'>
@@ -480,10 +480,9 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
                         </div>
                         <div className='flex flex-col items-center justify-center'>
                           <Text>Win</Text>
-                          <Text className='-mt-2 text-xs'>(coins/cash)</Text>
+                          <Text className='-mt-2 text-xs'>(cash)</Text>
                           <Text className='font-bold text-sm'>
-                            +{thousands(card?.winCoins)}/+
-                            {thousands(card?.winCash)}
+                            +{thousands(card?.winCash)}
                           </Text>
                         </div>
                         <div className='flex flex-col items-center justify-center'>
@@ -541,7 +540,7 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
           </div>
         )}
         {freshStandard?.length == 0 && freshPremium?.length == 0 && (
-          <TeamCardEmptyComponent />
+          <NoBuyTeamCardEmptyComponent />
         )}
       </div>
     </Layout>

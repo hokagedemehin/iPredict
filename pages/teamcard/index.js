@@ -4,6 +4,7 @@ import {
   Text,
   useDisclosure,
   useToast,
+  // Image: chakra_image,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import Image from 'next/image';
@@ -11,7 +12,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 // import { toast } from 'react-toastify';
-import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
+// import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import { useUser } from '../../utils/auth/userContext';
@@ -21,6 +22,7 @@ import PrevMatchesComp from '../../components/teamcard/PrevMatches';
 import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import SendRewardToWallet from '../../utils/wallet/sendRewardToWallet';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
+import NoTeamCardEmptyComponent from '../../components/emptypages/noteamcard.empty';
 const qs = require('qs');
 
 const TeamCardsPage = ({ data }) => {
@@ -36,6 +38,7 @@ const TeamCardsPage = ({ data }) => {
     onOpen();
     setPreviousMatches(card);
   };
+  const [disabled, setDisabled] = useState(false);
   // console.log(data);
   // **********RESTORE*************************
   // useEffect(() => {
@@ -181,6 +184,7 @@ const TeamCardsPage = ({ data }) => {
 
   const handleFundCard = async (id, coins, value) => {
     // deduct coins from wallet
+    setDisabled(true);
     DeductCoinsFromWallet(coins, userDoc, setUserDoc);
     // update user card currentValue to card value
     await axios.put(
@@ -210,6 +214,7 @@ const TeamCardsPage = ({ data }) => {
       isClosable: true,
       position: 'top-right',
     });
+    router.reload();
   };
 
   const handleSendReward = async (reward, id) => {
@@ -244,7 +249,7 @@ const TeamCardsPage = ({ data }) => {
         <div className='text text-center my-5'>
           {/* <Heading>Team Cards</Heading> */}
           <Heading className='font-black bg-gradient-to-r from-purple-600  to-rose-500 bg-clip-text text-transparent'>
-            Rep your Team
+            My Team Cards
           </Heading>
         </div>
         <div className='flex flex-wrap justify-center gap-3'>
@@ -351,6 +356,7 @@ const TeamCardsPage = ({ data }) => {
                         <Button
                           colorScheme='telegram'
                           variant='solid'
+                          isDisabled={disabled}
                           onClick={() =>
                             handleFundCard(
                               card?.id,
@@ -409,11 +415,11 @@ const TeamCardsPage = ({ data }) => {
                   </div>
                 )}
 
-                <div className='bg-gray-100 p-4  '>
+                <div className='bg-gray-100  '>
                   {/* value | win | loss | reward */}
-                  <div className='flex justify-between'>
+                  <div className='flex justify-between text-white bg-blue-600 px-4 py-2'>
                     <div className='flex flex-col items-center justify-center'>
-                      <Text>Value</Text>
+                      <Text className=''>Value</Text>
                       <Text className='-mt-2 text-xs'>(coins)</Text>
                       <Text className='font-bold text-sm'>
                         {thousands(card?.currentValue)}
@@ -421,10 +427,9 @@ const TeamCardsPage = ({ data }) => {
                     </div>
                     <div className='flex flex-col items-center justify-center'>
                       <Text>Win</Text>
-                      <Text className='-mt-2 text-xs'>(coins/cash)</Text>
+                      <Text className='-mt-2 text-xs'>(cash)</Text>
                       <Text className='font-bold text-sm'>
-                        +{thousands(card?.winCoins)}/+
-                        {thousands(card?.winCash)}
+                        +{thousands(card?.winCash)}
                       </Text>
                     </div>
                     <div className='flex flex-col items-center justify-center'>
@@ -443,7 +448,7 @@ const TeamCardsPage = ({ data }) => {
                     </div>
                   </div>
                   {/* matches button */}
-                  <div className='flex flex-col py-3 space-y-2'>
+                  <div className='flex flex-col py-3 space-y-2 px-4 '>
                     <div className='flex flex-col space-y-2'>
                       <div className='flex items-center justify-center space-x-5 '>
                         {userDoc?.coins >= card?.value - card?.currentValue &&
@@ -451,6 +456,7 @@ const TeamCardsPage = ({ data }) => {
                             <Button
                               colorScheme='telegram'
                               variant='solid'
+                              isDisabled={disabled}
                               onClick={() =>
                                 handleFundCard(
                                   card?.id,
@@ -520,7 +526,7 @@ const TeamCardsPage = ({ data }) => {
               </div>
             ))}
         </div>
-        {sortMatches?.length === 0 && <TeamCardEmptyComponent />}
+        {sortMatches?.length === 0 && <NoTeamCardEmptyComponent />}
       </div>
     </Layout>
   );
