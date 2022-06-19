@@ -27,8 +27,13 @@ import DeductCoinsFromWallet from '../../utils/wallet/deductCoinsFromWallet';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 import { useRouter } from 'next/router';
 
-const NewPredictAndWinComponent = ({ newMatches }) => {
+const NewPredictAndWinComponent = ({
+  newMatches,
+  coins: predictionCoins,
+  dataUpdatedAt,
+}) => {
   const router = useRouter();
+  // console.log('predictionCoins :>> ', predictionCoins);
   // const [matchSelect, setMatchSelect] = useState([]);
   // const [formValue, setFormValue] = useState([]);
   const [matches, setmatches] = useState([]);
@@ -53,7 +58,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
         setmatches((prev) => [...prev, newObj]);
       });
     }
-  }, [newMatches]);
+  }, [newMatches, dataUpdatedAt]);
 
   // console.log('newMatches', newMatches);
   // console.log('newData :>> ', newData);
@@ -71,7 +76,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
     // const checkVal = Object.keys(formValue).length / matchSelect.length;
     const checkVal = matches.length == userPrediction.length;
     e.preventDefault();
-    if (userDoc?.coins < 20) {
+    if (userDoc?.coins < predictionCoins) {
       toast.error('💰 Insufficient coins balance');
     } else if (!checkVal) {
       toast.error('❌ All predictions are required');
@@ -87,14 +92,14 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
       toast.error('❌ All predictions are required');
     } else if (matchTime <= rightNow) {
       toast.error('🚧 Prediction is closed');
-    } else if (userDoc?.coins < 20) {
+    } else if (userDoc?.coins < predictionCoins) {
       toast.error('💰 Insufficient coins balance');
     } else {
       try {
         setIsLoading(true);
-        await DeductCoinsFromWallet(20, userDoc, setUserDoc);
+        await DeductCoinsFromWallet(predictionCoins, userDoc, setUserDoc);
         const newData = {
-          coins: 20,
+          coins: predictionCoins,
           money: 0,
           activity: '',
           type: 'Match Prediction',
@@ -184,7 +189,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               Prediction Closed
             </Button>
           </div>
-        ) : userDoc?.coins >= 20 ? (
+        ) : userDoc?.coins >= predictionCoins ? (
           <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
@@ -200,7 +205,7 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               loadingText='Loading'
               spinnerPlacement='end'
             >
-              Submit Prediction (20 coins)
+              Submit Prediction ({predictionCoins} coins)
             </Button>
           </div>
         ) : (
@@ -228,8 +233,8 @@ const NewPredictAndWinComponent = ({ newMatches }) => {
               Submit Predictions
             </AlertDialogHeader>
             <AlertDialogBody>
-              20 coins will be deducted from your wallet, do you want to
-              proceed?
+              {predictionCoins} coins will be deducted from your wallet, do you
+              want to proceed?
             </AlertDialogBody>
             <AlertDialogFooter>
               <Button
