@@ -11,7 +11,7 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
   const config = {
     reference: new Date().getTime().toString(),
     email: userDoc?.email,
-    amount: data.amount * 100,
+    amount: data?.discount * 100,
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
   };
 
@@ -59,10 +59,10 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
           {thousands(data?.coins)} Coins
         </Text>
         <div className='px-6 py-1 ring-1 bg-white font-bold rounded-lg sm:text-xl text-center flex flex-col - '>
-          &#x20A6;{thousands(data?.amount)}
+          &#x20A6;{thousands(data?.discount)}
           {data?.discount !== '0' && (
             <s className='text-xs sm:text-sm -mt-2'>
-              &#x20A6;{thousands(data?.discount)}
+              &#x20A6;{thousands(data?.amount)}
             </s>
           )}
         </div>
