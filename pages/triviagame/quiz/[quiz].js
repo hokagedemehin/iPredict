@@ -1,5 +1,5 @@
 // import { Heading } from "@chakra-ui/react";
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 // import { useUser } from '../../utils/auth/userContext';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
@@ -8,12 +8,15 @@ import Layout from '../../../components/layout/layout';
 // import GetUserQuestionsFromFirebase from '../../../utils/trivia/getQuestions';
 import TriviaQuizComponent from '../../../components/triviagame/triviaquestions.component';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useUser } from '../../../utils/auth/userContext';
 const qs = require('qs');
 
 const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
   const [start, setStart] = useState([]);
   const [startQuiz, setStartQuiz] = useState(false);
   const router = useRouter();
+  const { user } = useUser();
   // console.log('quizType', quizType);
   // console.log('quizzes :>> ', quizzes);
 
@@ -64,12 +67,18 @@ const TriviaGamesPageQuiz = ({ quizType, quizzes }) => {
       </div>
     );
   };
-
+  // **********RESTORE*************************
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
   useEffect(() => {
     if (router?.components['/triviagame'] === undefined) {
       router.push('/triviagame');
     }
   }, []);
+  // **********RESTORE*************************
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -178,5 +187,6 @@ export async function getStaticProps({ params }) {
       quizType: quizType?.data,
       quizzes: quizzes?.data,
     },
+    revalidate: 5,
   };
 }

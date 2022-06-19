@@ -16,6 +16,14 @@ const ShowUserPredictions = ({ data }) => {
   const [userMatches, setUserMatches] = useState([]);
   // const [finalSet, setFinalSet] = useState([]);
   // console.log('userMatches :>> ', userMatches);
+
+  // **********RESTORE*************************
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user]);
+  // **********RESTORE*************************
   useEffect(() => {
     if (userMatches.length == 0) {
       const userMatch = data.filter(

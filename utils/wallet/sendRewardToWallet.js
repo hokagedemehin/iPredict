@@ -4,7 +4,7 @@ import SetUserHistory from './setUserHistory';
 const qs = require('qs');
 import axios from 'axios';
 
-const SendRewardToWallet = async (money, uid, userDoc) => {
+const SendRewardToWallet = async (money, userDoc, setUserDoc, type) => {
   // const userRef = doc(db, 'Users', uid);
   // const userMoneyData = await getDoc(userRef);
   // const userMoney = userMoneyData.data().money;
@@ -53,10 +53,11 @@ const SendRewardToWallet = async (money, uid, userDoc) => {
     coins: 0,
     money: money,
     activity: '',
-    type: 'Trivia Game Reward',
+    type: type,
   };
 
   await SetUserHistory(userDoc, newData);
+  setUserDoc({ ...userDoc, money: newMoney });
 };
 
 export default SendRewardToWallet;

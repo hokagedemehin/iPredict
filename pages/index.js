@@ -14,6 +14,8 @@ import { useUser } from '../utils/auth/userContext';
 const qs = require('qs');
 
 import axios from 'axios';
+import { useEffect } from 'react';
+import TawkTo from 'tawkto-react';
 
 // import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
@@ -23,6 +25,13 @@ export default function Home({ campaign }) {
   //   disableReactDevTools();
   // }
   // const [freeClaimShow, setFreeClaimShow] = useState(userDoc.freeClaim);
+
+  useEffect(() => {
+    new TawkTo(
+      process.env.NEXT_PUBLIC_PROPERTY_ID,
+      process.env.NEXT_PUBLIC_TAWK_ID
+    );
+  }, []);
 
   return (
     <Layout name='home' desc='Predict and win always'>

@@ -22,7 +22,7 @@ import AddResponseToFirestore1 from '../../utils/trivia/addResponseToFirestore1'
 
 const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
   const router = useRouter();
-  const { userDoc, user } = useUser();
+  const { userDoc, setUserDoc } = useUser();
   // const timer = timer
   const newArr = [];
   // const figures = { correctAnswers: 0, wrongAnswers: 0, noOfQuestions: ques };
@@ -239,7 +239,7 @@ const TriviaQuizComponent = ({ data, ques, timer, price, type }) => {
           timeUp={timeUp}
           finalResult={finalResult}
           userDoc={userDoc}
-          user={user}
+          setUserDoc={setUserDoc}
         />
       )}
     </div>

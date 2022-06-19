@@ -56,6 +56,7 @@
     "react-paystack": "^3.0.5",
     "react-spinners": "^0.11.0",
     "start-server-and-test": "^1.14.0",
-    "swiper": "^8.1.5"
+    "swiper": "^8.1.5",
+    "tawkto-react": "^3.0.1"
   }
 }

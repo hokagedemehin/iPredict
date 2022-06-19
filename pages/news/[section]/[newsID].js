@@ -8,6 +8,7 @@ import DatabaseFeedDetailsComponent from '../../../components/news/databaseData/
 import { useQuery } from 'react-query';
 import GetNewsDetail from '../../../utils/news/getNewsDetail';
 import { useUser } from '../../../utils/auth/userContext';
+// import { useUser } from '../../../utils/auth/userContext';
 
 const NewsAndTransfersDetailsPage = () => {
   const router = useRouter();
@@ -16,11 +17,13 @@ const NewsAndTransfersDetailsPage = () => {
 
   const { user } = useUser();
 
+  // ****************RESTORE*************************
   useEffect(() => {
     if (!user) {
       router.push('/login');
     }
   }, [user]);
+  // ****************RESTORE*************************
 
   // get the details of the news clicked on
   const { section, newsID } = router.query;
