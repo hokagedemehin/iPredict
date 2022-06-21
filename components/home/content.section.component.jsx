@@ -81,6 +81,8 @@ const ContentComponent = ({ userDoc }) => {
           <p className='text-sm font-bold text-center'>News Magazine</p>
         </div>
       </div>
+      <Heading>This is a blog page</Heading>
+      <Text>This is super awesome</Text>
       <div className='pt-16 text-center mx-4  pb-5'>
         {userDoc && userDoc?.referralCode ? (
           <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
