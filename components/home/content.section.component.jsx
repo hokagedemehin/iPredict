@@ -27,6 +27,8 @@ const ContentComponent = ({ userDoc }) => {
   const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   return (
     <div className='pt-16'>
+      <Heading>This is a blog page</Heading>
+      <Text>This is super awesome</Text>
       <div className='grid sm:grid-cols-3 grid-cols-2 gap-4 mx-4'>
         <div
           data-cy-name='home-btns'
@@ -81,8 +83,7 @@ const ContentComponent = ({ userDoc }) => {
           <p className='text-sm font-bold text-center'>News Magazine</p>
         </div>
       </div>
-      <Heading>This is a blog page</Heading>
-      <Text>This is super awesome</Text>
+
       <div className='pt-16 text-center mx-4  pb-5'>
         {userDoc && userDoc?.referralCode ? (
           <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
@@ -106,14 +107,6 @@ const ContentComponent = ({ userDoc }) => {
           ''
         )}
       </div>
-      {/* <div className='pt-10 mx-4 pb-5 flex justify-center'>
-        <div
-          onClick={() => router.push('/tutorials')}
-          className='flex justify-center items-center text-center transition ease-in-out duration-500 px-6 py-4 border border-gray-400 rounded-md cursor-pointer w-fit text-white font-bold text-xl hover:border-white hover:bg-black'
-        >
-          Short tutorials on how to play and win
-        </div>
-      </div> */}
     </div>
   );
 };
