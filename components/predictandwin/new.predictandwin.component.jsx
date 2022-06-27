@@ -183,13 +183,7 @@ const NewPredictAndWinComponent = ({
       </div>
       <div>
         {rightNow >= matchTime || matches.length == 0 ? (
-          <div
-            data-aos='fade-up'
-            data-aos-duration='1500'
-            data-aos-easing='ease-out-back'
-            data-aos-delay='1000'
-            className='flex my-5 max-w-2xl mx-auto shadow-sm'
-          >
+          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<ImBlocked />}
               colorScheme='blackAlpha'
@@ -202,13 +196,7 @@ const NewPredictAndWinComponent = ({
             </Button>
           </div>
         ) : userDoc?.coins >= predictionCoins ? (
-          <div
-            data-aos='fade-up'
-            data-aos-duration='1500'
-            data-aos-easing='ease-out-back'
-            data-aos-delay='1000'
-            className='flex my-5 max-w-2xl mx-auto shadow-sm'
-          >
+          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
             <Button
               leftIcon={<GiSoccerBall />}
               colorScheme='teal'
@@ -227,13 +215,7 @@ const NewPredictAndWinComponent = ({
             </Button>
           </div>
         ) : (
-          <div
-            data-aos='fade-up'
-            data-aos-duration='1500'
-            data-aos-easing='ease-out-back'
-            data-aos-delay='1000'
-            className='flex text-center'
-          >
+          <div className='flex text-center'>
             <div className='flex flex-col items-center justify-center mb-4 pt-2 h-28 w-full space-y-2'>
               <div>
                 <p className='font-bold text-lg'>
