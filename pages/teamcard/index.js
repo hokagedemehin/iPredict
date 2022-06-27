@@ -24,6 +24,8 @@ import SendRewardToWallet from '../../utils/wallet/sendRewardToWallet';
 import SetUserHistory from '../../utils/wallet/setUserHistory';
 import NoTeamCardEmptyComponent from '../../components/emptypages/noteamcard.empty';
 const qs = require('qs');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TeamCardsPage = ({ data }) => {
   const toast = useToast();
@@ -46,6 +48,9 @@ const TeamCardsPage = ({ data }) => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // **********RESTORE*************************
 
   const thousands = (num) => {
@@ -253,7 +258,12 @@ const TeamCardsPage = ({ data }) => {
     <Layout name='team card' desc='I-Predict Team Card'>
       <NavHeader />
       <div className='mx-4 pb-8'>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           {/* <Heading>Team Cards</Heading> */}
           <Heading className='font-black bg-gradient-to-r from-purple-600  to-rose-500 bg-clip-text text-transparent'>
             My Team Cards
@@ -261,8 +271,12 @@ const TeamCardsPage = ({ data }) => {
         </div>
         <div className='flex flex-wrap justify-center gap-3'>
           {sortMatches?.length !== 0 &&
-            sortMatches?.map((card) => (
+            sortMatches?.map((card, index) => (
               <div
+                data-aos='fade-down'
+                data-aos-duration='1500'
+                data-aos-easing='ease-out-back'
+                data-aos-delay={100 * index}
                 key={card?.id}
                 className='relative w-[25rem] h-fit overflow-hidden rounded-md border shadow-md'
               >

@@ -14,6 +14,8 @@ import { useUser } from '../../utils/auth/userContext';
 // import { useUser } from '../../utils/auth/userContext';
 import GetPredictMatches from '../../utils/prediction/getPredictMatches';
 const qs = require('qs');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PredictAndWinPage = ({ data: initialPredictionData, coins }) => {
   const { user } = useUser();
@@ -51,6 +53,10 @@ const PredictAndWinPage = ({ data: initialPredictionData, coins }) => {
     }
   );
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   // console.log('data :>> ', data);
 
   // ****************RESTORE*************************
@@ -67,9 +73,22 @@ const PredictAndWinPage = ({ data: initialPredictionData, coins }) => {
       <div className=''>
         <div className='text text-center my-5'>
           {/* <Heading>Predict & Win</Heading> */}
-          <Heading className='text-teal-500'>{data?.name}</Heading>
+          <Heading
+            data-aos='fade-up'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            className='text-teal-500'
+          >
+            {data?.name}
+          </Heading>
         </div>
-        <div className='mx-2'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='1500'
+          data-aos-delay='500'
+          data-aos-easing='ease-out-back'
+          className='mx-2'
+        >
           <BannerPredictAndWin />
         </div>
         {isLoading && (

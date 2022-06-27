@@ -39,7 +39,13 @@ const NewsHomeComponents = () => {
 
   return (
     <div className='mx-4 flex flex-col space-y-4 py-7'>
-      <div className='tab-section'>
+      <div
+        data-aos='fade-up'
+        data-aos-duration='1500'
+        data-aos-easing='ease-out-back'
+        data-aos-delay='500'
+        className='tab-section'
+      >
         <DatabaseFeedComponent
           isSuccess={isSuccess}
           databaseLoading={databaseLoading}

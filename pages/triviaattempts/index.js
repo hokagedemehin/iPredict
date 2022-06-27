@@ -7,6 +7,8 @@ import Layout from '../../components/layout/layout';
 import TriviaAttemptsPageComponent from '../../components/triviagame/attempts/trivia.attempts.component';
 import { useRouter } from 'next/router';
 import { useUser } from '../../utils/auth/userContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TriviaGamesPage = () => {
   const router = useRouter();
@@ -18,12 +20,20 @@ const TriviaGamesPage = () => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // ****************RESTORE*************************
   return (
     <Layout name='trivia-attempts' desc='I-Predict Trivia Attempts'>
       <NavHeader />
       <div className=''>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           <Heading>Trivia Attempts</Heading>
         </div>
         <TriviaAttemptsPageComponent />

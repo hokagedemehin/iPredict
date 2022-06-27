@@ -4,7 +4,7 @@ import { usePaystackPayment } from 'react-paystack';
 import UpdateUserWallet from '../../utils/wallet/updateUserWallet';
 // import { useRouter } from 'next/router';
 
-const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
+const CoinsComponentPayStack = ({ index, data, userDoc, user, setUserDoc }) => {
   // const router = useRouter();
   // console.log(process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY);
   // updated to live key now
@@ -44,6 +44,11 @@ const CoinsComponentPayStack = ({ data, userDoc, user, setUserDoc }) => {
   return (
     <div>
       <div
+        data-cy-name='home-btns'
+        data-aos='zoom-in'
+        data-aos-easing='ease-out-back'
+        data-aos-duration='1500'
+        data-aos-delay={100 * index}
         onClick={(e) => {
           handleClick(e);
         }}

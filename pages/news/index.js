@@ -8,6 +8,8 @@ import NavHeader from '../../components/nav/header.component';
 import NewsHomeComponents from '../../components/news/newsHomeComponents';
 import { useUser } from '../../utils/auth/userContext';
 // import { useUser } from '../../utils/auth/userContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const NewsAndTransfersPage = () => {
   const router = useRouter();
@@ -20,12 +22,20 @@ const NewsAndTransfersPage = () => {
     }
   }, [user]);
   // ****************RESTORE*************************
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <Layout name='news' desc='I-Predict news and transfers'>
       <NavHeader />
       <div className='bg-black text-white min-h-screen'>
-        <div className='text py-5 text-center'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text py-5 text-center'
+        >
           <Heading>News & Transfers </Heading>
         </div>
         <NewsHomeComponents />

@@ -63,7 +63,12 @@ const NavHeader = () => {
     router.push(href);
   };
   return (
-    <div className='relative'>
+    <div
+      data-aos='fade-right'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+      className='relative'
+    >
       <Flex px='4' py='2' className=' '>
         {/* mobile */}
         <div className='sm:hidden z-10'>

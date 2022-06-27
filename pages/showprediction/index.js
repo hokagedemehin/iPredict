@@ -7,6 +7,8 @@ import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import NewShowPredictionComponent from '../../components/showpredictions/new.showpredictions.component';
 import { useUser } from '../../utils/auth/userContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 // import { useUser } from "../../utils/auth/userContext";
 // import ShowPredictionComponent from '../../components/showpredictions/showpredictions.component';
 // import { useUser } from '../../utils/auth/userContext';
@@ -21,13 +23,21 @@ const ShowPrediction = () => {
       router.push('/login');
     }
   }, [user]);
-  // ****************RESTORE*************************
 
+  // ****************RESTORE*************************
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <Layout name='predictions' desc='See all Users Predictions'>
       <NavHeader />
       <div className=''>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           <Heading>All Predictions</Heading>
         </div>
         <NewShowPredictionComponent />

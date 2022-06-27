@@ -46,7 +46,12 @@ const TriviaAttemptsPageComponent = () => {
     setItemOffset(newOffset);
   };
   return (
-    <div className='flex flex-col space-y-4'>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+      className='flex flex-col space-y-4'
+    >
       <div className='flex flex-wrap w-full justify-center max-w-2xl mx-auto'>
         {isLoading &&
           [0, 1, 2, 3, 4, 5].map((value, index) => (

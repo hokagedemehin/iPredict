@@ -16,6 +16,8 @@ const qs = require('qs');
 import axios from 'axios';
 import { useEffect } from 'react';
 import TawkTo from 'tawkto-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
@@ -31,6 +33,7 @@ export default function Home({ campaign }) {
       process.env.NEXT_PUBLIC_PROPERTY_ID,
       process.env.NEXT_PUBLIC_TAWK_ID
     );
+    AOS.init();
   }, []);
 
   return (
@@ -41,7 +44,11 @@ export default function Home({ campaign }) {
 
           <HeroComponent />
         </div>
-        <div>
+        <div
+          data-aos='fade-up-right'
+          data-aos-duration='1000'
+          data-aos-easing='ease-out-back'
+        >
           <CampaignComponent data={campaign} />
         </div>
         {/* <div className='bg-[#0D37CE]'> */}
@@ -51,7 +58,12 @@ export default function Home({ campaign }) {
         </div>
 
         {userDoc && !userDoc?.freeClaim ? (
-          <div className='pt-16 pb-3 mx-4 '>
+          <div
+            data-aos='fade-down'
+            data-aos-easing='ease-out-back'
+            data-aos-duration='1500'
+            className='pt-16 pb-3 mx-4 '
+          >
             <NewUserFreeCoins
               userDoc={userDoc}
               setUserDoc={setUserDoc}

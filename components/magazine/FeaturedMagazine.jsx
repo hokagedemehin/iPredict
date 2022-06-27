@@ -8,7 +8,11 @@ import { Navigation, Keyboard } from 'swiper';
 import Image from 'next/image';
 const FeaturedMagazine = ({ data }) => {
   return (
-    <div>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+    >
       <Swiper
         navigation={true}
         modules={[Navigation, Keyboard]}
