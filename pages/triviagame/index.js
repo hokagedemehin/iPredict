@@ -8,6 +8,8 @@ import TriviaHomePageComponent from '../../components/triviagame/trivia.homepage
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useUser } from '../../utils/auth/userContext';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TriviaGamesPage = ({ data }) => {
   const router = useRouter();
@@ -20,6 +22,9 @@ const TriviaGamesPage = ({ data }) => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // ****************RESTORE*************************
   return (
     <Layout name='trivia' desc='I-Predict Trivia Game'>

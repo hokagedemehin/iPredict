@@ -124,7 +124,13 @@ const AllMagazines = ({ data }) => {
       {newData.length !== 0 && (
         <div>
           {!active && (
-            <div className='flex justify-center'>
+            <div
+              data-aos='flip-up'
+              data-aos-duration='1500'
+              data-aos-easing='ease-out-back'
+              data-aos-delay='1000'
+              className='flex justify-center'
+            >
               <div className='text-center font-black text-lg md:text-2xl m-4 p-4 shadow-md rounded-lg w-fit space-y-2 border'>
                 <Text>Unlimited Access to the titles available</Text>
                 <Button
@@ -160,6 +166,10 @@ const AllMagazines = ({ data }) => {
         {newData &&
           newData.map((mag, index) => (
             <div
+              data-aos='fade-up'
+              data-aos-duration='1500'
+              data-aos-easing='ease-out-back'
+              data-aos-delay={50 * index}
               key={index}
               className='flex sm:flex-row flex-col items-center sm:space-x-4 w-fit border shadow-lg p-3 rounded-lg'
             >

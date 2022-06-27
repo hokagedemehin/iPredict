@@ -8,6 +8,8 @@ import { useUser } from '../../utils/auth/userContext';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 const qs = require('qs');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const UserWalletPage = ({ data }) => {
   const router = useRouter();
@@ -19,6 +21,9 @@ const UserWalletPage = ({ data }) => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // ****************RESTORE*************************
 
   const { data: freshCoins } = useQuery(
@@ -58,7 +63,12 @@ const UserWalletPage = ({ data }) => {
     <Layout name='wallet' desc='I-Predict User Wallet'>
       <NavHeader />
       <div className='mx-4'>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           <Heading>My Wallet</Heading>
         </div>
         <WalletHomePage

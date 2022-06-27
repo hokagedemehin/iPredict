@@ -158,7 +158,14 @@ const WalletHomePage = ({ userDoc, user, setUserDoc, freshCoins }) => {
     <div className=''>
       <div className='flex flex-col space-y-10 mb-5'>
         <div className='summary w-full bg-purple-700 ring-1 ring-gray-200 shadow-lg rounded-xl py-5 '>
-          <div className='flex flex-col sm:flex-row space-y-5 sm:space-y-0 '>
+          {/* coins | cash | request */}
+          <div
+            data-aos='fade-left'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            data-aos-delay='5000'
+            className='flex flex-col sm:flex-row space-y-5 sm:space-y-0 '
+          >
             <div className='coins w-full flex justify-center items-center space-x-3'>
               <div className='flex flex-col text-white justify-center items-center text-lg sm:text-2xl'>
                 <div>
@@ -254,6 +261,7 @@ const WalletHomePage = ({ userDoc, user, setUserDoc, freshCoins }) => {
                   {freshCoins &&
                     freshCoins.map((data, index) => (
                       <CoinsComponentPayStack
+                        index={index}
                         key={index}
                         data={data}
                         userDoc={userDoc}

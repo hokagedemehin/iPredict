@@ -47,6 +47,10 @@ const NewShowPredictionComponent = () => {
           myPredictions.length !== 0 &&
           myPredictions.map((match, index) => (
             <div
+              data-aos='zoom-in'
+              data-aos-easing='ease-out-back'
+              data-aos-duration='1500'
+              data-aos-delay={index * 50}
               className='w-fit border cursor-pointer rounded-md p-2 shadow-md '
               key={index}
               // ref={btnRef}

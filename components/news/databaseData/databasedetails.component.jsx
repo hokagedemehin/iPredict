@@ -13,7 +13,12 @@ const DatabaseFeedDetailsComponent = ({ isLoading, details }) => {
   // };
 
   return (
-    <div className='mx-4 py-10'>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+      className='mx-4 py-10'
+    >
       <div className='flex flex-col space-y-3'>
         {/* back button */}
         <div className='navigation'>
@@ -27,14 +32,26 @@ const DatabaseFeedDetailsComponent = ({ isLoading, details }) => {
           </Button>
         </div>
         {/* News Topic */}
-        <div className='topic mx-2 mt-5'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          // data-aos-delay='100'
+          className='topic mx-2 mt-5'
+        >
           {isLoading && <Skeleton className='h-10'>Title is loading</Skeleton>}
           <Text className='text-2xl font-bold sm:text-4xl'>
             {details?.title}
           </Text>
         </div>
         {/* News Image */}
-        <div className='page-image'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          data-aos-delay='200'
+          className='page-image'
+        >
           <div className='flex flex-col space-y-1'>
             <Image
               src={details?.image?.data?.urls?.uploaded?.embed}
@@ -53,7 +70,13 @@ const DatabaseFeedDetailsComponent = ({ isLoading, details }) => {
           </div>
         </div>
         {/* body */}
-        <div className='space-y-4'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          data-aos-delay='100'
+          className='space-y-4'
+        >
           {isLoading && <Skeleton className='h-10'>body is loading</Skeleton>}
           {details?.body &&
             details?.body.map((text, index) => {

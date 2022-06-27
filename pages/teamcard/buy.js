@@ -16,6 +16,8 @@ import { useQuery } from 'react-query';
 // import TeamCardEmptyComponent from '../../components/emptypages/teamcard.empty';
 import NoBuyTeamCardEmptyComponent from '../../components/emptypages/nobuyteamcard.empty';
 const qs = require('qs');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const BuyTeamCardsPage = ({ premium, standard }) => {
   const router = useRouter();
@@ -119,6 +121,9 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // **********RESTORE*************************
 
   const thousands = (num) => {
@@ -237,13 +242,22 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
     <Layout name='buy team card' desc='I-Predict Team Card purchase page'>
       <NavHeader />
       <div className='mx-4 pb-5'>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='flip-up'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           <Heading>Buy Team Cards</Heading>
         </div>
         {/* premium section */}
 
         {freshPremium?.length > 0 && (
-          <div>
+          <div
+            data-aos='fade-down'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+          >
             <div className='text-left py-4 px'>
               <Text className='text-3xl font-black bg-gradient-to-r from-orange-600 via-yellow-400 to-amber-600 bg-clip-text  text-transparent'>
                 Premium Cards
@@ -390,7 +404,12 @@ const BuyTeamCardsPage = ({ premium, standard }) => {
         {/* standard section */}
 
         {freshStandard?.length > 0 && (
-          <div>
+          <div
+            data-aos='fade-down'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            data-aos-delay='500'
+          >
             <div className='text-left py-4 px'>
               <Text className='text-3xl font-black bg-gradient-to-r from-blue-600  to-green-600 bg-clip-text text-transparent'>
                 Standard Cards

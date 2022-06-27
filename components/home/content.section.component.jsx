@@ -29,6 +29,9 @@ const ContentComponent = ({ userDoc }) => {
     <div className='pt-16'>
       <div className='grid sm:grid-cols-3 grid-cols-2 gap-4 mx-4'>
         <div
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
           data-cy-name='home-btns'
           onClick={() => router.push('/predictandwin')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700 '
@@ -40,6 +43,10 @@ const ContentComponent = ({ userDoc }) => {
 
         <div
           data-cy-name='home-btns'
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
+          data-aos-delay='50'
           onClick={() => router.push('/news')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -49,6 +56,10 @@ const ContentComponent = ({ userDoc }) => {
 
         <div
           data-cy-name='home-btns'
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
+          data-aos-delay='100'
           onClick={() => router.push('/teamcard')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -57,6 +68,10 @@ const ContentComponent = ({ userDoc }) => {
         </div>
         <div
           data-cy-name='home-btns'
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
+          data-aos-delay='150'
           onClick={() => router.push('/triviagame')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -66,6 +81,10 @@ const ContentComponent = ({ userDoc }) => {
 
         <div
           data-cy-name='home-btns'
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
+          data-aos-delay='200'
           onClick={() => router.push('/spinmatch')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -74,6 +93,10 @@ const ContentComponent = ({ userDoc }) => {
         </div>
         <div
           data-cy-name='home-btns'
+          data-aos='zoom-in'
+          data-aos-easing='ease-out-back'
+          data-aos-duration='1500'
+          data-aos-delay='250'
           onClick={() => router.push('/magazine')}
           className='flex flex-col items-center justify-center shadow-md space-y-2 rounded-md cursor-pointer hover:bg-gray-100 transform transition duration-200 ease-in py-4 px-2 sm:py-6 sm:px-4 bg-white hover:scale-105 shadow-gray-700'
         >
@@ -81,7 +104,12 @@ const ContentComponent = ({ userDoc }) => {
           <p className='text-sm font-bold text-center'>News Magazine</p>
         </div>
       </div>
-      <div className='pt-16 text-center mx-4  pb-5'>
+      <div
+        data-aos='flip-left'
+        data-aos-easing='ease-out-back'
+        data-aos-duration='1500'
+        className='pt-16 text-center mx-4  pb-5'
+      >
         {userDoc && userDoc?.referralCode ? (
           <div className='bg-blue-400 w-fit mx-auto p-3 rounded-lg shadow-md shadow-black space-y-1'>
             <Heading fontSize={['xs', 'md', '2xl']}>

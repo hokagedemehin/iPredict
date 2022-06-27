@@ -14,7 +14,7 @@ import TriviaCoins from '../../utils/wallet/triviaCoins';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-const TriviaHomeButton = ({ elem, user, userDoc, setUserDoc }) => {
+const TriviaHomeButton = ({ index, elem, user, userDoc, setUserDoc }) => {
   // console.log('elem :>> ', elem);
   const router = useRouter();
   // const name = [
@@ -77,6 +77,10 @@ const TriviaHomeButton = ({ elem, user, userDoc, setUserDoc }) => {
   return (
     <div>
       <div
+        data-aos='fade-up'
+        data-aos-duration='1500'
+        data-aos-easing='ease-out-back'
+        data-aos-delay={100 * index}
         className={`flex flex-col shadow-md shadow-[${elem?.attributes.color}] rounded-xl ring-1 ring-gray-200 p-1 cursor-pointer`}
         onClick={(e) => {
           handleClick(e);

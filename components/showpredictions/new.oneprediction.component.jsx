@@ -5,13 +5,19 @@ import { BiCheck, BiLoader } from 'react-icons/bi';
 import { MdClose } from 'react-icons/md';
 // import { AiOutlineLoading } from 'react-icons/ai';
 
-const NewOneMatchPredictions = ({ uniqueId, data: userPredictions }) => {
+const NewOneMatchPredictions = ({ index, uniqueId, data: userPredictions }) => {
   const setOfPredictions = userPredictions.filter(
     (value) => value?.attributes?.uniqueId == uniqueId
   );
 
   return (
-    <div className='flex flex-col shadow-md border p-2 rounded-md'>
+    <div
+      data-aos='fade-up'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+      data-aos-delay={50 * index}
+      className='flex flex-col shadow-md border p-2 rounded-md'
+    >
       {setOfPredictions.map((match, index) => (
         <div
           key={index}

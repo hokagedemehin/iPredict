@@ -11,6 +11,8 @@ import AllMagazines from '../../components/magazine/AllMagazines';
 import { useUser } from '../../utils/auth/userContext';
 import { useRouter } from 'next/router';
 const qs = require('qs');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const MagazinePage = ({ featuredData, allMags }) => {
   // console.log('data :>> ', featuredData);
@@ -28,11 +30,20 @@ const MagazinePage = ({ featuredData, allMags }) => {
   }, [user]);
   // **********RESTORE*************************
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <Layout name='magazine' desc='I-predict Magazine'>
       <NavHeader />
       <div className='mx-4'>
-        <div className='text text-center my-5'>
+        <div
+          data-aos='fade-left'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text text-center my-5'
+        >
           <Heading>News Magazine</Heading>
         </div>
         <div className='space-y-7 pb-10'>

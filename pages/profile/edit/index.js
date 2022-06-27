@@ -6,6 +6,8 @@ import NavHeader from '../../../components/nav/header.component';
 import { useUser } from '../../../utils/auth/userContext';
 import UsersProfileEditComponent from '../../../components/profile/users.edit.component';
 import { useRouter } from 'next/router';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ProfileEditPage = () => {
   const router = useRouter();
@@ -18,12 +20,20 @@ const ProfileEditPage = () => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // ****************RESTORE*************************
 
   return (
     <Layout name='profile' desc='I-Predict User Profile'>
       <NavHeader />
-      <div className='mx-4'>
+      <div
+        data-aos='fade-up'
+        data-aos-duration='1500'
+        data-aos-easing='ease-out-back'
+        className='mx-4'
+      >
         <div className='text text-center my-5'></div>
         <UsersProfileEditComponent user={user} userDoc={userDoc} />
       </div>

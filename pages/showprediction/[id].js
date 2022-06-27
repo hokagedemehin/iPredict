@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 // import { useUser } from '../../utils/auth/userContext';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Layout from '../../components/layout/layout';
 import NavHeader from '../../components/nav/header.component';
 import NewOneMatchPredictions from '../../components/showpredictions/new.oneprediction.component';
@@ -23,6 +24,9 @@ const ShowUserPredictions = ({ data }) => {
       router.push('/login');
     }
   }, [user]);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // **********RESTORE*************************
   useEffect(() => {
     if (userMatches.length == 0) {
@@ -62,12 +66,18 @@ const ShowUserPredictions = ({ data }) => {
           Back
         </Button>
       </div>
-      <Text className='mx-2 py-4 text-center text-2xl font-bold sm:text-4xl'>
+      <Text
+        data-aos='fade-left'
+        data-aos-duration='1500'
+        data-aos-easing='ease-out-back'
+        className='mx-2 py-4 text-center text-2xl font-bold sm:text-4xl'
+      >
         Matches Predictions
       </Text>
       <div className='my-4 mx-auto max-w-xl p-1 flex flex-wrap gap-6 w-fit justify-center'>
-        {finalSet.map((elem) => (
+        {finalSet.map((elem, index) => (
           <NewOneMatchPredictions
+            index={index}
             key={elem}
             uniqueId={elem}
             data={userMatches}

@@ -59,7 +59,12 @@ const TriviaHomePageComponent = ({ data: buttonsData }) => {
   return (
     <div>
       <div className='flex flex-col space-y-4 m-4'>
-        <div className='text-center'>
+        <div
+          data-aos='fade-up'
+          data-aos-duration='1500'
+          data-aos-easing='ease-out-back'
+          className='text-center'
+        >
           <Heading size='lg'>CONVERT YOUR SKILL TO CASH</Heading>
         </div>
         {/* {isLoading && (
@@ -82,6 +87,7 @@ const TriviaHomePageComponent = ({ data: buttonsData }) => {
 
           {buttonsData.map((elem, index) => (
             <TriviaHomeButton
+              index={index}
               key={index}
               elem={elem}
               user={user}

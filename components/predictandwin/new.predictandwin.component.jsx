@@ -154,7 +154,13 @@ const NewPredictAndWinComponent = ({
 
   return (
     <div className='mx-2'>
-      <div className='flex flex-col mt-5 max-w-2xl mx-auto space-y-4'>
+      <div
+        data-aos='fade-up'
+        data-aos-duration='1500'
+        data-aos-easing='ease-out-back'
+        data-aos-delay='1000'
+        className='flex flex-col mt-5 max-w-2xl mx-auto space-y-4'
+      >
         {matches.length == 0 && (
           <Skeleton className='flex items-center justify-center mb-4 mt-2 h-28 w-full'>
             <p fontSize='lg' fontWeight='bold'>
@@ -177,7 +183,13 @@ const NewPredictAndWinComponent = ({
       </div>
       <div>
         {rightNow >= matchTime || matches.length == 0 ? (
-          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
+          <div
+            data-aos='fade-up'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            data-aos-delay='1000'
+            className='flex my-5 max-w-2xl mx-auto shadow-sm'
+          >
             <Button
               leftIcon={<ImBlocked />}
               colorScheme='blackAlpha'
@@ -190,7 +202,13 @@ const NewPredictAndWinComponent = ({
             </Button>
           </div>
         ) : userDoc?.coins >= predictionCoins ? (
-          <div className='flex my-5 max-w-2xl mx-auto shadow-sm'>
+          <div
+            data-aos='fade-up'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            data-aos-delay='1000'
+            className='flex my-5 max-w-2xl mx-auto shadow-sm'
+          >
             <Button
               leftIcon={<GiSoccerBall />}
               colorScheme='teal'
@@ -209,11 +227,20 @@ const NewPredictAndWinComponent = ({
             </Button>
           </div>
         ) : (
-          <div className='flex text-center'>
+          <div
+            data-aos='fade-up'
+            data-aos-duration='1500'
+            data-aos-easing='ease-out-back'
+            data-aos-delay='1000'
+            className='flex text-center'
+          >
             <div className='flex flex-col items-center justify-center mb-4 pt-2 h-28 w-full space-y-2'>
-              <p className='font-bold text-lg'>
-                You have insufficient coins balance
-              </p>
+              <div>
+                <p className='font-bold text-lg'>
+                  You need {predictionCoins - userDoc?.coins} coins more to
+                  predict games
+                </p>
+              </div>
               <Button colorScheme='teal' onClick={() => router.push('/wallet')}>
                 Buy Coins
               </Button>
