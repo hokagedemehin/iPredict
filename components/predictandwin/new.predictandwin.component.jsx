@@ -153,14 +153,14 @@ const NewPredictAndWinComponent = ({
   const rightNow = new Date().getTime();
 
   return (
-    <div className='mx-2'>
-      <div
-        data-aos='fade-up'
-        data-aos-duration='1500'
-        data-aos-easing='ease-out-back'
-        data-aos-delay='1000'
-        className='flex flex-col mt-5 max-w-2xl mx-auto space-y-4'
-      >
+    <div
+      data-aos='fade-up'
+      data-aos-duration='1500'
+      data-aos-easing='ease-out-back'
+      data-aos-delay='1000'
+      className='mx-2 mb-10'
+    >
+      <div className='flex flex-col mt-5 max-w-2xl mx-auto space-y-4'>
         {matches.length == 0 && (
           <Skeleton className='flex items-center justify-center mb-4 mt-2 h-28 w-full'>
             <p fontSize='lg' fontWeight='bold'>
