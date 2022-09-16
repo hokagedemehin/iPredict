@@ -106,16 +106,10 @@ const AllMagazinePages = ({ data: allMags }) => {
           </div>
         </div>
         <Swiper
-          // effect={'fade'}
           navigation={true}
           modules={[Navigation, Keyboard]}
           className='mySwiper'
           loop={true}
-          // autoplay={{
-          //   delay: 5000,
-          //   disableOnInteraction: false,
-          //   pauseOnMouseEnter: true,
-          // }}
           keyboard={{
             enabled: true,
           }}

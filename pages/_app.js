@@ -5,7 +5,8 @@ import Router from 'next/router';
 import UserProvider from '../utils/auth/userContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { DefaultSeo } from 'next-seo';
-import Script from 'next/script';
+// import Script from 'next/script';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 const progress = new ProgressBar({
   size: 4,
@@ -61,7 +62,7 @@ function MyApp({ Component, pageProps }) {
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
             strategy='afterInteractive'
           /> */}
-          <Script id='google-analytics' strategy='afterInteractive'>
+          {/* <Script id='google-analytics' strategy='afterInteractive'>
             {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
@@ -69,7 +70,7 @@ function MyApp({ Component, pageProps }) {
 
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}');
         `}
-          </Script>
+          </Script> */}
 
           {/* Google adsense */}
           {/* <script
@@ -77,12 +78,12 @@ function MyApp({ Component, pageProps }) {
             src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4908548968774542'
             crossorigin='anonymous'
           ></script> */}
-          <Script
+          {/* <Script
             src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4908548968774542'
             crossorigin='anonymous'
             strategy='afterInteractive'
-          />
-
+          /> */}
+          <GoogleAnalytics trackPageViews />
           <Component {...pageProps} />
         </ChakraProvider>
       </UserProvider>
